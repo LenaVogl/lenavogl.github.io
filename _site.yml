@@ -1,6 +1,6 @@
-name: "Lena's Code"
+name: "Codesammlung"
 navbar:
-  title: "Lena's Code"
+  title: "Codesammlung"
   left:
     - text: "Home"
       href: index.html

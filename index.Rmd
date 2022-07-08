@@ -1,5 +1,5 @@
 ---
-title: "MyLabJournal"
+title: "Codesammlung"
 output: html_document
 ---
 
@@ -19,7 +19,7 @@ output: html_document
 
 # **R - Themen**
 
-Auf dieser Seite möchte ich einige R- Themen sammeln mit denen ich mich beschäftige. Dies dient in erster Linie als Nachschlagwerk. 
+Auf dieser Seite möchte ich R-Code zu Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. Dies dient in erster Linie als Nachschlagwerk. 
 
 
 
