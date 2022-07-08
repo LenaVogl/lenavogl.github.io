@@ -325,7 +325,7 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="Journal.html">Journal</a>
+  <a href="Excel.html">Excel</a>
 </li>
 <li>
   <a href="Links.html">Links</a>
@@ -349,36 +349,34 @@ div.tocify {
 
 <p>Immer wieder kommt es vor, dass Daten für andere Nutzer in Excel
 exportiert werden müssen. Mit dem Package openxlsx lassen sich die Daten
-nicht nur abspeichern, es können auch sämtliche Formatierungen
-vorgenommen werden. Damit eignet sich das Package meiner Meinung nach
-perfekt zur automatisierten Erstellung von Exceldateien. Mit relativ
-geringem Aufwand können die Daten z.B. auch per Schleifen in
-verschiedene Excelsheets geschrieben werden.</p>
+nicht nur abspeichern, sie können auch beliebig formatiert werden. Somit
+eignet sich das Package perfekt zur automatisierten Erstellung von
+Exceldateien. Wer viele Excelsheets generieren möchte, kann das z.B. mit
+Hilfe von Schleifen umsetzen.</p>
 <p>Auch das Auslesen von Exceldateien ist mit openxlsx sehr komfortabel
 möglich. Hierbei können sowohl ganze Excelsheets als auch Teile daraus
 aufgerufen werden.</p>
-<div id="workbook-anlegen" class="section level1">
-<h1>Workbook anlegen</h1>
+<div id="workbook-anlegen" class="section level2">
+<h2>Workbook anlegen</h2>
 <p>Als erstes muss immer ein leeres Workbook angelegt werden.</p>
 <pre class="r"><code>library(openxlsx)
 
 # Workbook erstellen
 wb &lt;- createWorkbook()</code></pre>
 </div>
-<div id="workbook-befüllen" class="section level1">
-<h1>Workbook befüllen</h1>
-<p>In diesem Workbook werden nun die Sheets erstellt. Hier verwende ich
-den Iris-Datensatz. Die Formatierung kann mit dem Befehl createStyle()
-vorgenommen werden. Hierbei lassen sich verschiedene Styles definieren
-und auf die gespeicherten Daten bzw. auch beliebige Zellen im Excelsheet
-anwenden.</p>
 <div id="worksheet-erstellen" class="section level2">
 <h2>Worksheet erstellen</h2>
+<p>Für das neu angelegte Workbook wird nun ein Sheet generiert:</p>
 <pre class="r"><code># Excelsheet anlegen und benennen
 addWorksheet(wb, &quot;Daten&quot;)</code></pre>
 </div>
-<div id="styles-definieren-un-daten-schreiben" class="section level2">
-<h2>Styles definieren un Daten schreiben</h2>
+<div id="worksheet-befüllen" class="section level2">
+<h2>Worksheet befüllen</h2>
+<p>In ein definiertes Sheet können nun mit writeData() Daten geschrieben
+werden. Die Formatierung kann mit dem Befehl createStyle() definiert und
+anschließend mit addStyle() angewendet werden. Hierbei lassen sich
+verschiedene Styles definieren und auf die gespeicherten Daten bzw. auch
+beliebige Zellen im Excelsheet anwenden.</p>
 <pre class="r"><code>#Styles definieren
 header_style &lt;- createStyle(halign = &quot;center&quot;, textDecoration = &quot;bold&quot;, border = &quot;Bottom&quot;)
 style_grau &lt;- createStyle(fgFill = &quot;#d6d6d6&quot;, fontColour = &quot;#313c48&quot;)
@@ -389,9 +387,6 @@ writeData(wb, &quot;Daten&quot;, iris, headerStyle = header_style)
 # Formatierung bestimmter Zellen:
 addStyle(wb, &quot;Daten&quot;, rows = 2:(nrow(iris)+1), cols = 2, style = style_grau)</code></pre>
 </div>
-</div>
-<div id="weitere-formatierungen" class="section level1">
-<h1>Weitere Formatierungen</h1>
 <div id="spaltenbreite" class="section level2">
 <h2>Spaltenbreite</h2>
 <p>Die Spaltenbreite kann automatisch angepasst oder anhand eines
@@ -413,9 +408,8 @@ conditionalFormatting(wb, &quot;Daten&quot;,
   cols = 1:3, rows = 2:nrow(iris), rule = &quot;A2&gt;=3&quot;, style = style_rot
 )</code></pre>
 </div>
-</div>
-<div id="datenüberprüfung" class="section level1">
-<h1>Datenüberprüfung</h1>
+<div id="datenüberprüfung" class="section level2">
+<h2>Datenüberprüfung</h2>
 <p>Wir können festlegen welche Werte in eine Spalte eingegeben werden
 dürfen. Entspricht die Eingabe nicht der Vorgabe, entsteht eine
 Fehlermeldung in Excel.</p>
@@ -447,8 +441,6 @@ addStyle(wb, &quot;Datenüberprüfung&quot;, cols = c(2,2,2), rows = c(2,4,6), s
 
 setColWidths(wb, sheet = &quot;Datenüberprüfung&quot;, cols = 1:2, widths = c(30,12))</code></pre>
 </div>
-<div id="sonstiges" class="section level1">
-<h1>Sonstiges</h1>
 <div id="zeilen-spalten-fixieren" class="section level2">
 <h2>Zeilen / Spalten fixieren</h2>
 <pre class="r"><code>freezePane(wb, &quot;Daten&quot;, firstActiveRow = 2, firstActiveCol = 1)</code></pre>
@@ -464,9 +456,8 @@ addStyle(wb, &quot;Datenüberprüfung&quot;, cols = c(2,2,2), rows = c(2,4,6), s
 # Blatt schützen
 protectWorksheet(wb, &quot;Datenüberprüfung&quot;, protect = TRUE)</code></pre>
 </div>
-</div>
-<div id="workbook-speichern" class="section level1">
-<h1>Workbook speichern</h1>
+<div id="workbook-speichern" class="section level2">
+<h2>Workbook speichern</h2>
 <p>Nachdem alles definiert und formatiert wurde, kann das Workbook als
 Exceldatei abgespeichert werden.</p>
 <pre class="r"><code># Workbook speichern:
@@ -522,7 +513,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1",
+      selectors: "h1,h2",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
