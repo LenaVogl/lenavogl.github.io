@@ -1,5 +1,5 @@
 ---
-title: "Journal"
+title: "R und Excel"
 output:
   html_document:
     toc: true
@@ -14,115 +14,138 @@ output:
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-IMPORTANT: You can delete everything in here and start fresh. You might want to start by not deleting anything above this line until you know what that stuff is doing.
 
+Immer wieder kommt es vor, dass Daten für andere Nutzer in Excel exportiert werden müssen. Mit dem Package openxlsx lassen sich die Daten nicht nur abspeichern, es können auch  sämtliche Formatierungen vorgenommen werden. Damit eignet sich das Package meiner Meinung nach perfekt zur automatisierten Erstellung von Exceldateien. Mit relativ geringem Aufwand können die Daten z.B. auch per Schleifen in verschiedene Excelsheets geschrieben werden.
 
-This is an .Rmd file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
+Auch das Auslesen von Exceldateien ist mit openxlsx sehr komfortabel möglich. Hierbei können sowohl ganze Excelsheets als auch Teile daraus aufgerufen werden.
 
-# My first post
+# Workbook anlegen
 
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
-
-Notice that whatever you define as a top level header, automatically gets put into the table of contents bar on the left. 
-
-## Second level header
-
-You can add more headers by adding more hashtags. These won't be put into the table of contents
-
-### third level header
-
-Here's an even lower level header
-
-# My second post (note the order)
-
-2018 | 7 | 23 Last compiled: `r Sys.Date()`
-
-I'm writing this tutorial going from the top down. And, this is how it will be printed. So, notice the second post is second in the list. If you want your most recent post to be at the top, then make a new post starting at the top. If you want the oldest first, do, then keep adding to the bottom
-
-# Adding R stuff
-
-So far this is just a blog where you can write in plain text and serve your writing to a webpage. One of the main purposes of this lab journal is to record your progress learning R. The reason I am asking you to use this process is because you can both make a website, and a lab journal, and learn R all in R-studio. This makes everything really convenient and in the sam place. 
-
-So, let's say you are learning how to make a histogram in R. For example, maybe you want to sample 100 numbers from a normal distribution with mean = 0, and standard deviation =1, and then you want to plot a histogram. You can do this right here by using an r code block, like this:
+Als erstes muss immer ein leeres Workbook angelegt werden.
 
 ```{r}
-samples <- rnorm(100, mean=0, sd=1)
-hist(samples)
+library(openxlsx)
+
+# Workbook erstellen
+wb <- createWorkbook()
 ```
 
-When you knit this R Markdown document, you will see that the histogram is printed to the page, along with the R code. This document can be set up to hide the R code in the webpage, just delete the comment (hashtag), from the cold folding option in the yaml header up top. For purposes of letting yourself see the code, and me see the code, best to keep it the way that it is. You learn all of these things and more can be customized in each R code block.
+# Workbook befüllen
 
-# The big idea
+In diesem Workbook werden nun die Sheets erstellt. Hier verwende ich den Iris-Datensatz. Die Formatierung kann mit dem Befehl createStyle() vorgenommen werden.
+Hierbei lassen sich verschiedene Styles definieren und auf die gespeicherten Daten bzw. auch beliebige Zellen im Excelsheet anwenden.
 
-Use this lab journal to record what you do in R. This way I will be able to see what you are doing and help you along the way. You will also be creating a repository of all the things you do. You can make posts about everything. Learning specific things in R (project unrelated), and doing things for the project that we will discuss at the beginning of the Fall semester. You can get started now by fiddling around with googling things, and trying stuff out in R. I've placed some helpful starting links in the links page on this website
+## Worksheet erstellen
+```{r}
+# Excelsheet anlegen und benennen
+addWorksheet(wb, "Daten")
+```
 
-# What can you do right now by yourself?
-
-It's hard to learn programming when you don't have specific problems that you are trying to solve. Everything just seems abstract.
-
-I wrote an [introductory programming book that introduces R](https://crumplab.github.io/programmingforpsych/), and gives some [concrete problems for you to solve](https://crumplab.github.io/programmingforpsych/programming-challenges-i-learning-the-fundamentals.html). 
-
-To get the hang of journaling and solving the problems to learn programming, my suggestion is that you use this .Rmd file to solve the problems. It would look like this:
-
-# Problem 1
-
-Do simple math with numbers, addition, subtraction, multiplication, division
+## Styles definieren un Daten schreiben
 
 ```{r}
-1+2
-2*5
-5/3
-(1+6+4)/5
+#Styles definieren
+header_style <- createStyle(halign = "center", textDecoration = "bold", border = "Bottom")
+style_grau <- createStyle(fgFill = "#d6d6d6", fontColour = "#313c48")
+
+# Daten in Sheet schreiben, headerStyle kann mit definiert werden
+writeData(wb, "Daten", iris, headerStyle = header_style)
+
+# Formatierung bestimmter Zellen:
+addStyle(wb, "Daten", rows = 2:(nrow(iris)+1), cols = 2, style = style_grau)
 
 ```
 
-# Problem 2
+# Weitere Formatierungen
 
-Put numbers into variables, do simple math on the variables
+## Spaltenbreite
+
+Die Spaltenbreite kann automatisch angepasst oder anhand eines Vektors individuell festgelegt werden.
 
 ```{r}
-a<-1
-b<-2
-a+b
 
-d<-c(1,2,3)
-e<-c(5,6,7)
-d+e
-d*e
-d/e
+# Spaltenbreite automatisch anpassen
+setColWidths(wb, sheet = "Daten", cols = 1:ncol(iris), widths = "auto")
+# Spaltenbreite individuel verändern
+setColWidths(wb, sheet = "Daten", cols = 1:ncol(iris),  widths = c(16, 15, 12, 33))
+
+# Zeilenhöhe anpassen
+setRowHeights(wb, sheet = "Daten", rows = 1:nrow(iris),  heights = rep(30,times=nrow(iris)))
+```
+
+## Bedingte Formatierung
+
+```{r}
+#Daten mit Wert größer gleich 3 rot einfärben
+style_rot <- createStyle(fontColour = "#ff5232")
+
+conditionalFormatting(wb, "Daten",
+  cols = 1:3, rows = 2:nrow(iris), rule = "A2>=3", style = style_rot
+)
+```
+
+# Datenüberprüfung 
+
+Wir können festlegen welche Werte in eine Spalte eingegeben werden dürfen. Entspricht die Eingabe nicht der Vorgabe, entsteht eine Fehlermeldung in Excel.
+
+```{r}
+# Neues Sheet
+addWorksheet(wb, "Datenüberprüfung")
+
+#Überprüfung auf Wert
+writeData(wb, "Datenüberprüfung", x = "Zahl zwischen 1 und 5 eingeben", startCol = 1, startRow = 2)
+dataValidation(wb, "Datenüberprüfung",
+  cols = 2, rows = 2, type = "whole",
+  operator = "between", value = c(1,5)
+) 
+#Überprüfung auf Datum
+writeData(wb, "Datenüberprüfung", x = "Datum eingeben", startCol = 1, startRow = 4)
+dataValidation(wb, "Datenüberprüfung",
+  cols = 2, rows = 4, type = "date",
+  operator = "greaterThanOrEqual", value = as.Date("2022-01-01")
+)  
+
+#Um Auswahlfelder zu generieren  kann ebenfalls die Funktion dataValidation() verwendet werden.
+addWorksheet(wb, "Dropdown")
+writeData(wb, "Dropdown", x = c("A","B","C"), startCol = 1, startRow = 1)
+
+writeData(wb, "Datenüberprüfung", x = "Wert auswählen", startCol = 1, startRow = 6)
+dataValidation(wb, "Datenüberprüfung", col = 2, rows = 6, type = "list", value = "'Dropdown'!$A$1:$A$3")
+
+# Feld das überprüft wird grau hervorheben
+addStyle(wb, "Datenüberprüfung", cols = c(2,2,2), rows = c(2,4,6), style = style_grau)
+
+setColWidths(wb, sheet = "Datenüberprüfung", cols = 1:2, widths = c(30,12))
 
 ```
 
-# Problem 3
+# Sonstiges
 
-Write code that will place the numbers 1 to 100 separately into a variable using for loop. Then, again using the seq function.
+## Zeilen / Spalten fixieren
 
 ```{r}
-# for loop solution
-# i becomes the number 1 to 100 at each step of the loop
-
-
-a <- length(100) # make empty variable, set length to 100
-for (i in 1:100){
-  a[i] <-i #assigns the number in i, to the ith index of a
-}
-
-print(a)
-
-# for loop solution #2
-
-a<-c() #create empty variable using combine command
-for (i in 1:100){
-  a<-c(a,i) # keeps combining a with itself and the new number in i
-}
-print(a)
-
-# seq solution
-a <- seq(1,100,1) # look up help for seq using ?seq() in console
-print(a)
-
+freezePane(wb, "Daten", firstActiveRow = 2, firstActiveCol = 1)
 ```
 
-# Replace this with problem 4
+## Blattschutz
 
-And keep going. Try to solve the problems with different scripts that provide the same solution. Good luck, Happy coding.
+Um Zellen vom Blattschutz auszunehmen, kann bei der Erstellung des Styles locked = FALSE gesetzt werden. 
+
+```{r}
+# Style definieren
+style_grau_ungeschuetzt <- createStyle(fgFill = "#d6d6d6", fontColour = "#313c48", locked = FALSE)
+# Style auf veränderbare Zellen anwenden
+addStyle(wb, "Datenüberprüfung", cols = c(2,2,2), rows = c(2,4,6), style = style_grau_ungeschuetzt)
+# Blatt schützen
+protectWorksheet(wb, "Datenüberprüfung", protect = TRUE)
+```
+
+# Workbook speichern
+
+Nachdem alles definiert und formatiert wurde, kann das Workbook als Exceldatei abgespeichert werden.
+
+```{r}
+# Workbook speichern:
+saveWorkbook(wb, "Test_Daten.xlsx", overwrite = T)
+```
+
