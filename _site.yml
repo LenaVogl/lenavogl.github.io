@@ -4,7 +4,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "R und Excel"
+    - text: "Excel"
       href: Excel.html
     - text: "Links"
       href: Links.html
