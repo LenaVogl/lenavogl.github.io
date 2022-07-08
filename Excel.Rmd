@@ -15,7 +15,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
 
-Immer wieder kommt es vor, dass Daten für andere Nutzer in Excel exportiert werden müssen. Mit dem Package openxlsx lassen sich die Daten nicht nur abspeichern, es können auch  sämtliche Formatierungen vorgenommen werden. Damit eignet sich das Package meiner Meinung nach perfekt zur automatisierten Erstellung von Exceldateien. Mit relativ geringem Aufwand können die Daten z.B. auch per Schleifen in verschiedene Excelsheets geschrieben werden.
+Immer wieder kommt es vor, dass Daten für andere Nutzer in Excel exportiert werden müssen. Mit dem Package openxlsx lassen sich die Daten nicht nur abspeichern, sie können auch beliebig formatiert werden. Somit eignet sich das Package perfekt zur automatisierten Erstellung von Exceldateien. Wer viele Excelsheets generieren möchte, kann das z.B. auch mit Hilfe von Schleifen umsetzen.
 
 Auch das Auslesen von Exceldateien ist mit openxlsx sehr komfortabel möglich. Hierbei können sowohl ganze Excelsheets als auch Teile daraus aufgerufen werden.
 
