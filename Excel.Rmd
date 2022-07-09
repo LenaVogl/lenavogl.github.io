@@ -35,8 +35,10 @@ wb <- createWorkbook()
 Für das neu angelegte Workbook wird nun ein Sheet generiert:
 
 ```{r}
+
 # Excelsheet anlegen und benennen
 addWorksheet(wb, "Daten")
+
 ```
 
 ## Worksheet befüllen
@@ -108,7 +110,8 @@ addWorksheet(wb, "Dropdown")
 writeData(wb, "Dropdown", x = c("A","B","C"), startCol = 1, startRow = 1)
 
 writeData(wb, "Datenüberprüfung", x = "Wert auswählen", startCol = 1, startRow = 6)
-dataValidation(wb, "Datenüberprüfung", col = 2, rows = 6, type = "list", value = "'Dropdown'!$A$1:$A$3")
+
+dataValidation(wb, "Datenüberprüfung", cols = 2, rows = 6, type = "list", value = "'Dropdown'!$A$1:$A$3")
 
 # Feld das überprüft wird grau hervorheben
 addStyle(wb, "Datenüberprüfung", cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)

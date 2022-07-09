@@ -317,7 +317,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Lena's Code</a>
+      <a class="navbar-brand" href="index.html">Codesammlung</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -379,6 +379,7 @@ verschiedene Styles definieren und auf die gespeicherten Daten bzw. auch
 beliebige Zellen im Excelsheet anwenden.</p>
 <pre class="r"><code>#Styles definieren
 header_style &lt;- createStyle(halign = &quot;center&quot;, textDecoration = &quot;bold&quot;, border = &quot;Bottom&quot;)
+
 style_grau &lt;- createStyle(fgFill = &quot;#d6d6d6&quot;, fontColour = &quot;#313c48&quot;)
 
 # Daten in Sheet schreiben, headerStyle kann mit definiert werden
@@ -393,20 +394,19 @@ addStyle(wb, &quot;Daten&quot;, rows = 2:(nrow(iris)+1), cols = 2, style = style
 Vektors individuell festgelegt werden.</p>
 <pre class="r"><code># Spaltenbreite automatisch anpassen
 setColWidths(wb, sheet = &quot;Daten&quot;, cols = 1:ncol(iris), widths = &quot;auto&quot;)
+
 # Spaltenbreite individuel verändern
 setColWidths(wb, sheet = &quot;Daten&quot;, cols = 1:ncol(iris),  widths = c(16, 15, 12, 33))
 
 # Zeilenhöhe anpassen
-setRowHeights(wb, sheet = &quot;Daten&quot;, rows = 1:nrow(iris),  heights = rep(30,times=nrow(iris)))</code></pre>
+setRowHeights(wb, sheet = &quot;Daten&quot;, rows = 1:nrow(iris),  heights = rep(30, times = nrow(iris)))</code></pre>
 </div>
 <div id="bedingte-formatierung" class="section level2">
 <h2>Bedingte Formatierung</h2>
 <pre class="r"><code>#Daten mit Wert größer gleich 3 rot einfärben
 style_rot &lt;- createStyle(fontColour = &quot;#ff5232&quot;)
 
-conditionalFormatting(wb, &quot;Daten&quot;,
-  cols = 1:3, rows = 2:nrow(iris), rule = &quot;A2&gt;=3&quot;, style = style_rot
-)</code></pre>
+conditionalFormatting(wb, &quot;Daten&quot;, cols = 1:3, rows = 2:nrow(iris), rule = &quot;A2&gt;=3&quot;, style = style_rot)</code></pre>
 </div>
 <div id="datenüberprüfung" class="section level2">
 <h2>Datenüberprüfung</h2>
@@ -418,28 +418,28 @@ addWorksheet(wb, &quot;Datenüberprüfung&quot;)
 
 #Überprüfung auf Wert
 writeData(wb, &quot;Datenüberprüfung&quot;, x = &quot;Zahl zwischen 1 und 5 eingeben&quot;, startCol = 1, startRow = 2)
-dataValidation(wb, &quot;Datenüberprüfung&quot;,
-  cols = 2, rows = 2, type = &quot;whole&quot;,
-  operator = &quot;between&quot;, value = c(1,5)
+
+dataValidation(wb, &quot;Datenüberprüfung&quot;, cols = 2, rows = 2, type = &quot;whole&quot;, operator = &quot;between&quot;, value = c(1, 5)
 ) 
 #Überprüfung auf Datum
 writeData(wb, &quot;Datenüberprüfung&quot;, x = &quot;Datum eingeben&quot;, startCol = 1, startRow = 4)
-dataValidation(wb, &quot;Datenüberprüfung&quot;,
-  cols = 2, rows = 4, type = &quot;date&quot;,
-  operator = &quot;greaterThanOrEqual&quot;, value = as.Date(&quot;2022-01-01&quot;)
+
+dataValidation(wb, &quot;Datenüberprüfung&quot;, cols = 2, rows = 4, type = &quot;date&quot;, operator = &quot;greaterThanOrEqual&quot;, value = as.Date(&quot;2022-01-01&quot;)
 )  
 
 #Um Auswahlfelder zu generieren  kann ebenfalls die Funktion dataValidation() verwendet werden.
 addWorksheet(wb, &quot;Dropdown&quot;)
+
 writeData(wb, &quot;Dropdown&quot;, x = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), startCol = 1, startRow = 1)
 
 writeData(wb, &quot;Datenüberprüfung&quot;, x = &quot;Wert auswählen&quot;, startCol = 1, startRow = 6)
-dataValidation(wb, &quot;Datenüberprüfung&quot;, col = 2, rows = 6, type = &quot;list&quot;, value = &quot;&#39;Dropdown&#39;!$A$1:$A$3&quot;)
+
+dataValidation(wb, &quot;Datenüberprüfung&quot;, cols = 2, rows = 6, type = &quot;list&quot;, value = &quot;&#39;Dropdown&#39;!$A$1:$A$3&quot;)
 
 # Feld das überprüft wird grau hervorheben
-addStyle(wb, &quot;Datenüberprüfung&quot;, cols = c(2,2,2), rows = c(2,4,6), style = style_grau)
+addStyle(wb, &quot;Datenüberprüfung&quot;, cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)
 
-setColWidths(wb, sheet = &quot;Datenüberprüfung&quot;, cols = 1:2, widths = c(30,12))</code></pre>
+setColWidths(wb, sheet = &quot;Datenüberprüfung&quot;, cols = 1:2, widths = c(30, 12))</code></pre>
 </div>
 <div id="zeilen-spalten-fixieren" class="section level2">
 <h2>Zeilen / Spalten fixieren</h2>
@@ -451,8 +451,10 @@ setColWidths(wb, sheet = &quot;Datenüberprüfung&quot;, cols = 1:2, widths = c(
 Styles locked = FALSE gesetzt werden.</p>
 <pre class="r"><code># Style definieren
 style_grau_ungeschuetzt &lt;- createStyle(fgFill = &quot;#d6d6d6&quot;, fontColour = &quot;#313c48&quot;, locked = FALSE)
+
 # Style auf veränderbare Zellen anwenden
 addStyle(wb, &quot;Datenüberprüfung&quot;, cols = c(2,2,2), rows = c(2,4,6), style = style_grau_ungeschuetzt)
+
 # Blatt schützen
 protectWorksheet(wb, &quot;Datenüberprüfung&quot;, protect = TRUE)</code></pre>
 </div>
