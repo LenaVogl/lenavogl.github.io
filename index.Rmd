@@ -19,7 +19,7 @@ output: html_document
 
 # **R - Themen**
 
-Auf dieser Seite möchte ich R-Code zu Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. Dies dient in erster Linie als Nachschlagwerk. 
+Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie soll die Seite als Nachschlagwerk dienen.
 
 
 

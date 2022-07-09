@@ -47,6 +47,7 @@ Hierbei lassen sich verschiedene Styles definieren und auf die gespeicherten Dat
 ```{r}
 #Styles definieren
 header_style <- createStyle(halign = "center", textDecoration = "bold", border = "Bottom")
+
 style_grau <- createStyle(fgFill = "#d6d6d6", fontColour = "#313c48")
 
 # Daten in Sheet schreiben, headerStyle kann mit definiert werden
@@ -65,11 +66,12 @@ Die Spaltenbreite kann automatisch angepasst oder anhand eines Vektors individue
 
 # Spaltenbreite automatisch anpassen
 setColWidths(wb, sheet = "Daten", cols = 1:ncol(iris), widths = "auto")
+
 # Spaltenbreite individuel verändern
 setColWidths(wb, sheet = "Daten", cols = 1:ncol(iris),  widths = c(16, 15, 12, 33))
 
 # Zeilenhöhe anpassen
-setRowHeights(wb, sheet = "Daten", rows = 1:nrow(iris),  heights = rep(30,times=nrow(iris)))
+setRowHeights(wb, sheet = "Daten", rows = 1:nrow(iris),  heights = rep(30, times = nrow(iris)))
 ```
 
 ## Bedingte Formatierung
@@ -78,9 +80,7 @@ setRowHeights(wb, sheet = "Daten", rows = 1:nrow(iris),  heights = rep(30,times=
 #Daten mit Wert größer gleich 3 rot einfärben
 style_rot <- createStyle(fontColour = "#ff5232")
 
-conditionalFormatting(wb, "Daten",
-  cols = 1:3, rows = 2:nrow(iris), rule = "A2>=3", style = style_rot
-)
+conditionalFormatting(wb, "Daten", cols = 1:3, rows = 2:nrow(iris), rule = "A2>=3", style = style_rot)
 ```
 
 ## Datenüberprüfung 
@@ -93,28 +93,27 @@ addWorksheet(wb, "Datenüberprüfung")
 
 #Überprüfung auf Wert
 writeData(wb, "Datenüberprüfung", x = "Zahl zwischen 1 und 5 eingeben", startCol = 1, startRow = 2)
-dataValidation(wb, "Datenüberprüfung",
-  cols = 2, rows = 2, type = "whole",
-  operator = "between", value = c(1,5)
+
+dataValidation(wb, "Datenüberprüfung", cols = 2, rows = 2, type = "whole", operator = "between", value = c(1, 5)
 ) 
 #Überprüfung auf Datum
 writeData(wb, "Datenüberprüfung", x = "Datum eingeben", startCol = 1, startRow = 4)
-dataValidation(wb, "Datenüberprüfung",
-  cols = 2, rows = 4, type = "date",
-  operator = "greaterThanOrEqual", value = as.Date("2022-01-01")
+
+dataValidation(wb, "Datenüberprüfung", cols = 2, rows = 4, type = "date", operator = "greaterThanOrEqual", value = as.Date("2022-01-01")
 )  
 
 #Um Auswahlfelder zu generieren  kann ebenfalls die Funktion dataValidation() verwendet werden.
 addWorksheet(wb, "Dropdown")
+
 writeData(wb, "Dropdown", x = c("A","B","C"), startCol = 1, startRow = 1)
 
 writeData(wb, "Datenüberprüfung", x = "Wert auswählen", startCol = 1, startRow = 6)
 dataValidation(wb, "Datenüberprüfung", col = 2, rows = 6, type = "list", value = "'Dropdown'!$A$1:$A$3")
 
 # Feld das überprüft wird grau hervorheben
-addStyle(wb, "Datenüberprüfung", cols = c(2,2,2), rows = c(2,4,6), style = style_grau)
+addStyle(wb, "Datenüberprüfung", cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)
 
-setColWidths(wb, sheet = "Datenüberprüfung", cols = 1:2, widths = c(30,12))
+setColWidths(wb, sheet = "Datenüberprüfung", cols = 1:2, widths = c(30, 12))
 
 ```
 
@@ -131,8 +130,10 @@ Um Zellen vom Blattschutz auszunehmen, kann bei der Erstellung des Styles locked
 ```{r}
 # Style definieren
 style_grau_ungeschuetzt <- createStyle(fgFill = "#d6d6d6", fontColour = "#313c48", locked = FALSE)
+
 # Style auf veränderbare Zellen anwenden
 addStyle(wb, "Datenüberprüfung", cols = c(2,2,2), rows = c(2,4,6), style = style_grau_ungeschuetzt)
+
 # Blatt schützen
 protectWorksheet(wb, "Datenüberprüfung", protect = TRUE)
 ```
