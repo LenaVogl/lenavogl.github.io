@@ -34,7 +34,7 @@ wb <- createWorkbook()
 
 ## Worksheet erstellen
 
-Für das neu angelegte Workbook wird nun ein Sheet generiert:
+Für das neu angelegte Workbook wird nun mit `addWorksheet()` ein Sheet generiert:
 
 ```{r}
 
@@ -45,7 +45,7 @@ addWorksheet(wb, "Daten")
 
 ## Worksheet befüllen
 
-In ein definiertes Sheet können nun mit writeData() Daten geschrieben werden. 
+Ein definiertes Sheet kann mit `writeData()` befüllt werden. Die Zelle an dem der Eintrag beginnt (linke obere Ecke) wird mit `startCol` und `startRow` definiert. Standardmäßig wird in Zelle A1 gestartet.
 
 ```{r}
 
@@ -125,7 +125,7 @@ conditionalFormatting(wb, "Daten", cols = 1:3, rows = 2:nrow(iris), rule = "A2>=
 
 ```
 
-## Datenüberprüfung 
+## Datenüberprüfung
 
 Wir können festlegen welche Werte in eine Spalte eingegeben werden dürfen. Dazu verwenden wir die Funktion `dataValidation()`. Entspricht die Eingabe nicht der Vorgabe, entsteht eine Fehlermeldung in Excel.
 
@@ -134,12 +134,12 @@ Wir können festlegen welche Werte in eine Spalte eingegeben werden dürfen. Daz
 # Neues Sheet
 addWorksheet(wb, "Datenpruefung")
 
-#Überprüfung auf Wert
+# Überprüfung auf Wert
 writeData(wb, "Datenpruefung", x = "Zahl zwischen 1 und 5 eingeben", startCol = 1, startRow = 2)
 
 dataValidation(wb, "Datenpruefung", cols = 2, rows = 2, type = "whole", operator = "between", value = c(1, 5)
 ) 
-#Überprüfung auf Datum
+# Überprüfung auf Datum
 writeData(wb, "Datenpruefung", x = "Datum eingeben", startCol = 1, startRow = 4)
 
 dataValidation(wb, "Datenpruefung", cols = 2, rows = 4, type = "date", operator = "greaterThanOrEqual", value = as.Date("2022-01-01")
@@ -151,24 +151,27 @@ Um Auswahlfelder mit Dropdown zu generieren,  kann ebenfalls die Funktion `dataV
 
 ```{r}
 
+# Neues Datenblatt einfügen in dem die Auswahlmöglichkeiten definiert werden
 addWorksheet(wb, "Dropdown")
 
-writeData(wb, "Dropdown", x = c("A","B","C"), startCol = 1, startRow = 1)
+writeData(wb, sheet = "Dropdown", x = c("A","B","C"), startCol = 1, startRow = 1)
 
-writeData(wb, "Datenpruefung", x = "Wert auswählen", startCol = 1, startRow = 6)
+# Text einfügen um den Nutzer aufzufordern (optional)
+writeData(wb, sheet = "Datenpruefung", x = "Wert auswählen", startCol = 1, startRow = 6)
 
-dataValidation(wb, "Datenpruefung", cols = 2, rows = 6, type = "list", value = "'Dropdown'!$A$1:$A$3")
+# Nur Werte aus Dropdown-Liste erlauben
+dataValidation(wb, sheet = "Datenpruefung", cols = 2, rows = 6, type = "list", value = "Dropdown!$A$1:$A$3")
 
 # Feld das überprüft wird grau hervorheben
-addStyle(wb, "Datenpruefung", cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)
+addStyle(wb, sheet = "Datenpruefung", cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)
 
 setColWidths(wb, sheet = "Datenpruefung", cols = 1:2, widths = c(30, 12))
 
 ```
 
-
-
 ## Zeilen / Spalten fixieren
+
+Sollen bestimmte Zeilen oder Spalten beim Scrollen eingefroren werden, kann das mit der Funktion `freezePane()` definiert werden.
 
 ```{r}
 

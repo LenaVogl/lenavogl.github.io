@@ -366,14 +366,17 @@ wb &lt;- createWorkbook()</code></pre>
 </div>
 <div id="worksheet-erstellen" class="section level2">
 <h2>Worksheet erstellen</h2>
-<p>Für das neu angelegte Workbook wird nun ein Sheet generiert:</p>
+<p>Für das neu angelegte Workbook wird nun mit
+<code>addWorksheet()</code> ein Sheet generiert:</p>
 <pre class="r"><code># Excelsheet anlegen und benennen
 addWorksheet(wb, &quot;Daten&quot;)</code></pre>
 </div>
 <div id="worksheet-befüllen" class="section level2">
 <h2>Worksheet befüllen</h2>
-<p>In ein definiertes Sheet können nun mit writeData() Daten geschrieben
-werden.</p>
+<p>Ein definiertes Sheet kann mit <code>writeData()</code> befüllt
+werden. Die Zelle an dem der Eintrag beginnt (linke obere Ecke) wird mit
+<code>startCol</code> und <code>startRow</code> definiert. Standardmäßig
+wird in Zelle A1 gestartet.</p>
 <pre class="r"><code># Daten in Sheet schreiben, hier der iris-Datensatz
 writeData(wb, sheet = &quot;Daten&quot;, x = iris)</code></pre>
 </div>
@@ -440,33 +443,39 @@ Excel.</p>
 <pre class="r"><code># Neues Sheet
 addWorksheet(wb, &quot;Datenpruefung&quot;)
 
-#Überprüfung auf Wert
+# Überprüfung auf Wert
 writeData(wb, &quot;Datenpruefung&quot;, x = &quot;Zahl zwischen 1 und 5 eingeben&quot;, startCol = 1, startRow = 2)
 
 dataValidation(wb, &quot;Datenpruefung&quot;, cols = 2, rows = 2, type = &quot;whole&quot;, operator = &quot;between&quot;, value = c(1, 5)
 ) 
-#Überprüfung auf Datum
+# Überprüfung auf Datum
 writeData(wb, &quot;Datenpruefung&quot;, x = &quot;Datum eingeben&quot;, startCol = 1, startRow = 4)
 
 dataValidation(wb, &quot;Datenpruefung&quot;, cols = 2, rows = 4, type = &quot;date&quot;, operator = &quot;greaterThanOrEqual&quot;, value = as.Date(&quot;2022-01-01&quot;)
 )  </code></pre>
 <p>Um Auswahlfelder mit Dropdown zu generieren, kann ebenfalls die
 Funktion <code>dataValidation()</code> verwendet werden.</p>
-<pre class="r"><code>addWorksheet(wb, &quot;Dropdown&quot;)
+<pre class="r"><code># Neues Datenblatt einfügen in dem die Auswahlmöglichkeiten definiert werden
+addWorksheet(wb, &quot;Dropdown&quot;)
 
-writeData(wb, &quot;Dropdown&quot;, x = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), startCol = 1, startRow = 1)
+writeData(wb, sheet = &quot;Dropdown&quot;, x = c(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;), startCol = 1, startRow = 1)
 
-writeData(wb, &quot;Datenpruefung&quot;, x = &quot;Wert auswählen&quot;, startCol = 1, startRow = 6)
+# Text einfügen um den Nutzer aufzufordern (optional)
+writeData(wb, sheet = &quot;Datenpruefung&quot;, x = &quot;Wert auswählen&quot;, startCol = 1, startRow = 6)
 
-dataValidation(wb, &quot;Datenpruefung&quot;, cols = 2, rows = 6, type = &quot;list&quot;, value = &quot;&#39;Dropdown&#39;!$A$1:$A$3&quot;)
+# Nur Werte aus Dropdown-Liste erlauben
+dataValidation(wb, sheet = &quot;Datenpruefung&quot;, cols = 2, rows = 6, type = &quot;list&quot;, value = &quot;Dropdown!$A$1:$A$3&quot;)
 
 # Feld das überprüft wird grau hervorheben
-addStyle(wb, &quot;Datenpruefung&quot;, cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)
+addStyle(wb, sheet = &quot;Datenpruefung&quot;, cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)
 
 setColWidths(wb, sheet = &quot;Datenpruefung&quot;, cols = 1:2, widths = c(30, 12))</code></pre>
 </div>
 <div id="zeilen-spalten-fixieren" class="section level2">
 <h2>Zeilen / Spalten fixieren</h2>
+<p>Sollen bestimmte Zeilen oder Spalten beim Scrollen eingefroren
+werden, kann das mit der Funktion <code>freezePane()</code> definiert
+werden.</p>
 <pre class="r"><code>freezePane(wb, &quot;Daten&quot;, firstActiveRow = 2, firstActiveCol = 1)</code></pre>
 </div>
 <div id="blattschutz" class="section level2">
