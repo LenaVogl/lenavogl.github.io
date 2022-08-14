@@ -6,6 +6,6 @@ navbar:
       href: index.html
     - text: "R & Excel"
       href: Excel.html
-    - text: "Links"
-      href: Links.html
+    - text: "RLeaflet"
+      href: RLeaflet.html
 output_dir: "docs"
