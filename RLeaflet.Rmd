@@ -48,17 +48,17 @@ Es gibt eine Vielzahl an möglichen Hintergrunddaten. Eine sehr umfangreiche Üb
 ```{r}
 library(leaflet)
 library(tidyverse)
-# 
-# leaflet() %>%
-#   # Mitte auf München setzen
-#   setView(lng = 11.572347, lat = 48.138345, zoom = 12) %>%
-#   # Hintergrundkarte festlegen
-#   addProviderTiles(providers$OpenStreetMap.DE, group = "Open Street Map DE") %>%
-#   # Zusätzliche Hintergrundkarten als Ersatz
-#   addProviderTiles(providers$Esri.WorldImagery, group = "ESRI World Imagery") %>%
-#   # Auswahlfeld für den Nutzer um sich für eine Hintergrundkarte zu entscheiden
-#     addLayersControl(
-#      baseGroups = c("Open Street Map DE","ESRI World Imagery")     )
+
+leaflet() %>%
+  # Mitte auf München setzen
+  setView(lng = 11.572347, lat = 48.138345, zoom = 12) %>%
+  # Hintergrundkarte festlegen
+  addProviderTiles(providers$OpenStreetMap.DE, group = "Open Street Map DE") %>%
+  # Zusätzliche Hintergrundkarten als Ersatz
+  addProviderTiles(providers$Esri.WorldImagery, group = "ESRI World Imagery") %>%
+  # Auswahlfeld für den Nutzer um sich für eine Hintergrundkarte zu entscheiden
+    addLayersControl(
+     baseGroups = c("Open Street Map DE","ESRI World Imagery")     )
 
 ```
 ## Koordinaten 
