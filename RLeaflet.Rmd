@@ -36,11 +36,13 @@ body {
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, cache = TRUE)
 ```
 
-
+<p style="margin-top: 30px;">
 Leaflet ist eine Open Source Bibliothek mit der interaktive Karten erstellt werden können. Über das R-Package `leaflet` lassen sich verschiedene GIS-Daten (z.B. Koordinaten, Layer) in interaktiven Karten darstellen. Im fogenden möchte ich einige nützliche Funktionalitäten darstellen.
+</p>
 
-
+<p style="margin-top: 30px;">
 ## Einfache Karte
+</p>
 
 Um eine einfache LeafletKarte zu erstellen, benötigen wir eine Hintergrundkarte und einen Kartenausschnitt, der dargestellt werden soll. Die Region kann entweder über eine Koordinate herangezoomt werden, oder durch hinzufügen eines Layers (z.B. aus einer Shape-Datei).
 Es gibt eine Vielzahl an möglichen Hintergrunddaten. Eine sehr umfangreiche Übersicht an Hintergrundkarten findet man z.B. hier: [Kartenauswahl](http://leaflet-extras.github.io/leaflet-providers/preview/)
@@ -61,9 +63,11 @@ leaflet() %>%
      baseGroups = c("Open Street Map DE","ESRI World Imagery")     )
 
 ```
-## Koordinaten 
+<p style="margin-top: 30px;">
+## Marker einfügen 
+</p>
 
-Um Koordinaten einzeichnet zu können, simulieren wir für Deutschland, Österreich und die Schweiz Koordinaten. Diese werden drei Kategorien zugeordnet, nach denen sie später eingefärbt werden können. Im Package `rnaturalearth` sind die Geometrien der Länder verfügbar.
+Um Marker einzeichnet zu können, simulieren wir für Deutschland, Österreich und die Schweiz Koordinaten. Diese werden drei Kategorien zugeordnet, nach denen sie später eingefärbt werden können. Im Package `rnaturalearth` sind die Geometrien der Länder verfügbar.
 
 ```{r}
 library(rnaturalearth)
@@ -114,7 +118,9 @@ Im Dataframe `dach_df` sind nun für die Länder Deutschand, Österreich und Sch
      addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ))
 ```
 
+<p style="margin-top: 30px;">
 ## Cluster
+</p>
 
 Besonders wenn es sich um viele Marker bei niedriger Zoomstufe handelt, ist die Darstellung der einzelnen Icons manchmal unübersichtlich. Teilweise gibt es auch Darstellungsprobleme wenn mehrere Marker mit der gleichen Koordinate hinterlegt sind. In solchen Fällen bietet sich eine Clusterdarstellung an.
 
@@ -124,7 +130,9 @@ leaflet(data = dach_df) %>%
      addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ), clusterOptions = markerClusterOptions())
 ```
 
+<p style="margin-top: 30px;">
 ## Individuelle Icons
+</p>
 
 Sollen die drei verschiedenen Typen klarer voneinander unterscheidbar sein, so kann das über individuell gestaltete Icons erfolgen. Mit AwesomeIcons steht eine Vielzahl an Icons zur Verfügung. Eine Übersicht der Icons findet sich hier: [fontawesome](https://fontawesome.com/).
 
@@ -149,7 +157,9 @@ leaflet(data = dach_df_punktlayer) %>%
 
 
 
+<p style="margin-top: 30px;">
 ## Minicharts
+</p>
 
 mit dem Package `leaflet.minicharts` lassen sich Verteilungen auf die Landkarte plotten. 
 Dazu benötigen wir geeignete Daten zu den Ländern. In diesem Fall wird die Anzahl der Typen A - C je Land gezäht.
