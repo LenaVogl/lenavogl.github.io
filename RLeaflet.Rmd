@@ -114,6 +114,16 @@ Im Dataframe `dach_df` sind nun für die Länder Deutschand, Österreich und Sch
      addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ))
 ```
 
+## Cluster
+
+Besonders wenn es sich um viele Marker bei niedriger Zoomstufe handelt, ist die Darstellung der einzelnen Icons manchmal unübersichtlich. Teilweise gibt es auch Darstellungsprobleme wenn mehrere Marker mit der gleichen Koordinate hinterlegt sind. In solchen Fällen bietet sich eine Clusterdarstellung an.
+
+```{r}
+leaflet(data = dach_df) %>%
+     addTiles() %>%  
+     addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ), clusterOptions = markerClusterOptions())
+```
+
 ## Individuelle Icons
 
 Sollen die drei verschiedenen Typen klarer voneinander unterscheidbar sein, so kann das über individuell gestaltete Icons erfolgen. Mit AwesomeIcons steht eine Vielzahl an Icons zur Verfügung. Eine Übersicht der Icons findet sich hier: [fontawesome](https://fontawesome.com/).
@@ -136,6 +146,8 @@ leaflet(data = dach_df_punktlayer) %>%
      addTiles() %>%  
      addAwesomeMarkers(icon = ~IconSet[Typ], label = ~paste("Fahrzeugtyp ",as.character(Typ))) 
 ```
+
+
 
 ## Minicharts
 
