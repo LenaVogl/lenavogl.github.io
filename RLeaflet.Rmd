@@ -89,20 +89,17 @@ schweiz_punkte = st_sample(ch, size = 50)
 # Zu einem Datensatz zusammenfassen
 #Deutschland
 deutschand_punkte_df <- as.data.frame(st_coordinates(deutschand_punkte))
-
-deutschand_punkte_df <- cbind(deutschand_punkte_df, Typ = sample(c("A","B","C"),size=nrow(deutschand_punkte_df), replace=T, prob=c(0.2,0.3,0.5))) %>%
+deutschand_punkte_df <- cbind(deutschand_punkte_df, Typ = sample(c("A", "B", "C"), size = nrow(deutschand_punkte_df), replace = T, prob = c(0.2, 0.3, 0.5))) %>%
   mutate(Land = "Deutschland")
 
 # Österreich
 oesterreich_punkte_df <- as.data.frame(st_coordinates(oesterreich_punkte))
-
-oesterreich_punkte_df <- cbind(oesterreich_punkte_df, Typ = sample(c("A","B","C"),size=nrow(oesterreich_punkte_df), replace=T, prob=c(0.4,0.1,0.5))) %>%
+oesterreich_punkte_df <- cbind(oesterreich_punkte_df, Typ = sample(c("A", "B", "C"), size = nrow(oesterreich_punkte_df), replace = T, prob = c(0.4, 0.1, 0.5))) %>%
   mutate(Land = "Österreich")
 
 # Schweiz
 schweiz_punkte_df <- as.data.frame(st_coordinates(schweiz_punkte))
-
-schweiz_punkte_df <- cbind(schweiz_punkte_df, Typ = sample(c("A","B","C"), size=nrow(schweiz_punkte_df), replace=T, prob=c(0.6,0.2,0.2))) %>%
+schweiz_punkte_df <- cbind(schweiz_punkte_df, Typ = sample(c("A", "B", "C"), size = nrow(schweiz_punkte_df), replace = T, prob = c(0.6, 0.2, 0.2))) %>%
   mutate(Land = "Schweiz")
 
 dach_df <- rbind(deutschand_punkte_df, oesterreich_punkte_df, schweiz_punkte_df)
@@ -117,9 +114,24 @@ Im Dataframe `dach_df` sind nun für die Länder Deutschand, Österreich und Sch
      addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ))
 ```
 
-<!-- ## Individuelle Icons -->
+## Individuelle Icons
 
-<!-- ## Cluster bilden -->
+Sollen die drei verschiedenen Typen klarer voneinander unterscheidbar sein, so kann das über individuell gestaltete Icons erfolgen.
+
+```{r}
+IconSet <- awesomeIconList(
+  "A"   = makeAwesomeIcon(icon= 'car', markerColor = 'blue', iconColor = 'black', library = "fa"),
+  "B" =makeAwesomeIcon(icon= 'truck', markerColor = 'orange', iconColor = 'black', library = "fa"),
+  "C" =makeAwesomeIcon(icon= 'motorcycle', markerColor = 'green', iconColor = 'black', library = "fa")
+)
+
+dach_df_punktlayer <- sp::SpatialPointsDataFrame(as.matrix(dach_df[,c("X","Y")]), dach_df[,c("Typ","Land")])
+
+
+ leaflet(data = dach_df_punktlayer) %>%
+     addTiles() %>%  # Default ist hier OpenStreetMap
+     addAwesomeMarkers(icon = ~IconSet[Typ], label = ~paste("Fahrzeugtyp ",as.character(Typ))) 
+```
 
 ## Minicharts
 
