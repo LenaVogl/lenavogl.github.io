@@ -116,20 +116,24 @@ Im Dataframe `dach_df` sind nun für die Länder Deutschand, Österreich und Sch
 
 ## Individuelle Icons
 
-Sollen die drei verschiedenen Typen klarer voneinander unterscheidbar sein, so kann das über individuell gestaltete Icons erfolgen.
+Sollen die drei verschiedenen Typen klarer voneinander unterscheidbar sein, so kann das über individuell gestaltete Icons erfolgen. Mit AwesomeIcons steht eine Vielzahl an Icons zur Verfügung. Eine Übersicht der Icons findet sich hier: [fontawesome](https://fontawesome.com/).
+
+Wir nehmen an dass es sich bei den Typen A - C um verschiedenen Fahrzeugtypen handelt. Mögliche Icons könnten also so gestaltet werden:
 
 ```{r}
+# Icons für die verschiedenen Typen definieren
 IconSet <- awesomeIconList(
   "A"   = makeAwesomeIcon(icon= 'car', markerColor = 'blue', iconColor = 'black', library = "fa"),
   "B" =makeAwesomeIcon(icon= 'truck', markerColor = 'orange', iconColor = 'black', library = "fa"),
   "C" =makeAwesomeIcon(icon= 'motorcycle', markerColor = 'green', iconColor = 'black', library = "fa")
 )
 
+# Punktlayer erstellen
 dach_df_punktlayer <- sp::SpatialPointsDataFrame(as.matrix(dach_df[,c("X","Y")]), dach_df[,c("Typ","Land")])
 
-
- leaflet(data = dach_df_punktlayer) %>%
-     addTiles() %>%  # Default ist hier OpenStreetMap
+# Karte erstellen
+leaflet(data = dach_df_punktlayer) %>%
+     addTiles() %>%  
      addAwesomeMarkers(icon = ~IconSet[Typ], label = ~paste("Fahrzeugtyp ",as.character(Typ))) 
 ```
 
