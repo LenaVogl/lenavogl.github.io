@@ -54,7 +54,7 @@ leaflet() %>%
   setView(lng = 11.572347, lat = 48.138345, zoom = 12) %>%
   # Hintergrundkarte festlegen
   addProviderTiles(providers$OpenStreetMap.DE, group = "Open Street Map DE") %>%
-  # Zusätzliche Hintergrundkarten als Ersatz
+  # Zusätzliche Hintergrundkarten als Alternative
   addProviderTiles(providers$Esri.WorldImagery, group = "ESRI World Imagery") %>%
   # Auswahlfeld für den Nutzer um sich für eine Hintergrundkarte zu entscheiden
     addLayersControl(
