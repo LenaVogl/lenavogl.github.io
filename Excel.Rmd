@@ -36,14 +36,19 @@ body {
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
 
-
+<p style="margin-top: 30px;">
 Immer wieder kommt es vor, dass Daten in Excel exportiert werden müssen. Mit dem Package `openxlsx` lassen sich die Daten nicht nur abspeichern, sie können auch beliebig formatiert werden. Somit eignet sich das Package perfekt zur automatisierten Erstellung von Exceldateien. Wer viele Excelsheets generieren möchte, kann das z.B. mit Hilfe von Schleifen umsetzen.
+</p>
 
 Auch das Auslesen von Exceldateien ist mit `openxlsx` sehr komfortabel möglich. Hierbei können sowohl ganze Excelsheets als auch Teile daraus aufgerufen werden.
 
+
+<p style="margin-top: 30px;">
 ## Workbook anlegen
+</p>
 
 Als erstes muss immer ein leeres Workbook angelegt werden.
+
 
 ```{r}
 
@@ -54,7 +59,9 @@ wb <- createWorkbook()
 
 ```
 
+<p style="margin-top: 30px;">
 ## Worksheet erstellen
+</p>
 
 Für das neu angelegte Workbook wird nun mit `addWorksheet()` ein Sheet generiert:
 
@@ -65,7 +72,9 @@ addWorksheet(wb, "Daten")
 
 ```
 
+<p style="margin-top: 30px;">
 ## Worksheet befüllen
+</p>
 
 Ein definiertes Sheet kann mit `writeData()` befüllt werden. Die Zelle an dem der Eintrag beginnt (linke obere Ecke) wird mit `startCol` und `startRow` definiert. Standardmäßig wird in Zelle A1 gestartet.
 
@@ -75,8 +84,9 @@ Ein definiertes Sheet kann mit `writeData()` befüllt werden. Die Zelle an dem d
 writeData(wb, sheet = "Daten", x = iris)
 
 ```
-
+<p style="margin-top: 30px;">
 ## Formel einfügen
+</p>
 
 Formeln können mit `writeFormula()` eingefügt werden. Das Argument `x` beschreibt die Excelfunktion. Das `=` in der Excelformel wird weggelassen.
 
@@ -86,7 +96,9 @@ writeFormula(wb,  sheet = "Daten", x = "A2 + B2" , startCol = 6, startRow = 2)
 
 ```
 
+<p style="margin-top: 30px;">
 ## Links einfügen
+</p>
 
 Um Links zu erstellen, kann die Funktion `makeHyperlinkString()` verwendet werden. 
 
@@ -100,7 +112,9 @@ writeFormula(wb, sheet = "Test", startCol = 1, startRow = 1, x = makeHyperlinkSt
 
 ```
 
+<p style="margin-top: 30px;">
 ## Formatierung
+</p>
 
 Die Formatierung kann mit dem Befehl `createStyle()` definiert und anschließend mit `addStyle()` angewendet werden.
 Hierbei lassen sich verschiedene Styles definieren und auf die gespeicherten Daten bzw. auch beliebige Zellen im Excelsheet anwenden.
@@ -117,7 +131,9 @@ addStyle(wb, sheet = "Daten", rows = 2:(nrow(iris)+1), cols = 2, style = style_g
 
 ```
 
+<p style="margin-top: 30px;">
 ## Spaltenbreite
+</p>
 
 Die Spaltenbreite kann automatisch angepasst oder anhand eines Vektors individuell festgelegt werden.
 
@@ -134,7 +150,9 @@ setRowHeights(wb, sheet = "Daten", rows = 1:nrow(iris),  heights = rep(30, times
 
 ```
 
+<p style="margin-top: 30px;">
 ## Bedingte Formatierung
+</p>
 
 Mit der Funktion `conditionalFormatting()` können Zellen mit bedingter Formatierung versehen werden.
 
@@ -147,7 +165,9 @@ conditionalFormatting(wb, "Daten", cols = 1:3, rows = 2:nrow(iris), rule = "A2>=
 
 ```
 
+<p style="margin-top: 30px;">
 ## Datenüberprüfung
+</p>
 
 Wir können festlegen welche Werte in eine Spalte eingegeben werden dürfen. Dazu verwenden wir die Funktion `dataValidation()`. Entspricht die Eingabe nicht der Vorgabe, entsteht eine Fehlermeldung in Excel.
 
@@ -191,7 +211,9 @@ setColWidths(wb, sheet = "Datenpruefung", cols = 1:2, widths = c(30, 12))
 
 ```
 
+<p style="margin-top: 30px;">
 ## Zeilen / Spalten fixieren
+</p>
 
 Sollen bestimmte Zeilen oder Spalten beim Scrollen eingefroren werden, kann das mit der Funktion `freezePane()` definiert werden.
 
@@ -201,7 +223,9 @@ freezePane(wb, "Daten", firstActiveRow = 2, firstActiveCol = 1)
 
 ```
 
+<p style="margin-top: 30px;">
 ## Blattschutz
+</p>
 
 Um Zellen vom Blattschutz auszunehmen, kann bei der Erstellung des Styles `locked = FALSE` gesetzt werden. 
 
@@ -218,7 +242,9 @@ protectWorksheet(wb, "Datenpruefung", protect = TRUE)
 
 ```
 
+<p style="margin-top: 30px;">
 ## Workbook speichern
+</p>
 
 Nachdem alles definiert und formatiert wurde, kann das Workbook als Exceldatei abgespeichert werden.
 

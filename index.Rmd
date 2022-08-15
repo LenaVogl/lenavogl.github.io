@@ -23,17 +23,22 @@ body {
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **R - Themen**
+# **Über mich.. / Inhalt dieser Website**
 
-Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. 
+<p style="margin-top: 50px;">
+Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie habe ich diese Seite als Themensammlung und Nachschlagwerk angelegt.
+</p>
 
+<p style="margin-top: 30px; margin-bottom: 40px;">
+Es macht mir Spaß, R-Kenntnisse weiterzugeben. Daher freue ich mich wenn die Seite als Anregung bzw. Vorlage genutzt wird und lade Euch daher herzlich zum Stöbern ein. Die Inhalte möchte ich regelmäßig aktualisieren und erweitern.
+</p>
 
-
+<p style="text-align:right;">Lena Vogl</p>
 
 
 </div>
 <div class="col-sm-6">
-
-
+<a href = "https://crumplab.github.io">
+![](images/Foto_Lena_Vogl.jpg)
 </a>
 </div>
