@@ -1,5 +1,5 @@
 ---
-title: "Codesammlung"
+title: "Code"
 output: html_document
 ---
 

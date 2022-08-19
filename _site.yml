@@ -1,6 +1,6 @@
 name: "Codesammlung"
 navbar:
-  title: "Codesammlung"
+  title: "Code"
   left:
     - text: "Home"
       href: index.html
