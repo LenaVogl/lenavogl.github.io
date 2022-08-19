@@ -1,0 +1,324 @@
+---
+title: "Quarto"
+format:
+  html:
+    # toc: true
+    # toc_float: true
+    echo: false
+    keep-hidden: true
+    code-tools: true
+    self-contained: true
+---
+
+<style>
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    z-index: 2;
+    color: #fff;
+    background-color: #A67D8E;
+    border-color: #aba2a7;
+    font-family: Helvetica;
+}
+
+#header {
+<!-- color: #869c98;  -->
+ font-family: Helvetica;
+  font-size: 36px;
+}
+
+body {
+  font-family: Helvetica;
+  background-color: #eee6e7;
+}
+</style>
+
+
+<p style="margin-top: 30px;">
+Mit [Quarto](https://quarto.org/) kann zusätzlich zu R und Python auch OJS-Code integriert werden. Damit ergeben sich tolle interaktive Darstellungsmöglichkeiten.
+</p>
+
+<p style="margin-top: 30px;">
+## Karte mit Auswahlmöglichkeit
+</p>
+
+Mit `bertin` lassen sich sehr ansprechende Karten generieren. [Hier](https://observablehq.com/@neocartocnrs/hello-bertin-js?collection=@neocartocnrs/bertin) finden sich viele verschiedene Beispiele zu `bertin`. 
+
+```{ojs}
+dach_json = JSON.parse(dach_ojs)
+koord_punkte_json = JSON.parse(koord_punkte)
+data = FileAttachment("daten.csv").csv({ typed: true })
+
+```
+
+```{ojs}
+
+
+viewof land = Inputs.select(
+  ["Österreich","Deutschland","Schweiz"], 
+  { value: "Deutschland", 
+    label: "Land:"
+  }
+)
+
+viewof typ = Inputs.select(
+  ["A","B","C"], 
+  { value: "A", 
+    label: "Typ:"
+  }
+)
+
+```
+
+```{ojs}
+land_ausgewaehlt = ({
+type: "FeatureCollection",
+features: dach_json.features.filter((d) => d.properties.Land == land)
+})
+
+koordinaten = ({
+type: "FeatureCollection",
+features: koord_punkte_json.features.filter((d) => d.properties.Typ == typ && d.properties.Land == land)
+})
+
+```
+
+
+
+
+```{ojs}
+bertin = import('https://cdn.skypack.dev/bertin@0.9.12')
+epsg3035 = "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs"
+
+bertin.draw({
+  params: {
+  extent: land_ausgewaehlt,
+  projection: epsg3035,
+  background: "#eee6e7",
+  margin: 80,
+  anchor: "start"
+},
+  layers: [
+  {
+  type: "layer",
+  geojson: koordinaten,
+  tooltip: {
+  fields: [
+  "$Typ_Schrift"
+  ],
+  fill: "#d2bec6",
+  fillOpacity: 0.7,
+  strokeOpacity: 1,
+  fontWeight: ["bold"],
+        fontSize: [20]},
+  fill: "#c6d2be",
+  stroke: "#63695f",
+  strokeWidth: 1.8,
+  symbol: "circle",
+  fillOpacity: 0.8,
+  symbol_size: 400
+  },
+  { 
+  type: "layer",
+  geojson: land_ausgewaehlt,
+  fill: "#A67D8E",
+  stroke: "#666666",
+  strokeWidth: 1
+  },
+  {type: "shadow", geojson: land_ausgewaehlt, dx: 5, dy: 5},
+  { type: "scalebar", units: "kilometers" }
+  ]
+})
+```
+
+<p style="margin-top: 30px;">
+## Balkendiagramm mit Auswahlmöglichkeit
+</p>
+
+Ein Balkendiagramm mit Auswahlmöglichkeit:
+
+```{ojs}
+viewof land2 = Inputs.select(
+  ["Österreich","Deutschland","Schweiz"], 
+  { value: "Deutschland", 
+    label: "Land:"
+  }
+)
+```
+
+```{ojs}
+
+filtered = data.filter(function(penguin) {
+  return land2 == penguin.Land;
+})
+```
+
+```{ojs}
+ chart = BarChart(filtered, {
+  x: d => d.Typ,
+  y: d => d.Anz,
+  <!-- xDomain: d3.groupSort(alphabet, ([d]) => -d.frequency, d => d.letter), // sort by descending frequency -->
+  <!-- yFormat: "%", -->
+  yLabel: "↑ Häufigkeit",
+  width,
+  height: 500,
+  color: "#9ea898"
+})
+```
+```{ojs}
+// Copyright 2021 Observable, Inc.
+// Released under the ISC license.
+// https://observablehq.com/@d3/bar-chart
+function BarChart(data, {
+  x = (d, i) => i, // given d in data, returns the (ordinal) x-value
+  y = d => d, // given d in data, returns the (quantitative) y-value
+  title, // given d in data, returns the title text
+  marginTop = 20, // the top margin, in pixels
+  marginRight = 0, // the right margin, in pixels
+  marginBottom = 30, // the bottom margin, in pixels
+  marginLeft = 40, // the left margin, in pixels
+  width = 640, // the outer width of the chart, in pixels
+  height = 400, // the outer height of the chart, in pixels
+  xDomain, // an array of (ordinal) x-values
+  xRange = [marginLeft, width - marginRight], // [left, right]
+  yType = d3.scaleLinear, // y-scale type
+  yDomain, // [ymin, ymax]
+  yRange = [height - marginBottom, marginTop], // [bottom, top]
+  xPadding = 0.1, // amount of x-range to reserve to separate bars
+  yFormat, // a format specifier string for the y-axis
+  yLabel, // a label for the y-axis
+  color = "currentColor" // bar fill color
+} = {}) {
+  // Compute values.
+  const X = d3.map(data, x);
+  const Y = d3.map(data, y);
+
+  // Compute default domains, and unique the x-domain.
+  if (xDomain === undefined) xDomain = X;
+  if (yDomain === undefined) yDomain = [0, d3.max(Y)];
+  xDomain = new d3.InternSet(xDomain);
+
+  // Omit any data not present in the x-domain.
+  const I = d3.range(X.length).filter(i => xDomain.has(X[i]));
+
+  // Construct scales, axes, and formats.
+  const xScale = d3.scaleBand(xDomain, xRange).padding(xPadding);
+  const yScale = yType(yDomain, yRange);
+  const xAxis = d3.axisBottom(xScale).tickSizeOuter(0);
+  const yAxis = d3.axisLeft(yScale).ticks(height / 40, yFormat);
+
+  // Compute titles.
+  if (title === undefined) {
+    const formatValue = yScale.tickFormat(100, yFormat);
+    title = i => `${X[i]}\n${formatValue(Y[i])}`;
+  } else {
+    const O = d3.map(data, d => d);
+    const T = title;
+    title = i => T(O[i], i, data);
+  }
+
+  const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height])
+      .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
+
+  svg.append("g")
+      .attr("transform", `translate(${marginLeft},0)`)
+      .call(yAxis)
+      .call(g => g.select(".domain").remove())
+      .call(g => g.selectAll(".tick line").clone()
+          .attr("x2", width - marginLeft - marginRight)
+          .attr("stroke-opacity", 0.1))
+      .call(g => g.append("text")
+          .attr("x", -marginLeft)
+          .attr("y", 10)
+          .attr("fill", "currentColor")
+          .attr("text-anchor", "start")
+          .text(yLabel));
+
+  const bar = svg.append("g")
+      .attr("fill", color)
+    .selectAll("rect")
+    .data(I)
+    .join("rect")
+      .attr("x", i => xScale(X[i]))
+      .attr("y", i => yScale(Y[i]))
+      .attr("height", i => yScale(0) - yScale(Y[i]))
+      .attr("width", xScale.bandwidth());
+
+  if (title) bar.append("title")
+      .text(title);
+
+  svg.append("g")
+      .attr("transform", `translate(0,${height - marginBottom})`)
+      .call(xAxis);
+
+  return svg.node();
+}
+```
+
+```{r, message = F, echo = F, warning = F}
+library(quarto)
+library(tidyverse)
+library(sf)
+library(geojsonsf)
+library(rnaturalearth)
+
+dach <- ne_countries(country = c("Austria","Germany","Switzerland"), scale = "medium", returnclass = "sf") %>%
+  # Transformation nach WGS84 (entspricht crs 4326)
+  st_transform(crs = 4326) %>% 
+  mutate(Land = ifelse(name == "Switzerland","Schweiz",ifelse(name == "Germany","Deutschland", "Österreich")))
+
+deu = ne_countries(country = "Germany", scale = "medium", returnclass = "sf") %>%
+  # Transformation nach WGS84 (entspricht crs 4326)
+  st_transform(crs = 4326)
+oe = ne_countries(country = "Austria", scale = "medium", returnclass = "sf") %>%
+  # Transformation nach WGS84 (entspricht crs 4326)
+  st_transform(crs = 4326)
+ch = ne_countries(country = "Switzerland", scale = "medium", returnclass = "sf") %>%
+  # Transformation nach WGS84 (entspricht crs 4326)
+  st_transform(crs = 4326)
+
+
+#Koordinaten simulieren
+set.seed(1234)
+deutschand_punkte = st_sample(deu, size = 150)
+oesterreich_punkte = st_sample(oe, size = 50)
+schweiz_punkte = st_sample(ch, size = 50)
+
+# Zu einem Datensatz zusammenfassen
+#Deutschland
+deutschand_punkte_df <- as.data.frame(st_coordinates(deutschand_punkte))
+deutschand_punkte_df <- cbind(deutschand_punkte_df, Typ = sample(c("A", "B", "C"), size = nrow(deutschand_punkte_df), replace = T, prob = c(0.2, 0.3, 0.5))) %>%
+  mutate(Land = "Deutschland")
+
+# Österreich
+oesterreich_punkte_df <- as.data.frame(st_coordinates(oesterreich_punkte))
+oesterreich_punkte_df <- cbind(oesterreich_punkte_df, Typ = sample(c("A", "B", "C"), size = nrow(oesterreich_punkte_df), replace = T, prob = c(0.4, 0.1, 0.5))) %>%
+  mutate(Land = "Österreich")
+
+# Schweiz
+schweiz_punkte_df <- as.data.frame(st_coordinates(schweiz_punkte))
+schweiz_punkte_df <- cbind(schweiz_punkte_df, Typ = sample(c("A", "B", "C"), size = nrow(schweiz_punkte_df), replace = T, prob = c(0.6, 0.2, 0.2))) %>%
+  mutate(Land = "Schweiz")
+
+dach_df <- rbind(deutschand_punkte_df, oesterreich_punkte_df, schweiz_punkte_df) %>% 
+  mutate(Typ_Schrift = paste("Typ:",Typ))
+
+ojs_define(dach_ojs = sf_geojson(dach)) 
+
+Koordinaten_Punktlayer <- st_as_sf(x = dach_df, coords = c("X","Y"),
+    crs = "+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0")
+ojs_define(koord_punkte = sf_geojson(Koordinaten_Punktlayer))
+
+
+
+# Daten aus Koordinaten aggregieren:
+dach_df_agg <- dach_df %>%
+  group_by(Typ,Typ_Schrift,Land) %>%
+  summarize(Anz = n_distinct(X)) %>%
+  ungroup()
+
+write.table(dach_df_agg,"daten.csv",row.names=F,sep=";",dec=",")
+```
+
