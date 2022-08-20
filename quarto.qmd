@@ -110,11 +110,16 @@ bertin.draw({
   strokeOpacity: 1,
   fontWeight: ["bold"],
         fontSize: [20]},
-  <!-- fill: "#c6d2be", -->
   fill: {
         type: "typo",
         values: "Typ",
-        colors: "Pastel1"
+        colors: "Pastel1",
+        leg_x: 930,
+      leg_y: 20,
+      leg_w: 45,
+      leg_h: 30,
+      leg_fontSize: 20,
+      leg_fontSize2: 16
       },
   stroke: "#63695f",
   strokeWidth: 1.8,
