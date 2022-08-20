@@ -34,7 +34,7 @@ body {
 
 
 <p style="margin-top: 30px;">
-Mit [Quarto](https://quarto.org/) kann zusätzlich zu R und Python auch OJS-Code integriert werden. Damit ergeben sich tolle interaktive Darstellungsmöglichkeiten.
+Mit [Quarto](https://quarto.org/) kann zusätzlich zu R und Python auch OJS-Code integriert werden. Damit ergeben sich vielseitige interaktive Darstellungsmöglichkeiten.
 </p>
 
 <p style="margin-top: 30px;">
@@ -60,9 +60,9 @@ viewof land = Inputs.select(
   }
 )
 
-viewof typ = Inputs.select(
+viewof typ = Inputs.checkbox(
   ["A","B","C"], 
-  { value: "A", 
+  { value: ["A","B"], 
     label: "Typ:"
   }
 )
@@ -77,7 +77,7 @@ features: dach_json.features.filter((d) => d.properties.Land == land)
 
 koordinaten = ({
 type: "FeatureCollection",
-features: koord_punkte_json.features.filter((d) => d.properties.Typ == typ && d.properties.Land == land)
+features: koord_punkte_json.features.filter((d) => typ.includes(d.properties.Typ) && d.properties.Land == land)
 })
 
 ```
@@ -110,7 +110,12 @@ bertin.draw({
   strokeOpacity: 1,
   fontWeight: ["bold"],
         fontSize: [20]},
-  fill: "#c6d2be",
+  <!-- fill: "#c6d2be", -->
+  fill: {
+        type: "typo",
+        values: "Typ",
+        colors: "Pastel1"
+      },
   stroke: "#63695f",
   strokeWidth: 1.8,
   symbol: "circle",
@@ -134,21 +139,23 @@ bertin.draw({
 ## Balkendiagramm mit Auswahlmöglichkeit
 </p>
 
-Ein Balkendiagramm mit Auswahlmöglichkeit:
+<p style="margin-bottom: 30px;">
+Das Balkendiagramm wird immer auf das oben ausgewählte Land angepasst.
+</p>
+
+<!-- ```{ojs} -->
+<!-- viewof land2 = Inputs.select( -->
+<!--   ["Österreich","Deutschland","Schweiz"],  -->
+<!--   { value: "Deutschland",  -->
+<!--     label: "Land:" -->
+<!--   } -->
+<!-- ) -->
+<!-- ``` -->
 
 ```{ojs}
-viewof land2 = Inputs.select(
-  ["Österreich","Deutschland","Schweiz"], 
-  { value: "Deutschland", 
-    label: "Land:"
-  }
-)
-```
 
-```{ojs}
-
-filtered = data.filter(function(penguin) {
-  return land2 == penguin.Land;
+filtered = data.filter(function(datensatz) {
+  return land == datensatz.Land;
 })
 ```
 
@@ -156,14 +163,14 @@ filtered = data.filter(function(penguin) {
  chart = BarChart(filtered, {
   x: d => d.Typ,
   y: d => d.Anz,
-  <!-- xDomain: d3.groupSort(alphabet, ([d]) => -d.frequency, d => d.letter), // sort by descending frequency -->
-  <!-- yFormat: "%", -->
-  yLabel: "↑ Häufigkeit",
+   yLabel: "↑ Häufigkeit",
   width,
   height: 500,
-  color: "#9ea898"
+  color: "#A67D8E"
 })
 ```
+
+
 ```{ojs}
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
