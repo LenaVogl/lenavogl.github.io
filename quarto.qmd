@@ -145,7 +145,7 @@ bertin.draw({
 </p>
 
 <p style="margin-bottom: 30px;">
-Das Balkendiagramm wird immer auf das oben ausgewählte Land angepasst.
+Das Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das oben ausgewählte Land angepasst.
 </p>
 
 <!-- ```{ojs} -->
