@@ -10,5 +10,7 @@ navbar:
       href: RLeaflet.html
     - text: "Quarto"
       href: quarto.html
-    
+    - text: "Impressum"
+      href: Impressum.html
+
 output_dir: "docs"

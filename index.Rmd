@@ -23,10 +23,10 @@ body {
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Über mich.. / Inhalt dieser Website**
+# **Über mich / Inhalt dieser Website**
 
 <p style="margin-top: 50px;">
-Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie habe ich diese Seite als Themensammlung und Nachschlagwerk angelegt.
+Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie habe ich diese Seite für mich als Themensammlung und Nachschlagwerk angelegt.
 </p>
 
 <p style="margin-top: 30px; margin-bottom: 40px;">
