@@ -20,11 +20,12 @@ body {
 
 </style>
 
+<p style="margin-top: 30px;">
 # **Impressum**
+</p>
 
-
-<p style="margin-top: 30px; margin-bottom: 40px;">
-### Angaben gemäß § 5 TMG
+<p style="margin-top: 30px; margin-bottom: 10px;">
+Angaben gemäß § 5 TMG
 </p>
 
 <p>
@@ -42,6 +43,11 @@ E-Mail: LenaVogl21@gmail.com<br />
 <p>
 Quelle:
 <a href= "https://e-rech24.de"> e-recht24.de</a></p>
+</p>
+
+
+<p style="margin-top: 50px;">
+# **Sonstige Hinweise**
 </p>
 
 <p style="margin-top: 30px; margin-bottom: 40px;">
