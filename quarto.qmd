@@ -164,6 +164,21 @@ filtered = data.filter(function(datensatz) {
 })
 ```
 
+<p id="Titel", style="margin-bottom: 20px;">Überschrift Verteilung</p>
+
+```{ojs}
+//| echo: false
+//| include: false
+
+laender = ["Österreich","Deutschland","Schweiz"]
+
+Beschreibung  = "Häufigkeitsverteilung in " + land + ":"
+
+header = document.getElementById("Titel");
+header.innerHTML = Beschreibung;
+
+```
+
 ```{ojs}
 import {BarChart} from "@d3/bar-chart"
 
