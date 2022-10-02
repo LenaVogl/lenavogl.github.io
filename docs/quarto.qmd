@@ -170,8 +170,6 @@ filtered = data.filter(function(datensatz) {
 //| echo: false
 //| include: false
 
-laender = ["Österreich","Deutschland","Schweiz"]
-
 Beschreibung  = "Häufigkeitsverteilung in " + land + ":"
 
 header = document.getElementById("Titel");
