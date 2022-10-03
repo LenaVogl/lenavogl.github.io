@@ -170,7 +170,7 @@ filtered = data.filter(function(datensatz) {
 //| echo: false
 //| include: false
 
-Beschreibung  = "Häufigkeitsverteilung in " + land + ":"
+Beschreibung  = "Häufigkeitsverteilung " + land + ":"
 
 header = document.getElementById("Titel");
 header.innerHTML = Beschreibung;
@@ -189,7 +189,6 @@ import {BarChart} from "@d3/bar-chart"
   color: "#A67D8E"
 })
 ```
-
 
 ```{r, message = F, echo = F, warning = F}
 library(quarto)
