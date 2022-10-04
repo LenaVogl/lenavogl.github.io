@@ -118,12 +118,12 @@ bertin.draw({
         type: "typo",
         values: "Typ",
         colors: "Pastel1",
-        leg_x: 930,
+        leg_x: 920,
       leg_y: 20,
       leg_w: 45,
       leg_h: 30,
-      leg_fontSize: 20,
-      leg_fontSize2: 16
+      leg_fontSize: 10,
+      leg_fontSize2: 10
       },
   stroke: "#63695f",
   strokeWidth: 1.8,
