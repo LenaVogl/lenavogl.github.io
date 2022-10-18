@@ -1,22 +1,23 @@
 ---
 title: "Code"
 output: html_document
+self-contained: true
 ---
 
-<!-- <style type="text/css"> -->
-<!-- .title { -->
-<!--   display: none; -->
-<!-- } -->
+<style type="text/css">
+.title {
+  display: none;
+}
 
 
-<!-- body { -->
-<!--   font-family: Helvetica; -->
-<!--   background-color: #eee6e7; -->
-<!-- } -->
+body {
+  font-family: Helvetica;
+  background-color: #eee6e7;
+}
 
-<!-- #getting-started img { -->
-<!--   margin-right: 10px; -->
-<!-- } -->
+#getting-started img {
+  margin-right: 10px;
+}
 
 </style>
 
