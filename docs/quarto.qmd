@@ -2,6 +2,7 @@
 title: "Quarto"
 format:
   html:
+    page-layout: full
     # toc: true
     # toc_float: true
     echo: false
@@ -40,6 +41,10 @@ text {
 <p style="margin-top: 30px;">
 Mit [Quarto](https://quarto.org/) kann zusätzlich zu R und Python auch OJS-Code integriert werden. Damit ergeben sich vielseitige interaktive Darstellungsmöglichkeiten.
 </p>
+
+::: {.grid}
+
+::: {.g-col-6}
 
 <p style="margin-top: 30px;">
 ## Karte mit Auswahlmöglichkeit
@@ -143,6 +148,10 @@ bertin.draw({
   ]
 })
 ```
+
+:::
+
+::: {.g-col-6}
 
 <p style="margin-top: 30px;">
 ## Balkendiagramm mit Auswahlmöglichkeit
@@ -260,3 +269,6 @@ dach_df_agg <- dach_df %>%
 write.table(dach_df_agg,"daten.csv",row.names=F,sep=";",dec=",")
 ```
 
+:::
+
+:::

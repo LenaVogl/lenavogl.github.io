@@ -4892,10 +4892,10 @@ margin-top: 0;
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
-<body class="fullcontent">
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<body>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
 
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title-block"><div><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 <div class="quarto-title"><h1 class="title">Quarto</h1></div></header>
@@ -4927,15 +4927,17 @@ text {
 <p style="margin-top: 30px;">
 Mit <a href="https://quarto.org/">Quarto</a> kann zusätzlich zu R und Python auch OJS-Code integriert werden. Damit ergeben sich vielseitige interaktive Darstellungsmöglichkeiten.
 </p>
+<div class="grid">
+<div class="g-col-6">
 <p style="margin-top: 30px;">
 </p><section id="karte-mit-auswahlmöglichkeit" class="level2">
 <h2 class="anchored" data-anchor-id="karte-mit-auswahlmöglichkeit">Karte mit Auswahlmöglichkeit</h2>
 <p></p>
 <p>Mit <code>bertin</code> lassen sich sehr ansprechende Karten generieren. <a href="https://observablehq.com/@neocartocnrs/hello-bertin-js?collection=@neocartocnrs/bertin">Hier</a> finden sich viele verschiedene Beispiele zu <code>bertin</code>.</p>
 <div class="cell">
-<div class="sourceCode hidden" id="cb1" data-startfrom="51" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>dach_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(dach_ojs)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>koord_punkte_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(koord_punkte)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"daten.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode hidden" id="cb1" data-startfrom="56" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 55;"><span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>dach_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(dach_ojs)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>koord_punkte_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(koord_punkte)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"daten.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -4959,19 +4961,19 @@ Mit <a href="https://quarto.org/">Quarto</a> kann zusätzlich zu R und Python au
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode hidden" id="cb2" data-startfrom="60" data-source-offset="-2"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 59;"><span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>viewof land <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Österreich"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span><span class="st">"Schweiz"</span>]<span class="op">,</span> </span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Deutschland"</span><span class="op">,</span> </span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Land:"</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>viewof typ <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span><span class="op">,</span><span class="st">"C"</span>]<span class="op">,</span> </span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span>]<span class="op">,</span> </span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ:"</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode hidden" id="cb2" data-startfrom="65" data-source-offset="-2"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 64;"><span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>viewof land <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Österreich"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span><span class="st">"Schweiz"</span>]<span class="op">,</span> </span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Deutschland"</span><span class="op">,</span> </span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Land:"</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>viewof typ <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span><span class="op">,</span><span class="st">"C"</span>]<span class="op">,</span> </span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span>]<span class="op">,</span> </span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ:"</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -4988,15 +4990,15 @@ Mit <a href="https://quarto.org/">Quarto</a> kann zusätzlich zu R und Python au
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode hidden" id="cb3" data-startfrom="77" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 76;"><span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>land_ausgewaehlt <span class="op">=</span> ({</span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="dt">type</span><span class="op">:</span> <span class="st">"FeatureCollection"</span><span class="op">,</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> dach_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>koordinaten <span class="op">=</span> ({</span>
+<div class="sourceCode hidden" id="cb3" data-startfrom="82" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 81;"><span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>land_ausgewaehlt <span class="op">=</span> ({</span>
 <span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="dt">type</span><span class="op">:</span> <span class="st">"FeatureCollection"</span><span class="op">,</span></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> koord_punkte_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> typ<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Typ</span>) <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> dach_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>koordinaten <span class="op">=</span> ({</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="dt">type</span><span class="op">:</span> <span class="st">"FeatureCollection"</span><span class="op">,</span></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> koord_punkte_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> typ<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Typ</span>) <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -5013,58 +5015,58 @@ Mit <a href="https://quarto.org/">Quarto</a> kann zusätzlich zu R und Python au
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode hidden" id="cb4" data-startfrom="93" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 92;"><span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>bertin <span class="op">=</span> <span class="im">import</span>(<span class="st">'https://cdn.skypack.dev/bertin@0.9.12'</span>)</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>epsg3035 <span class="op">=</span> <span class="st">"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs"</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>bertin<span class="op">.</span><span class="fu">draw</span>({</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>  <span class="dt">params</span><span class="op">:</span> {</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>  <span class="dt">extent</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>  <span class="dt">projection</span><span class="op">:</span> epsg3035<span class="op">,</span></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="dt">background</span><span class="op">:</span> <span class="st">"#eee6e7"</span><span class="op">,</span></span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">margin</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">anchor</span><span class="op">:</span> <span class="st">"start"</span></span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layers</span><span class="op">:</span> [</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> koordinaten<span class="op">,</span></span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tooltip</span><span class="op">:</span> {</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fields</span><span class="op">:</span> [</span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$Typ_Schrift"</span></span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#d2bec6"</span><span class="op">,</span></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span></span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fontWeight</span><span class="op">:</span> [<span class="st">"bold"</span>]<span class="op">,</span></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontSize</span><span class="op">:</span> [<span class="dv">20</span>]}<span class="op">,</span></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> {</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"typo"</span><span class="op">,</span></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>        <span class="dt">values</span><span class="op">:</span> <span class="st">"Typ"</span><span class="op">,</span></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colors</span><span class="op">:</span> <span class="st">"Pastel1"</span><span class="op">,</span></span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>        <span class="dt">leg_x</span><span class="op">:</span> <span class="dv">920</span><span class="op">,</span></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_y</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_w</span><span class="op">:</span> <span class="dv">45</span><span class="op">,</span></span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_h</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize2</span><span class="op">:</span> <span class="dv">10</span></span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#63695f"</span><span class="op">,</span></span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.8</span><span class="op">,</span></span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol</span><span class="op">:</span> <span class="st">"circle"</span><span class="op">,</span></span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span></span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol_size</span><span class="op">:</span> <span class="dv">400</span></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>  { </span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#A67D8E"</span><span class="op">,</span></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span></span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">type</span><span class="op">:</span> <span class="st">"shadow"</span><span class="op">,</span> <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="dv">5</span>}<span class="op">,</span></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"scalebar"</span><span class="op">,</span> <span class="dt">units</span><span class="op">:</span> <span class="st">"kilometers"</span> }</span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode hidden" id="cb4" data-startfrom="98" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 97;"><span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>bertin <span class="op">=</span> <span class="im">import</span>(<span class="st">'https://cdn.skypack.dev/bertin@0.9.12'</span>)</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>epsg3035 <span class="op">=</span> <span class="st">"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs"</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>bertin<span class="op">.</span><span class="fu">draw</span>({</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">params</span><span class="op">:</span> {</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">extent</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">projection</span><span class="op">:</span> epsg3035<span class="op">,</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">background</span><span class="op">:</span> <span class="st">"#eee6e7"</span><span class="op">,</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">margin</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">anchor</span><span class="op">:</span> <span class="st">"start"</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layers</span><span class="op">:</span> [</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> koordinaten<span class="op">,</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tooltip</span><span class="op">:</span> {</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fields</span><span class="op">:</span> [</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$Typ_Schrift"</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#d2bec6"</span><span class="op">,</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fontWeight</span><span class="op">:</span> [<span class="st">"bold"</span>]<span class="op">,</span></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontSize</span><span class="op">:</span> [<span class="dv">20</span>]}<span class="op">,</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> {</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"typo"</span><span class="op">,</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>        <span class="dt">values</span><span class="op">:</span> <span class="st">"Typ"</span><span class="op">,</span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colors</span><span class="op">:</span> <span class="st">"Pastel1"</span><span class="op">,</span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>        <span class="dt">leg_x</span><span class="op">:</span> <span class="dv">920</span><span class="op">,</span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_y</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_w</span><span class="op">:</span> <span class="dv">45</span><span class="op">,</span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_h</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize2</span><span class="op">:</span> <span class="dv">10</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#63695f"</span><span class="op">,</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.8</span><span class="op">,</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol</span><span class="op">:</span> <span class="st">"circle"</span><span class="op">,</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol_size</span><span class="op">:</span> <span class="dv">400</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>  { </span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#A67D8E"</span><span class="op">,</span></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">type</span><span class="op">:</span> <span class="st">"shadow"</span><span class="op">,</span> <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="dv">5</span>}<span class="op">,</span></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"scalebar"</span><span class="op">,</span> <span class="dt">units</span><span class="op">:</span> <span class="st">"kilometers"</span> }</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -5087,9 +5089,11 @@ Mit <a href="https://quarto.org/">Quarto</a> kann zusätzlich zu R und Python au
 </div>
 </div>
 </div>
+</section>
+</div>
+<div class="g-col-6">
 <p style="margin-top: 30px;">
-</p></section>
-<section id="balkendiagramm-mit-auswahlmöglichkeit" class="level2">
+</p><section id="balkendiagramm-mit-auswahlmöglichkeit" class="level2">
 <h2 class="anchored" data-anchor-id="balkendiagramm-mit-auswahlmöglichkeit">Balkendiagramm mit Auswahlmöglichkeit</h2>
 <p></p>
 <p style="margin-bottom: 30px;">
@@ -5104,9 +5108,9 @@ Das Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das o
 <!-- ) -->
 <!-- ``` -->
 <div class="cell">
-<div class="sourceCode hidden" id="cb5" data-startfrom="166" data-source-offset="-1"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 165;"><span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(datensatz) {</span>
-<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> land <span class="op">==</span> datensatz<span class="op">.</span><span class="at">Land</span><span class="op">;</span></span>
-<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode hidden" id="cb5" data-startfrom="175" data-source-offset="-1"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 174;"><span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(datensatz) {</span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> land <span class="op">==</span> datensatz<span class="op">.</span><span class="at">Land</span><span class="op">;</span></span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="ojs-cell-5" data-nodetype="declaration">
 
@@ -5115,10 +5119,10 @@ Das Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das o
 </div>
 <p id="Titel" ,="" style="margin-bottom: 20px;">Überschrift Verteilung</p>
 <div class="cell" data-include="false">
-<div class="sourceCode hidden" id="cb6" data-startfrom="177" data-source-offset="-1"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 176;"><span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>Beschreibung  <span class="op">=</span> <span class="st">"Häufigkeitsverteilung "</span> <span class="op">+</span> land <span class="op">+</span> <span class="st">":"</span></span>
-<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"Titel"</span>)<span class="op">;</span></span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>header<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> Beschreibung<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode hidden" id="cb6" data-startfrom="186" data-source-offset="-1"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 185;"><span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>Beschreibung  <span class="op">=</span> <span class="st">"Häufigkeitsverteilung "</span> <span class="op">+</span> land <span class="op">+</span> <span class="st">":"</span></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"Titel"</span>)<span class="op">;</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>header<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> Beschreibung<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display hidden">
 <div>
 <div id="ojs-cell-6-1" data-nodetype="declaration">
@@ -5142,17 +5146,17 @@ Das Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das o
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode hidden" id="cb7" data-startfrom="185" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 184;"><span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {BarChart} <span class="im">from</span> <span class="st">"@d3/bar-chart"</span></span>
-<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a> chart <span class="op">=</span> <span class="fu">BarChart</span>(filtered<span class="op">,</span> {</span>
-<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Typ</span><span class="op">,</span></span>
-<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Anz</span><span class="op">,</span></span>
-<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>   <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"↑ Häufigkeit"</span><span class="op">,</span></span>
-<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a>  width<span class="op">,</span></span>
-<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
-<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#A67D8E"</span></span>
-<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode hidden" id="cb7" data-startfrom="194" data-source-offset="-0"><pre class="sourceCode js cell-code code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 193;"><span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {BarChart} <span class="im">from</span> <span class="st">"@d3/bar-chart"</span></span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a> chart <span class="op">=</span> <span class="fu">BarChart</span>(filtered<span class="op">,</span> {</span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Typ</span><span class="op">,</span></span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Anz</span><span class="op">,</span></span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a>   <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"↑ Häufigkeit"</span><span class="op">,</span></span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a>  width<span class="op">,</span></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#A67D8E"</span></span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <div id="ojs-cell-7-1" data-nodetype="declaration">
@@ -5252,269 +5256,284 @@ using the `.groups` argument.</code></pre>
 </div>
 <div class="sourceCode hidden" id="cb16"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(dach_df_agg,<span class="st">"daten.csv"</span>,<span class="at">row.names=</span>F,<span class="at">sep=</span><span class="st">";"</span>,<span class="at">dec=</span><span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+</div>
+</div>
 <!-- -->
 <div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title anchored" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Quarto"</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">    # toc: true</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    # toc_float: true</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: false</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    keep-hidden: true</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">.list-group-item.active</span><span class="op">,</span> <span class="fu">.list-group-item.active</span><span class="in">:focus</span><span class="op">,</span> <span class="fu">.list-group-item.active</span><span class="in">:hover</span> {</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">z-index</span>: <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>: <span class="cn">#fff</span><span class="op">;</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>: <span class="cn">#A67D8E</span><span class="op">;</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-color</span>: <span class="cn">#aba2a7</span><span class="op">;</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: Helvetica<span class="op">;</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="pp">#header</span> {</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>&lt;!-- <span class="kw">color</span>: <span class="cn">#869c98</span><span class="op">;</span>  --<span class="op">&gt;</span></span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a> <span class="kw">font-family</span>: Helvetica<span class="op">;</span></span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-size</span>: <span class="dv">36</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>body {</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span>: Helvetica<span class="op">;</span></span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background-color</span>: <span class="cn">#eee6e7</span><span class="op">;</span></span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>text {</span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span> : <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">    # toc: true</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">    # toc_float: true</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: false</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">    keep-hidden: true</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained: true</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">.list-group-item.active</span><span class="op">,</span> <span class="fu">.list-group-item.active</span><span class="in">:focus</span><span class="op">,</span> <span class="fu">.list-group-item.active</span><span class="in">:hover</span> {</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">z-index</span>: <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>: <span class="cn">#fff</span><span class="op">;</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>: <span class="cn">#A67D8E</span><span class="op">;</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-color</span>: <span class="cn">#aba2a7</span><span class="op">;</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: Helvetica<span class="op">;</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="pp">#header</span> {</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>&lt;!-- <span class="kw">color</span>: <span class="cn">#869c98</span><span class="op">;</span>  --<span class="op">&gt;</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a> <span class="kw">font-family</span>: Helvetica<span class="op">;</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-size</span>: <span class="dv">36</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span>: Helvetica<span class="op">;</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>  <span class="kw">background-color</span>: <span class="cn">#eee6e7</span><span class="op">;</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>text {</span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span> : <span class="dv">12</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span>
 <span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">style</span><span class="ot">=</span><span class="st">"margin-top: 30px;"</span><span class="kw">&gt;</span></span>
-<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>Mit <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org/)</span> kann zusätzlich zu R und Python auch OJS-Code integriert werden. Damit ergeben sich vielseitige interaktive Darstellungsmöglichkeiten.</span>
-<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/p&gt;</span></span>
-<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">style</span><span class="ot">=</span><span class="st">"margin-top: 30px;"</span><span class="kw">&gt;</span></span>
-<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Karte mit Auswahlmöglichkeit</span></span>
-<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/p&gt;</span></span>
-<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>Mit <span class="in">`bertin`</span> lassen sich sehr ansprechende Karten generieren. <span class="co">[</span><span class="ot">Hier</span><span class="co">](https://observablehq.com/@neocartocnrs/hello-bertin-js?collection=@neocartocnrs/bertin)</span> finden sich viele verschiedene Beispiele zu <span class="in">`bertin`</span>. </span>
-<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
-<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>dach_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(dach_ojs)</span>
-<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>koord_punkte_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(koord_punkte)</span>
-<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"daten.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
-<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>viewof land <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
-<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Österreich"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span><span class="st">"Schweiz"</span>]<span class="op">,</span> </span>
-<span id="cb17-64"><a href="#cb17-64" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Deutschland"</span><span class="op">,</span> </span>
-<span id="cb17-65"><a href="#cb17-65" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Land:"</span></span>
-<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>viewof typ <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
-<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span><span class="op">,</span><span class="st">"C"</span>]<span class="op">,</span> </span>
-<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span>]<span class="op">,</span> </span>
-<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ:"</span></span>
-<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
-<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a>land_ausgewaehlt <span class="op">=</span> ({</span>
-<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a><span class="dt">type</span><span class="op">:</span> <span class="st">"FeatureCollection"</span><span class="op">,</span></span>
-<span id="cb17-83"><a href="#cb17-83" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> dach_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
-<span id="cb17-84"><a href="#cb17-84" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>koordinaten <span class="op">=</span> ({</span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">style</span><span class="ot">=</span><span class="st">"margin-top: 30px;"</span><span class="kw">&gt;</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>Mit <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org/)</span> kann zusätzlich zu R und Python auch OJS-Code integriert werden. Damit ergeben sich vielseitige interaktive Darstellungsmöglichkeiten.</span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>::: {.grid}</span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a>::: {.g-col-6}</span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p</span> <span class="er">style</span><span class="ot">=</span><span class="st">"margin-top: 30px;"</span><span class="kw">&gt;</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a><span class="fu">## Karte mit Auswahlmöglichkeit</span></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/p&gt;</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>Mit <span class="in">`bertin`</span> lassen sich sehr ansprechende Karten generieren. <span class="co">[</span><span class="ot">Hier</span><span class="co">](https://observablehq.com/@neocartocnrs/hello-bertin-js?collection=@neocartocnrs/bertin)</span> finden sich viele verschiedene Beispiele zu <span class="in">`bertin`</span>. </span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>dach_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(dach_ojs)</span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>koord_punkte_json <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(koord_punkte)</span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"daten.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb17-61"><a href="#cb17-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-63"><a href="#cb17-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-66"><a href="#cb17-66" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
+<span id="cb17-67"><a href="#cb17-67" aria-hidden="true" tabindex="-1"></a>viewof land <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb17-68"><a href="#cb17-68" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Österreich"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span><span class="st">"Schweiz"</span>]<span class="op">,</span> </span>
+<span id="cb17-69"><a href="#cb17-69" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> <span class="st">"Deutschland"</span><span class="op">,</span> </span>
+<span id="cb17-70"><a href="#cb17-70" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Land:"</span></span>
+<span id="cb17-71"><a href="#cb17-71" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-72"><a href="#cb17-72" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-73"><a href="#cb17-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-74"><a href="#cb17-74" aria-hidden="true" tabindex="-1"></a>viewof typ <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
+<span id="cb17-75"><a href="#cb17-75" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span><span class="op">,</span><span class="st">"C"</span>]<span class="op">,</span> </span>
+<span id="cb17-76"><a href="#cb17-76" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">value</span><span class="op">:</span> [<span class="st">"A"</span><span class="op">,</span><span class="st">"B"</span>]<span class="op">,</span> </span>
+<span id="cb17-77"><a href="#cb17-77" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ:"</span></span>
+<span id="cb17-78"><a href="#cb17-78" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-79"><a href="#cb17-79" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-80"><a href="#cb17-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-81"><a href="#cb17-81" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-82"><a href="#cb17-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-85"><a href="#cb17-85" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
+<span id="cb17-86"><a href="#cb17-86" aria-hidden="true" tabindex="-1"></a>land_ausgewaehlt <span class="op">=</span> ({</span>
 <span id="cb17-87"><a href="#cb17-87" aria-hidden="true" tabindex="-1"></a><span class="dt">type</span><span class="op">:</span> <span class="st">"FeatureCollection"</span><span class="op">,</span></span>
-<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> koord_punkte_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> typ<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Typ</span>) <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
+<span id="cb17-88"><a href="#cb17-88" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> dach_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
 <span id="cb17-89"><a href="#cb17-89" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb17-90"><a href="#cb17-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-91"><a href="#cb17-91" aria-hidden="true" tabindex="-1"></a>koordinaten <span class="op">=</span> ({</span>
+<span id="cb17-92"><a href="#cb17-92" aria-hidden="true" tabindex="-1"></a><span class="dt">type</span><span class="op">:</span> <span class="st">"FeatureCollection"</span><span class="op">,</span></span>
+<span id="cb17-93"><a href="#cb17-93" aria-hidden="true" tabindex="-1"></a><span class="dt">features</span><span class="op">:</span> koord_punkte_json<span class="op">.</span><span class="at">features</span><span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> typ<span class="op">.</span><span class="fu">includes</span>(d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Typ</span>) <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Land</span> <span class="op">==</span> land)</span>
+<span id="cb17-94"><a href="#cb17-94" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb17-95"><a href="#cb17-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
-<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a>bertin <span class="op">=</span> <span class="im">import</span>(<span class="st">'https://cdn.skypack.dev/bertin@0.9.12'</span>)</span>
-<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a>epsg3035 <span class="op">=</span> <span class="st">"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs"</span></span>
-<span id="cb17-101"><a href="#cb17-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-102"><a href="#cb17-102" aria-hidden="true" tabindex="-1"></a>bertin<span class="op">.</span><span class="fu">draw</span>({</span>
-<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">params</span><span class="op">:</span> {</span>
-<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">extent</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
-<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">projection</span><span class="op">:</span> epsg3035<span class="op">,</span></span>
-<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">background</span><span class="op">:</span> <span class="st">"#eee6e7"</span><span class="op">,</span></span>
-<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">margin</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
-<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">anchor</span><span class="op">:</span> <span class="st">"start"</span></span>
-<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span>
-<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layers</span><span class="op">:</span> [</span>
-<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
-<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> koordinaten<span class="op">,</span></span>
-<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tooltip</span><span class="op">:</span> {</span>
-<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fields</span><span class="op">:</span> [</span>
-<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$Typ_Schrift"</span></span>
-<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#d2bec6"</span><span class="op">,</span></span>
-<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span></span>
-<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fontWeight</span><span class="op">:</span> [<span class="st">"bold"</span>]<span class="op">,</span></span>
-<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontSize</span><span class="op">:</span> [<span class="dv">20</span>]}<span class="op">,</span></span>
-<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> {</span>
-<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"typo"</span><span class="op">,</span></span>
-<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>        <span class="dt">values</span><span class="op">:</span> <span class="st">"Typ"</span><span class="op">,</span></span>
-<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colors</span><span class="op">:</span> <span class="st">"Pastel1"</span><span class="op">,</span></span>
-<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>        <span class="dt">leg_x</span><span class="op">:</span> <span class="dv">920</span><span class="op">,</span></span>
-<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_y</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
-<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_w</span><span class="op">:</span> <span class="dv">45</span><span class="op">,</span></span>
-<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_h</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
-<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
-<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize2</span><span class="op">:</span> <span class="dv">10</span></span>
-<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
-<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#63695f"</span><span class="op">,</span></span>
-<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.8</span><span class="op">,</span></span>
-<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol</span><span class="op">:</span> <span class="st">"circle"</span><span class="op">,</span></span>
-<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span></span>
-<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol_size</span><span class="op">:</span> <span class="dv">400</span></span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>  { </span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
-<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#A67D8E"</span><span class="op">,</span></span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#666666"</span><span class="op">,</span></span>
-<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span></span>
-<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">type</span><span class="op">:</span> <span class="st">"shadow"</span><span class="op">,</span> <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="dv">5</span>}<span class="op">,</span></span>
-<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"scalebar"</span><span class="op">,</span> <span class="dt">units</span><span class="op">:</span> <span class="st">"kilometers"</span> }</span>
-<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="margin-top: 30px;"&gt;</span></span>
-<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a><span class="vs">## Balkendiagramm mit Auswahlmöglichkeit</span></span>
-<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="margin-bottom: 30px;"&gt;</span></span>
-<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="vs">Das Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das oben ausgewählte Land angepasst.</span></span>
-<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;!-- ```</span>{ojs} <span class="op">--&gt;</span></span>
-<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> viewof land2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>( <span class="op">--&gt;</span></span>
-<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>   [<span class="st">"Österreich"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span><span class="st">"Schweiz"</span>]<span class="op">,</span>  <span class="op">--&gt;</span></span>
-<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>   { <span class="dt">value</span><span class="op">:</span> <span class="st">"Deutschland"</span><span class="op">,</span>  <span class="op">--&gt;</span></span>
-<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>     <span class="dt">label</span><span class="op">:</span> <span class="st">"Land:"</span> <span class="op">--&gt;</span></span>
-<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>   } <span class="op">--&gt;</span></span>
-<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> ) <span class="op">--&gt;</span></span>
-<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> <span class="vs">``` --&gt;</span></span>
+<span id="cb17-96"><a href="#cb17-96" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-97"><a href="#cb17-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-98"><a href="#cb17-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-99"><a href="#cb17-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-100"><a href="#cb17-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-103"><a href="#cb17-103" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
+<span id="cb17-104"><a href="#cb17-104" aria-hidden="true" tabindex="-1"></a>bertin <span class="op">=</span> <span class="im">import</span>(<span class="st">'https://cdn.skypack.dev/bertin@0.9.12'</span>)</span>
+<span id="cb17-105"><a href="#cb17-105" aria-hidden="true" tabindex="-1"></a>epsg3035 <span class="op">=</span> <span class="st">"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs"</span></span>
+<span id="cb17-106"><a href="#cb17-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-107"><a href="#cb17-107" aria-hidden="true" tabindex="-1"></a>bertin<span class="op">.</span><span class="fu">draw</span>({</span>
+<span id="cb17-108"><a href="#cb17-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">params</span><span class="op">:</span> {</span>
+<span id="cb17-109"><a href="#cb17-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">extent</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
+<span id="cb17-110"><a href="#cb17-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">projection</span><span class="op">:</span> epsg3035<span class="op">,</span></span>
+<span id="cb17-111"><a href="#cb17-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">background</span><span class="op">:</span> <span class="st">"#eee6e7"</span><span class="op">,</span></span>
+<span id="cb17-112"><a href="#cb17-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">margin</span><span class="op">:</span> <span class="dv">80</span><span class="op">,</span></span>
+<span id="cb17-113"><a href="#cb17-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">anchor</span><span class="op">:</span> <span class="st">"start"</span></span>
+<span id="cb17-114"><a href="#cb17-114" aria-hidden="true" tabindex="-1"></a>}<span class="op">,</span></span>
+<span id="cb17-115"><a href="#cb17-115" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layers</span><span class="op">:</span> [</span>
+<span id="cb17-116"><a href="#cb17-116" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb17-117"><a href="#cb17-117" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
+<span id="cb17-118"><a href="#cb17-118" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> koordinaten<span class="op">,</span></span>
+<span id="cb17-119"><a href="#cb17-119" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tooltip</span><span class="op">:</span> {</span>
+<span id="cb17-120"><a href="#cb17-120" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fields</span><span class="op">:</span> [</span>
+<span id="cb17-121"><a href="#cb17-121" aria-hidden="true" tabindex="-1"></a>  <span class="st">"$Typ_Schrift"</span></span>
+<span id="cb17-122"><a href="#cb17-122" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb17-123"><a href="#cb17-123" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#d2bec6"</span><span class="op">,</span></span>
+<span id="cb17-124"><a href="#cb17-124" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span></span>
+<span id="cb17-125"><a href="#cb17-125" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb17-126"><a href="#cb17-126" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fontWeight</span><span class="op">:</span> [<span class="st">"bold"</span>]<span class="op">,</span></span>
+<span id="cb17-127"><a href="#cb17-127" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontSize</span><span class="op">:</span> [<span class="dv">20</span>]}<span class="op">,</span></span>
+<span id="cb17-128"><a href="#cb17-128" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> {</span>
+<span id="cb17-129"><a href="#cb17-129" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"typo"</span><span class="op">,</span></span>
+<span id="cb17-130"><a href="#cb17-130" aria-hidden="true" tabindex="-1"></a>        <span class="dt">values</span><span class="op">:</span> <span class="st">"Typ"</span><span class="op">,</span></span>
+<span id="cb17-131"><a href="#cb17-131" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colors</span><span class="op">:</span> <span class="st">"Pastel1"</span><span class="op">,</span></span>
+<span id="cb17-132"><a href="#cb17-132" aria-hidden="true" tabindex="-1"></a>        <span class="dt">leg_x</span><span class="op">:</span> <span class="dv">920</span><span class="op">,</span></span>
+<span id="cb17-133"><a href="#cb17-133" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_y</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb17-134"><a href="#cb17-134" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_w</span><span class="op">:</span> <span class="dv">45</span><span class="op">,</span></span>
+<span id="cb17-135"><a href="#cb17-135" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_h</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a>      <span class="dt">leg_fontSize2</span><span class="op">:</span> <span class="dv">10</span></span>
+<span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#63695f"</span><span class="op">,</span></span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.8</span><span class="op">,</span></span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol</span><span class="op">:</span> <span class="st">"circle"</span><span class="op">,</span></span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span></span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>  <span class="dt">symbol_size</span><span class="op">:</span> <span class="dv">400</span></span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>  { </span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">"layer"</span><span class="op">,</span></span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>  <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span></span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fill</span><span class="op">:</span> <span class="st">"#A67D8E"</span><span class="op">,</span></span>
+<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#666666"</span><span class="op">,</span></span>
+<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span></span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">type</span><span class="op">:</span> <span class="st">"shadow"</span><span class="op">,</span> <span class="dt">geojson</span><span class="op">:</span> land_ausgewaehlt<span class="op">,</span> <span class="dt">dx</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="dv">5</span>}<span class="op">,</span></span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">type</span><span class="op">:</span> <span class="st">"scalebar"</span><span class="op">,</span> <span class="dt">units</span><span class="op">:</span> <span class="st">"kilometers"</span> }</span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {.g-col-6}</span></span>
+<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="margin-top: 30px;"&gt;</span></span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a><span class="vs">## Balkendiagramm mit Auswahlmöglichkeit</span></span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p style="margin-bottom: 30px;"&gt;</span></span>
+<span id="cb17-167"><a href="#cb17-167" aria-hidden="true" tabindex="-1"></a><span class="vs">Das Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das oben ausgewählte Land angepasst.</span></span>
+<span id="cb17-168"><a href="#cb17-168" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/p&gt;</span></span>
 <span id="cb17-169"><a href="#cb17-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
-<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(datensatz) {</span>
-<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> land <span class="op">==</span> datensatz<span class="op">.</span><span class="at">Land</span><span class="op">;</span></span>
-<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p id="Titel", style="margin-bottom: 20px;"&gt;Überschrift Verteilung&lt;/p&gt;</span></span>
-<span id="cb17-179"><a href="#cb17-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
-<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
-<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a><span class="co">//| include: false</span></span>
-<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a>Beschreibung  <span class="op">=</span> <span class="st">"Häufigkeitsverteilung "</span> <span class="op">+</span> land <span class="op">+</span> <span class="st">":"</span></span>
-<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"Titel"</span>)<span class="op">;</span></span>
-<span id="cb17-189"><a href="#cb17-189" aria-hidden="true" tabindex="-1"></a>header<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> Beschreibung<span class="op">;</span></span>
-<span id="cb17-190"><a href="#cb17-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
-<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {BarChart} <span class="im">from</span> <span class="st">"@d3/bar-chart"</span></span>
-<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a> chart <span class="op">=</span> <span class="fu">BarChart</span>(filtered<span class="op">,</span> {</span>
-<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Typ</span><span class="op">,</span></span>
-<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Anz</span><span class="op">,</span></span>
-<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a>   <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"↑ Häufigkeit"</span><span class="op">,</span></span>
-<span id="cb17-202"><a href="#cb17-202" aria-hidden="true" tabindex="-1"></a>  width<span class="op">,</span></span>
-<span id="cb17-203"><a href="#cb17-203" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
-<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#A67D8E"</span></span>
-<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
-<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>{r<span class="op">,</span> message <span class="op">=</span> F<span class="op">,</span> echo <span class="op">=</span> F<span class="op">,</span> warning <span class="op">=</span> F}</span>
-<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quarto)</span>
-<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geojsonsf)</span>
-<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a>dach <span class="op">&lt;-</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="fu">c</span>(<span class="st">"Austria"</span><span class="op">,</span><span class="st">"Germany"</span><span class="op">,</span><span class="st">"Switzerland"</span>)<span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
-<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>) <span class="op">%&gt;%</span> </span>
-<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="fu">ifelse</span>(name <span class="op">==</span> <span class="st">"Switzerland"</span><span class="op">,</span><span class="st">"Schweiz"</span><span class="op">,</span><span class="fu">ifelse</span>(name <span class="op">==</span> <span class="st">"Germany"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span> <span class="st">"Österreich"</span>)))</span>
-<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a>deu <span class="op">=</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="st">"Germany"</span><span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
-<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>)</span>
-<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a>oe <span class="op">=</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="st">"Austria"</span><span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
-<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>)</span>
-<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a>ch <span class="op">=</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="st">"Switzerland"</span><span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
-<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
-<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>)</span>
-<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>#Koordinaten simulieren</span>
-<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>set<span class="op">.</span><span class="fu">seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>deutschand_punkte <span class="op">=</span> <span class="fu">st_sample</span>(deu<span class="op">,</span> size <span class="op">=</span> <span class="dv">150</span>)</span>
-<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>oesterreich_punkte <span class="op">=</span> <span class="fu">st_sample</span>(oe<span class="op">,</span> size <span class="op">=</span> <span class="dv">50</span>)</span>
-<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>schweiz_punkte <span class="op">=</span> <span class="fu">st_sample</span>(ch<span class="op">,</span> size <span class="op">=</span> <span class="dv">50</span>)</span>
-<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a># Zu einem Datensatz zusammenfassen</span>
-<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a>#Deutschland</span>
-<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a>deutschand_punkte_df <span class="op">&lt;-</span> <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">frame</span>(<span class="fu">st_coordinates</span>(deutschand_punkte))</span>
-<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a>deutschand_punkte_df <span class="op">&lt;-</span> <span class="fu">cbind</span>(deutschand_punkte_df<span class="op">,</span> Typ <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span><span class="op">,</span> <span class="st">"B"</span><span class="op">,</span> <span class="st">"C"</span>)<span class="op">,</span> size <span class="op">=</span> <span class="fu">nrow</span>(deutschand_punkte_df)<span class="op">,</span> replace <span class="op">=</span> T<span class="op">,</span> prob <span class="op">=</span> <span class="fu">c</span>(<span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.3</span><span class="op">,</span> <span class="fl">0.5</span>))) <span class="op">%&gt;%</span></span>
-<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="st">"Deutschland"</span>)</span>
-<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a># Österreich</span>
-<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a>oesterreich_punkte_df <span class="op">&lt;-</span> <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">frame</span>(<span class="fu">st_coordinates</span>(oesterreich_punkte))</span>
-<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a>oesterreich_punkte_df <span class="op">&lt;-</span> <span class="fu">cbind</span>(oesterreich_punkte_df<span class="op">,</span> Typ <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span><span class="op">,</span> <span class="st">"B"</span><span class="op">,</span> <span class="st">"C"</span>)<span class="op">,</span> size <span class="op">=</span> <span class="fu">nrow</span>(oesterreich_punkte_df)<span class="op">,</span> replace <span class="op">=</span> T<span class="op">,</span> prob <span class="op">=</span> <span class="fu">c</span>(<span class="fl">0.4</span><span class="op">,</span> <span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.5</span>))) <span class="op">%&gt;%</span></span>
-<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="st">"Österreich"</span>)</span>
-<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a># Schweiz</span>
-<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>schweiz_punkte_df <span class="op">&lt;-</span> <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">frame</span>(<span class="fu">st_coordinates</span>(schweiz_punkte))</span>
-<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a>schweiz_punkte_df <span class="op">&lt;-</span> <span class="fu">cbind</span>(schweiz_punkte_df<span class="op">,</span> Typ <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span><span class="op">,</span> <span class="st">"B"</span><span class="op">,</span> <span class="st">"C"</span>)<span class="op">,</span> size <span class="op">=</span> <span class="fu">nrow</span>(schweiz_punkte_df)<span class="op">,</span> replace <span class="op">=</span> T<span class="op">,</span> prob <span class="op">=</span> <span class="fu">c</span>(<span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.2</span>))) <span class="op">%&gt;%</span></span>
-<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="st">"Schweiz"</span>)</span>
-<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a>dach_df <span class="op">&lt;-</span> <span class="fu">rbind</span>(deutschand_punkte_df<span class="op">,</span> oesterreich_punkte_df<span class="op">,</span> schweiz_punkte_df) <span class="op">%&gt;%</span> </span>
-<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Typ_Schrift <span class="op">=</span> <span class="fu">paste</span>(<span class="st">"Typ:"</span><span class="op">,</span>Typ))</span>
-<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(dach_ojs <span class="op">=</span> <span class="fu">sf_geojson</span>(dach)) </span>
-<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>Koordinaten_Punktlayer <span class="op">&lt;-</span> <span class="fu">st_as_sf</span>(x <span class="op">=</span> dach_df<span class="op">,</span> coords <span class="op">=</span> <span class="fu">c</span>(<span class="st">"X"</span><span class="op">,</span><span class="st">"Y"</span>)<span class="op">,</span></span>
-<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a>    crs <span class="op">=</span> <span class="st">"+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"</span>)</span>
-<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(koord_punkte <span class="op">=</span> <span class="fu">sf_geojson</span>(Koordinaten_Punktlayer))</span>
+<span id="cb17-170"><a href="#cb17-170" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;!-- ```</span>{ojs} <span class="op">--&gt;</span></span>
+<span id="cb17-171"><a href="#cb17-171" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> viewof land2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>( <span class="op">--&gt;</span></span>
+<span id="cb17-172"><a href="#cb17-172" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>   [<span class="st">"Österreich"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span><span class="st">"Schweiz"</span>]<span class="op">,</span>  <span class="op">--&gt;</span></span>
+<span id="cb17-173"><a href="#cb17-173" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>   { <span class="dt">value</span><span class="op">:</span> <span class="st">"Deutschland"</span><span class="op">,</span>  <span class="op">--&gt;</span></span>
+<span id="cb17-174"><a href="#cb17-174" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>     <span class="dt">label</span><span class="op">:</span> <span class="st">"Land:"</span> <span class="op">--&gt;</span></span>
+<span id="cb17-175"><a href="#cb17-175" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span>   } <span class="op">--&gt;</span></span>
+<span id="cb17-176"><a href="#cb17-176" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> ) <span class="op">--&gt;</span></span>
+<span id="cb17-177"><a href="#cb17-177" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;!--</span> <span class="vs">``` --&gt;</span></span>
+<span id="cb17-178"><a href="#cb17-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-181"><a href="#cb17-181" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
+<span id="cb17-182"><a href="#cb17-182" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(datensatz) {</span>
+<span id="cb17-183"><a href="#cb17-183" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> land <span class="op">==</span> datensatz<span class="op">.</span><span class="at">Land</span><span class="op">;</span></span>
+<span id="cb17-184"><a href="#cb17-184" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb17-185"><a href="#cb17-185" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-186"><a href="#cb17-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-187"><a href="#cb17-187" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;p id="Titel", style="margin-bottom: 20px;"&gt;Überschrift Verteilung&lt;/p&gt;</span></span>
+<span id="cb17-188"><a href="#cb17-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-191"><a href="#cb17-191" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
+<span id="cb17-192"><a href="#cb17-192" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb17-193"><a href="#cb17-193" aria-hidden="true" tabindex="-1"></a><span class="co">//| include: false</span></span>
+<span id="cb17-194"><a href="#cb17-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-195"><a href="#cb17-195" aria-hidden="true" tabindex="-1"></a>Beschreibung  <span class="op">=</span> <span class="st">"Häufigkeitsverteilung "</span> <span class="op">+</span> land <span class="op">+</span> <span class="st">":"</span></span>
+<span id="cb17-196"><a href="#cb17-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-197"><a href="#cb17-197" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"Titel"</span>)<span class="op">;</span></span>
+<span id="cb17-198"><a href="#cb17-198" aria-hidden="true" tabindex="-1"></a>header<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> Beschreibung<span class="op">;</span></span>
+<span id="cb17-199"><a href="#cb17-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-200"><a href="#cb17-200" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-201"><a href="#cb17-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-204"><a href="#cb17-204" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>ojs</span>
+<span id="cb17-205"><a href="#cb17-205" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {BarChart} <span class="im">from</span> <span class="st">"@d3/bar-chart"</span></span>
+<span id="cb17-206"><a href="#cb17-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-207"><a href="#cb17-207" aria-hidden="true" tabindex="-1"></a> chart <span class="op">=</span> <span class="fu">BarChart</span>(filtered<span class="op">,</span> {</span>
+<span id="cb17-208"><a href="#cb17-208" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Typ</span><span class="op">,</span></span>
+<span id="cb17-209"><a href="#cb17-209" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Anz</span><span class="op">,</span></span>
+<span id="cb17-210"><a href="#cb17-210" aria-hidden="true" tabindex="-1"></a>   <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"↑ Häufigkeit"</span><span class="op">,</span></span>
+<span id="cb17-211"><a href="#cb17-211" aria-hidden="true" tabindex="-1"></a>  width<span class="op">,</span></span>
+<span id="cb17-212"><a href="#cb17-212" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb17-213"><a href="#cb17-213" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> <span class="st">"#A67D8E"</span></span>
+<span id="cb17-214"><a href="#cb17-214" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-217"><a href="#cb17-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-218"><a href="#cb17-218" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>{r<span class="op">,</span> message <span class="op">=</span> F<span class="op">,</span> echo <span class="op">=</span> F<span class="op">,</span> warning <span class="op">=</span> F}</span>
+<span id="cb17-219"><a href="#cb17-219" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quarto)</span>
+<span id="cb17-220"><a href="#cb17-220" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb17-221"><a href="#cb17-221" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb17-222"><a href="#cb17-222" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geojsonsf)</span>
+<span id="cb17-223"><a href="#cb17-223" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb17-224"><a href="#cb17-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-225"><a href="#cb17-225" aria-hidden="true" tabindex="-1"></a>dach <span class="op">&lt;-</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="fu">c</span>(<span class="st">"Austria"</span><span class="op">,</span><span class="st">"Germany"</span><span class="op">,</span><span class="st">"Switzerland"</span>)<span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb17-226"><a href="#cb17-226" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
+<span id="cb17-227"><a href="#cb17-227" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb17-228"><a href="#cb17-228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="fu">ifelse</span>(name <span class="op">==</span> <span class="st">"Switzerland"</span><span class="op">,</span><span class="st">"Schweiz"</span><span class="op">,</span><span class="fu">ifelse</span>(name <span class="op">==</span> <span class="st">"Germany"</span><span class="op">,</span><span class="st">"Deutschland"</span><span class="op">,</span> <span class="st">"Österreich"</span>)))</span>
+<span id="cb17-229"><a href="#cb17-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-230"><a href="#cb17-230" aria-hidden="true" tabindex="-1"></a>deu <span class="op">=</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="st">"Germany"</span><span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb17-231"><a href="#cb17-231" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
+<span id="cb17-232"><a href="#cb17-232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>)</span>
+<span id="cb17-233"><a href="#cb17-233" aria-hidden="true" tabindex="-1"></a>oe <span class="op">=</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="st">"Austria"</span><span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb17-234"><a href="#cb17-234" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
+<span id="cb17-235"><a href="#cb17-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>)</span>
+<span id="cb17-236"><a href="#cb17-236" aria-hidden="true" tabindex="-1"></a>ch <span class="op">=</span> <span class="fu">ne_countries</span>(country <span class="op">=</span> <span class="st">"Switzerland"</span><span class="op">,</span> scale <span class="op">=</span> <span class="st">"medium"</span><span class="op">,</span> returnclass <span class="op">=</span> <span class="st">"sf"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb17-237"><a href="#cb17-237" aria-hidden="true" tabindex="-1"></a>  # Transformation nach <span class="fu">WGS84</span> (entspricht crs <span class="dv">4326</span>)</span>
+<span id="cb17-238"><a href="#cb17-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(crs <span class="op">=</span> <span class="dv">4326</span>)</span>
+<span id="cb17-239"><a href="#cb17-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-240"><a href="#cb17-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-241"><a href="#cb17-241" aria-hidden="true" tabindex="-1"></a>#Koordinaten simulieren</span>
+<span id="cb17-242"><a href="#cb17-242" aria-hidden="true" tabindex="-1"></a>set<span class="op">.</span><span class="fu">seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb17-243"><a href="#cb17-243" aria-hidden="true" tabindex="-1"></a>deutschand_punkte <span class="op">=</span> <span class="fu">st_sample</span>(deu<span class="op">,</span> size <span class="op">=</span> <span class="dv">150</span>)</span>
+<span id="cb17-244"><a href="#cb17-244" aria-hidden="true" tabindex="-1"></a>oesterreich_punkte <span class="op">=</span> <span class="fu">st_sample</span>(oe<span class="op">,</span> size <span class="op">=</span> <span class="dv">50</span>)</span>
+<span id="cb17-245"><a href="#cb17-245" aria-hidden="true" tabindex="-1"></a>schweiz_punkte <span class="op">=</span> <span class="fu">st_sample</span>(ch<span class="op">,</span> size <span class="op">=</span> <span class="dv">50</span>)</span>
+<span id="cb17-246"><a href="#cb17-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-247"><a href="#cb17-247" aria-hidden="true" tabindex="-1"></a># Zu einem Datensatz zusammenfassen</span>
+<span id="cb17-248"><a href="#cb17-248" aria-hidden="true" tabindex="-1"></a>#Deutschland</span>
+<span id="cb17-249"><a href="#cb17-249" aria-hidden="true" tabindex="-1"></a>deutschand_punkte_df <span class="op">&lt;-</span> <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">frame</span>(<span class="fu">st_coordinates</span>(deutschand_punkte))</span>
+<span id="cb17-250"><a href="#cb17-250" aria-hidden="true" tabindex="-1"></a>deutschand_punkte_df <span class="op">&lt;-</span> <span class="fu">cbind</span>(deutschand_punkte_df<span class="op">,</span> Typ <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span><span class="op">,</span> <span class="st">"B"</span><span class="op">,</span> <span class="st">"C"</span>)<span class="op">,</span> size <span class="op">=</span> <span class="fu">nrow</span>(deutschand_punkte_df)<span class="op">,</span> replace <span class="op">=</span> T<span class="op">,</span> prob <span class="op">=</span> <span class="fu">c</span>(<span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.3</span><span class="op">,</span> <span class="fl">0.5</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb17-251"><a href="#cb17-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="st">"Deutschland"</span>)</span>
+<span id="cb17-252"><a href="#cb17-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-253"><a href="#cb17-253" aria-hidden="true" tabindex="-1"></a># Österreich</span>
+<span id="cb17-254"><a href="#cb17-254" aria-hidden="true" tabindex="-1"></a>oesterreich_punkte_df <span class="op">&lt;-</span> <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">frame</span>(<span class="fu">st_coordinates</span>(oesterreich_punkte))</span>
+<span id="cb17-255"><a href="#cb17-255" aria-hidden="true" tabindex="-1"></a>oesterreich_punkte_df <span class="op">&lt;-</span> <span class="fu">cbind</span>(oesterreich_punkte_df<span class="op">,</span> Typ <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span><span class="op">,</span> <span class="st">"B"</span><span class="op">,</span> <span class="st">"C"</span>)<span class="op">,</span> size <span class="op">=</span> <span class="fu">nrow</span>(oesterreich_punkte_df)<span class="op">,</span> replace <span class="op">=</span> T<span class="op">,</span> prob <span class="op">=</span> <span class="fu">c</span>(<span class="fl">0.4</span><span class="op">,</span> <span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.5</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb17-256"><a href="#cb17-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="st">"Österreich"</span>)</span>
+<span id="cb17-257"><a href="#cb17-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-258"><a href="#cb17-258" aria-hidden="true" tabindex="-1"></a># Schweiz</span>
+<span id="cb17-259"><a href="#cb17-259" aria-hidden="true" tabindex="-1"></a>schweiz_punkte_df <span class="op">&lt;-</span> <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">frame</span>(<span class="fu">st_coordinates</span>(schweiz_punkte))</span>
+<span id="cb17-260"><a href="#cb17-260" aria-hidden="true" tabindex="-1"></a>schweiz_punkte_df <span class="op">&lt;-</span> <span class="fu">cbind</span>(schweiz_punkte_df<span class="op">,</span> Typ <span class="op">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span><span class="op">,</span> <span class="st">"B"</span><span class="op">,</span> <span class="st">"C"</span>)<span class="op">,</span> size <span class="op">=</span> <span class="fu">nrow</span>(schweiz_punkte_df)<span class="op">,</span> replace <span class="op">=</span> T<span class="op">,</span> prob <span class="op">=</span> <span class="fu">c</span>(<span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.2</span>))) <span class="op">%&gt;%</span></span>
+<span id="cb17-261"><a href="#cb17-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Land <span class="op">=</span> <span class="st">"Schweiz"</span>)</span>
 <span id="cb17-262"><a href="#cb17-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a># Daten aus Koordinaten aggregieren<span class="op">:</span></span>
-<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a>dach_df_agg <span class="op">&lt;-</span> dach_df <span class="op">%&gt;%</span></span>
-<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Typ<span class="op">,</span>Typ_Schrift<span class="op">,</span>Land) <span class="op">%&gt;%</span></span>
-<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(Anz <span class="op">=</span> <span class="fu">n_distinct</span>(X)) <span class="op">%&gt;%</span></span>
-<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a>write<span class="op">.</span><span class="fu">table</span>(dach_df_agg<span class="op">,</span><span class="st">"daten.csv"</span><span class="op">,</span>row<span class="op">.</span><span class="at">names</span><span class="op">=</span>F<span class="op">,</span>sep<span class="op">=</span><span class="st">";"</span><span class="op">,</span>dec<span class="op">=</span><span class="st">","</span>)</span>
-<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-263"><a href="#cb17-263" aria-hidden="true" tabindex="-1"></a>dach_df <span class="op">&lt;-</span> <span class="fu">rbind</span>(deutschand_punkte_df<span class="op">,</span> oesterreich_punkte_df<span class="op">,</span> schweiz_punkte_df) <span class="op">%&gt;%</span> </span>
+<span id="cb17-264"><a href="#cb17-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(Typ_Schrift <span class="op">=</span> <span class="fu">paste</span>(<span class="st">"Typ:"</span><span class="op">,</span>Typ))</span>
+<span id="cb17-265"><a href="#cb17-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-266"><a href="#cb17-266" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(dach_ojs <span class="op">=</span> <span class="fu">sf_geojson</span>(dach)) </span>
+<span id="cb17-267"><a href="#cb17-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-268"><a href="#cb17-268" aria-hidden="true" tabindex="-1"></a>Koordinaten_Punktlayer <span class="op">&lt;-</span> <span class="fu">st_as_sf</span>(x <span class="op">=</span> dach_df<span class="op">,</span> coords <span class="op">=</span> <span class="fu">c</span>(<span class="st">"X"</span><span class="op">,</span><span class="st">"Y"</span>)<span class="op">,</span></span>
+<span id="cb17-269"><a href="#cb17-269" aria-hidden="true" tabindex="-1"></a>    crs <span class="op">=</span> <span class="st">"+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0"</span>)</span>
+<span id="cb17-270"><a href="#cb17-270" aria-hidden="true" tabindex="-1"></a><span class="fu">ojs_define</span>(koord_punkte <span class="op">=</span> <span class="fu">sf_geojson</span>(Koordinaten_Punktlayer))</span>
+<span id="cb17-271"><a href="#cb17-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-272"><a href="#cb17-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-273"><a href="#cb17-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-274"><a href="#cb17-274" aria-hidden="true" tabindex="-1"></a># Daten aus Koordinaten aggregieren<span class="op">:</span></span>
+<span id="cb17-275"><a href="#cb17-275" aria-hidden="true" tabindex="-1"></a>dach_df_agg <span class="op">&lt;-</span> dach_df <span class="op">%&gt;%</span></span>
+<span id="cb17-276"><a href="#cb17-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Typ<span class="op">,</span>Typ_Schrift<span class="op">,</span>Land) <span class="op">%&gt;%</span></span>
+<span id="cb17-277"><a href="#cb17-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(Anz <span class="op">=</span> <span class="fu">n_distinct</span>(X)) <span class="op">%&gt;%</span></span>
+<span id="cb17-278"><a href="#cb17-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb17-279"><a href="#cb17-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-280"><a href="#cb17-280" aria-hidden="true" tabindex="-1"></a>write<span class="op">.</span><span class="fu">table</span>(dach_df_agg<span class="op">,</span><span class="st">"daten.csv"</span><span class="op">,</span>row<span class="op">.</span><span class="at">names</span><span class="op">=</span>F<span class="op">,</span>sep<span class="op">=</span><span class="st">";"</span><span class="op">,</span>dec<span class="op">=</span><span class="st">","</span>)</span>
+<span id="cb17-281"><a href="#cb17-281" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb17-282"><a href="#cb17-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-283"><a href="#cb17-283" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+<span id="cb17-284"><a href="#cb17-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-285"><a href="#cb17-285" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
-</section>
 </main>
 <!-- /main column -->
 <script type="ojs-module-contents">
