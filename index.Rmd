@@ -3,20 +3,20 @@ title: "Code"
 output: html_document
 ---
 
-<style type="text/css">
-.title {
-  display: none;
-}
+<!-- <style type="text/css"> -->
+<!-- .title { -->
+<!--   display: none; -->
+<!-- } -->
 
 
-body {
-  font-family: Helvetica;
-  background-color: #eee6e7;
-}
+<!-- body { -->
+<!--   font-family: Helvetica; -->
+<!--   background-color: #eee6e7; -->
+<!-- } -->
 
-#getting-started img {
-  margin-right: 10px;
-}
+<!-- #getting-started img { -->
+<!--   margin-right: 10px; -->
+<!-- } -->
 
 </style>
 
