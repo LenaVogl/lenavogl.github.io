@@ -3,6 +3,7 @@ title: "Quarto"
 format:
   html:
     page-layout: full
+    css: style.css
     # toc: true
     # toc_float: true
     echo: false
@@ -10,32 +11,6 @@ format:
     code-tools: true
     self-contained: true
 ---
-
-<style>
-
-.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
-    z-index: 2;
-    color: #fff;
-    background-color: #A67D8E;
-    border-color: #aba2a7;
-    font-family: Helvetica;
-}
-
-#header {
-<!-- color: #869c98;  -->
- font-family: Helvetica;
-  font-size: 36px;
-}
-
-body {
-  font-family: Helvetica;
-  background-color: #eee6e7;
-}
-
-text {
-    font-size : 12px;
-}
-</style>
 
 
 
