@@ -6,6 +6,7 @@ format:
     css: style.css
     # toc: true
     # toc_float: true
+    # toc_depth: 2
     echo: false
     keep-hidden: true
     code-tools: true
@@ -172,7 +173,7 @@ import {BarChart} from "@d3/bar-chart"
  chart = BarChart(filtered, {
   x: d => d.Typ,
   y: d => d.Anz,
-   yLabel: "↑ Häufigkeit",
+   yLabel: "",
   width,
   height: 500,
   color: "#A67D8E"

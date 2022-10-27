@@ -26,7 +26,7 @@ body {
 # **Über mich / Inhalt dieser Website**
 
 <p style="margin-top: 50px;">
-Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln, mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie habe ich diese Seite für mich als Themensammlung und Nachschlagwerk angelegt.
+Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie habe ich diese Seite für mich als Themensammlung und Nachschlagewerk angelegt.
 </p>
 
 <p style="margin-top: 30px; margin-bottom: 40px;">
