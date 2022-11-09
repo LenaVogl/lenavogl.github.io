@@ -2,6 +2,7 @@
 title: "Code"
 ---
 
+```{=html}
 <style type="text/css">
 .title {
   display: none;
@@ -12,30 +13,31 @@ title: "Code"
 }
 
 </style>
-
+```
 ::: grid
 ::: {.g-col-12 .g-col-md-6}
-
 # **Über mich / Inhalt dieser Website**
 
 <p style="margin-top: 50px;">
+
 Auf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie habe ich diese Seite für mich als Themensammlung und Nachschlagewerk angelegt.
+
 </p>
 
 <p style="margin-top: 30px; margin-bottom: 40px;">
+
 Es macht mir Spaß, R-Kenntnisse weiterzugeben. Daher freue ich mich wenn die Seite als Anregung bzw. Vorlage genutzt wird und lade Euch daher herzlich zum Stöbern ein. Die Inhalte möchte ich regelmäßig aktualisieren und erweitern.
+
 </p>
 
-<p style="text-align:right;">Lena Vogl</p>
+<p style="text-align:right;">
 
+Lena Vogl
 
+</p>
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-
-<a href = "https://crumplab.github.io">
-![](images/Foto_Lena_Vogl.jpg)
-</a>
-
+<a href = "https://crumplab.github.io"> ![](images/Foto_Lena_Vogl.jpg) </a>
 :::
 :::

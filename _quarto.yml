@@ -1,6 +1,7 @@
 project:
   type: website
-
+  output-dir: docs
+ 
 website:
   navbar:
     background: "light"
@@ -27,7 +28,4 @@ format:
     theme: lux
     css: style.css
 
-editor: visual
-
-output_dir: "docs"
 
