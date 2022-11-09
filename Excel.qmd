@@ -1,5 +1,7 @@
 ---
 title: "R & Excel"
+toc: true
+toc-title: "Inhalt"
 ---
 
 ```{r setup, include=FALSE}

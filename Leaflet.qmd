@@ -2,32 +2,31 @@
 title: "R Leaflet"
 format:
   html:
-    page-layout: full
-    css: style.css
-    # toc: true
-    # toc_float: true
-    # toc_depth: 2
-    echo: false
-    keep-hidden: true
+    toc: true
+    toc-title: "Inhalt"
     code-tools: false
     self-contained: true
+   
 ---
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE, cache = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
 <p style="margin-top: 30px;">
+
 Leaflet ist eine Open Source Bibliothek mit der interaktive Karten erstellt werden können. Über das R-Package `leaflet` lassen sich verschiedene GIS-Daten (z.B. Koordinaten, Layer) in interaktiven Karten darstellen. Im fogenden möchte ich einige nützliche Funktionalitäten darstellen.
+
 </p>
 
 <p style="margin-top: 30px;">
+
 ## Einfache Karte
+
 </p>
 
-Um eine einfache LeafletKarte zu erstellen, benötigen wir eine Hintergrundkarte und einen Kartenausschnitt, der dargestellt werden soll. Die Region kann entweder über eine Koordinate herangezoomt werden, oder durch hinzufügen eines Layers (z.B. aus einer Shape-Datei).
-Es gibt eine Vielzahl an möglichen Hintergrunddaten. Eine sehr umfangreiche Übersicht an Hintergrundkarten findet man z.B. hier: [Kartenauswahl](http://leaflet-extras.github.io/leaflet-providers/preview/)
+Um eine einfache LeafletKarte zu erstellen, benötigen wir eine Hintergrundkarte und einen Kartenausschnitt, der dargestellt werden soll. Die Region kann entweder über eine Koordinate herangezoomt werden, oder durch hinzufügen eines Layers (z.B. aus einer Shape-Datei). Es gibt eine Vielzahl an möglichen Hintergrunddaten. Eine sehr umfangreiche Übersicht an Hintergrundkarten findet man z.B. hier: [Kartenauswahl](http://leaflet-extras.github.io/leaflet-providers/preview/)
 
 ```{r}
 library(leaflet)
@@ -45,8 +44,11 @@ leaflet() %>%
      baseGroups = c("Open Street Map DE","ESRI World Imagery")     )
 
 ```
+
 <p style="margin-top: 30px;">
-## Marker einfügen 
+
+## Marker einfügen
+
 </p>
 
 Um Marker einzeichnet zu können, simulieren wir für Deutschland, Österreich und die Schweiz Koordinaten. Diese werden drei Kategorien zugeordnet, nach denen sie später eingefärbt werden können. Im Package `rnaturalearth` sind die Geometrien der Länder verfügbar.
@@ -93,7 +95,6 @@ dach_df <- rbind(deutschand_punkte_df, oesterreich_punkte_df, schweiz_punkte_df)
 
 Im Dataframe `dach_df` sind nun für die Länder Deutschand, Österreich und Schweiz die Koordinaten vorhanden.
 
-
 ```{r}
  leaflet(data = dach_df) %>%
      addTiles() %>%  # Default ist hier OpenStreetMap
@@ -101,7 +102,9 @@ Im Dataframe `dach_df` sind nun für die Länder Deutschand, Österreich und Sch
 ```
 
 <p style="margin-top: 30px;">
+
 ## Cluster
+
 </p>
 
 Besonders wenn es sich um viele Marker bei niedriger Zoomstufe handelt, ist die Darstellung der einzelnen Icons manchmal unübersichtlich. Teilweise gibt es auch Darstellungsprobleme wenn mehrere Marker mit der gleichen Koordinate hinterlegt sind. In solchen Fällen bietet sich eine Clusterdarstellung an.
@@ -109,11 +112,17 @@ Besonders wenn es sich um viele Marker bei niedriger Zoomstufe handelt, ist die 
 ```{r}
 leaflet(data = dach_df) %>%
      addTiles() %>%  
-     addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ), clusterOptions = markerClusterOptions())
+     addMarkers(~X, 
+                ~Y, 
+                popup = ~as.character(Typ), 
+                label = ~as.character(Typ), 
+                clusterOptions = markerClusterOptions())
 ```
 
 <p style="margin-top: 30px;">
+
 ## Individuelle Icons
+
 </p>
 
 Sollen die drei verschiedenen Typen klarer voneinander unterscheidbar sein, so kann das über individuell gestaltete Icons erfolgen. Mit AwesomeIcons steht eine Vielzahl an Icons zur Verfügung. Eine Übersicht der Icons findet sich hier: [fontawesome](https://fontawesome.com/).
@@ -123,9 +132,9 @@ Wir nehmen an dass es sich bei den Typen A - C um verschiedenen Fahrzeugtypen ha
 ```{r}
 # Icons für die verschiedenen Typen definieren
 IconSet <- awesomeIconList(
-  "A"   = makeAwesomeIcon(icon= 'car', markerColor = 'blue', iconColor = 'black', library = "fa"),
-  "B" =makeAwesomeIcon(icon= 'truck', markerColor = 'orange', iconColor = 'black', library = "fa"),
-  "C" =makeAwesomeIcon(icon= 'motorcycle', markerColor = 'green', iconColor = 'black', library = "fa")
+  "A" = makeAwesomeIcon(icon = 'car', markerColor = 'blue', iconColor = 'black', library = "fa"),
+  "B" = makeAwesomeIcon(icon = 'truck', markerColor = 'orange', iconColor = 'black', library = "fa"),
+  "C" = makeAwesomeIcon(icon = 'motorcycle', markerColor = 'green', iconColor = 'black', library = "fa")
 )
 
 # Punktlayer erstellen
@@ -137,14 +146,13 @@ leaflet(data = dach_df_punktlayer) %>%
      addAwesomeMarkers(icon = ~IconSet[Typ], label = ~paste("Fahrzeugtyp ",as.character(Typ))) 
 ```
 
-
-
 <p style="margin-top: 30px;">
+
 ## Minicharts
+
 </p>
 
-mit dem Package `leaflet.minicharts` lassen sich Verteilungen auf die Landkarte plotten. 
-Dazu benötigen wir geeignete Daten zu den Ländern. In diesem Fall wird die Anzahl der Typen A - C je Land gezäht.
+mit dem Package `leaflet.minicharts` lassen sich Verteilungen auf die Landkarte plotten. Dazu benötigen wir geeignete Daten zu den Ländern. In diesem Fall wird die Anzahl der Typen A - C je Land gezäht.
 
 ```{r}
 # Daten aus Koordinaten aggregieren:
@@ -165,7 +173,6 @@ dach_agg_ges = dach_df %>%
 
 Diese Daten lassen sich nun als Balkendiagramme auf die einzelnen Länder legen.
 
-
 ```{r}
 library(leaflet.minicharts)
 
@@ -173,5 +180,3 @@ library(leaflet.minicharts)
      addProviderTiles(providers$Esri.WorldGrayCanvas) %>%  # Default ist hier OpenStreetMap
      addMinicharts(lng = dach_agg_ges$X, lat = dach_agg_ges$Y, type = "bar", chartdata = dach_agg_ges[,4:6], width =80, height = 80)
 ```
-
-
