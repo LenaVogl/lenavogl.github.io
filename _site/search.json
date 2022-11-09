@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "Excel.html#workbook-anlegen",
+    "href": "Excel.html#workbook-anlegen",
+    "title": "R & Excel",
+    "section": "Workbook anlegen",
+    "text": "Workbook anlegen\n\nAls erstes muss immer ein leeres Workbook angelegt werden.\n\nlibrary(openxlsx)\n\n# Workbook erstellen\nwb <- createWorkbook()"
+  },
+  {
+    "objectID": "Excel.html#worksheet-erstellen",
+    "href": "Excel.html#worksheet-erstellen",
+    "title": "R & Excel",
+    "section": "Worksheet erstellen",
+    "text": "Worksheet erstellen\n\nFür das neu angelegte Workbook wird nun mit addWorksheet() ein Sheet generiert:\n\n# Excelsheet anlegen und benennen\naddWorksheet(wb, \"Daten\")"
+  },
+  {
+    "objectID": "Excel.html#worksheet-befüllen",
+    "href": "Excel.html#worksheet-befüllen",
+    "title": "R & Excel",
+    "section": "Worksheet befüllen",
+    "text": "Worksheet befüllen\n\nEin definiertes Sheet kann mit writeData() befüllt werden. Die Zelle an dem der Eintrag beginnt (linke obere Ecke) wird mit startCol und startRow definiert. Standardmäßig wird in Zelle A1 gestartet.\n\n# Daten in Sheet schreiben, hier der iris-Datensatz\nwriteData(wb, sheet = \"Daten\", x = iris)"
+  },
+  {
+    "objectID": "Excel.html#formel-einfügen",
+    "href": "Excel.html#formel-einfügen",
+    "title": "R & Excel",
+    "section": "Formel einfügen",
+    "text": "Formel einfügen\n\nFormeln können mit writeFormula() eingefügt werden. Das Argument x beschreibt die Excelfunktion. Das = in der Excelformel wird weggelassen.\n\nwriteFormula(wb,  sheet = \"Daten\", x = \"A2 + B2\" , startCol = 6, startRow = 2)"
+  },
+  {
+    "objectID": "Excel.html#links-einfügen",
+    "href": "Excel.html#links-einfügen",
+    "title": "R & Excel",
+    "section": "Links einfügen",
+    "text": "Links einfügen\n\nUm Links zu erstellen, kann die Funktion makeHyperlinkString() verwendet werden.\n\n# Neues Sheet\naddWorksheet(wb, \"Test\")\n\n# Beispiel: Link zu anderem Tabellenbatt:\nwriteFormula(wb, sheet = \"Test\", startCol = 1, startRow = 1, x = makeHyperlinkString(sheet = \"Daten\", row = 1, col = 2, text = \"Link zu Iris-Datensatz\"))"
+  },
+  {
+    "objectID": "Excel.html#formatierung",
+    "href": "Excel.html#formatierung",
+    "title": "R & Excel",
+    "section": "Formatierung",
+    "text": "Formatierung\n\nDie Formatierung kann mit dem Befehl createStyle() definiert und anschließend mit addStyle() angewendet werden. Hierbei lassen sich verschiedene Styles definieren und auf die gespeicherten Daten bzw. auch beliebige Zellen im Excelsheet anwenden.\n\n#Styles definieren\nheader_style <- createStyle(halign = \"center\", textDecoration = \"bold\", border = \"Bottom\")\n\nstyle_grau <- createStyle(fgFill = \"#d6d6d6\", fontColour = \"#313c48\")\n\n# Formatierung bestimmter Zellen:\naddStyle(wb, sheet = \"Daten\", rows = 2:(nrow(iris)+1), cols = 2, style = style_grau)"
+  },
+  {
+    "objectID": "Excel.html#spaltenbreite",
+    "href": "Excel.html#spaltenbreite",
+    "title": "R & Excel",
+    "section": "Spaltenbreite",
+    "text": "Spaltenbreite\n\nDie Spaltenbreite kann automatisch angepasst oder anhand eines Vektors individuell festgelegt werden.\n\n# Spaltenbreite automatisch anpassen\nsetColWidths(wb, sheet = \"Daten\", cols = 1:ncol(iris), widths = \"auto\")\n\n# Spaltenbreite individuel verändern\nsetColWidths(wb, sheet = \"Daten\", cols = 1:ncol(iris),  widths = c(16, 15, 12, 33))\n\n# Zeilenhöhe anpassen\nsetRowHeights(wb, sheet = \"Daten\", rows = 1:nrow(iris),  heights = rep(30, times = nrow(iris)))"
+  },
+  {
+    "objectID": "Excel.html#bedingte-formatierung",
+    "href": "Excel.html#bedingte-formatierung",
+    "title": "R & Excel",
+    "section": "Bedingte Formatierung",
+    "text": "Bedingte Formatierung\n\nMit der Funktion conditionalFormatting() können Zellen mit bedingter Formatierung versehen werden.\n\n#Daten mit Wert größer gleich 3 rot einfärben\nstyle_rot <- createStyle(fontColour = \"#ff5232\")\n\nconditionalFormatting(wb, \"Daten\", cols = 1:3, rows = 2:nrow(iris), rule = \"A2>=3\", style = style_rot)"
+  },
+  {
+    "objectID": "Excel.html#datenüberprüfung",
+    "href": "Excel.html#datenüberprüfung",
+    "title": "R & Excel",
+    "section": "Datenüberprüfung",
+    "text": "Datenüberprüfung\n\nWir können festlegen welche Werte in eine Spalte eingegeben werden dürfen. Dazu verwenden wir die Funktion dataValidation(). Entspricht die Eingabe nicht der Vorgabe, entsteht eine Fehlermeldung in Excel.\n\n# Neues Sheet\naddWorksheet(wb, \"Datenpruefung\")\n\n# Überprüfung auf Wert\nwriteData(wb, \"Datenpruefung\", x = \"Zahl zwischen 1 und 5 eingeben\", startCol = 1, startRow = 2)\n\ndataValidation(wb, \"Datenpruefung\", cols = 2, rows = 2, type = \"whole\", operator = \"between\", value = c(1, 5)\n) \n# Überprüfung auf Datum\nwriteData(wb, \"Datenpruefung\", x = \"Datum eingeben\", startCol = 1, startRow = 4)\n\ndataValidation(wb, \"Datenpruefung\", cols = 2, rows = 4, type = \"date\", operator = \"greaterThanOrEqual\", value = as.Date(\"2022-01-01\")\n)  \n\nUm Auswahlfelder mit Dropdown zu generieren, kann ebenfalls die Funktion dataValidation() verwendet werden.\n\n# Neues Datenblatt einfügen in dem die Auswahlmöglichkeiten definiert werden\naddWorksheet(wb, \"Dropdown\")\n\nwriteData(wb, sheet = \"Dropdown\", x = c(\"A\",\"B\",\"C\"), startCol = 1, startRow = 1)\n\n# Text einfügen um den Nutzer aufzufordern (optional)\nwriteData(wb, sheet = \"Datenpruefung\", x = \"Wert auswählen\", startCol = 1, startRow = 6)\n\n# Nur Werte aus Dropdown-Liste erlauben\ndataValidation(wb, sheet = \"Datenpruefung\", cols = 2, rows = 6, type = \"list\", value = \"Dropdown!$A$1:$A$3\")\n\n# Feld das überprüft wird grau hervorheben\naddStyle(wb, sheet = \"Datenpruefung\", cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)\n\nsetColWidths(wb, sheet = \"Datenpruefung\", cols = 1:2, widths = c(30, 12))"
+  },
+  {
+    "objectID": "Excel.html#zeilen-spalten-fixieren",
+    "href": "Excel.html#zeilen-spalten-fixieren",
+    "title": "R & Excel",
+    "section": "Zeilen / Spalten fixieren",
+    "text": "Zeilen / Spalten fixieren\n\nSollen bestimmte Zeilen oder Spalten beim Scrollen eingefroren werden, kann das mit der Funktion freezePane() definiert werden.\n\nfreezePane(wb, \"Daten\", firstActiveRow = 2, firstActiveCol = 1)"
+  },
+  {
+    "objectID": "Excel.html#blattschutz",
+    "href": "Excel.html#blattschutz",
+    "title": "R & Excel",
+    "section": "Blattschutz",
+    "text": "Blattschutz\n\nUm Zellen vom Blattschutz auszunehmen, kann bei der Erstellung des Styles locked = FALSE gesetzt werden.\n\n# Style definieren\nstyle_grau_ungeschuetzt <- createStyle(fgFill = \"#d6d6d6\", fontColour = \"#313c48\", locked = FALSE)\n\n# Style auf veränderbare Zellen anwenden\naddStyle(wb, \"Datenpruefung\", cols = c(2,2,2), rows = c(2,4,6), style = style_grau_ungeschuetzt)\n\n# Blatt schützen\nprotectWorksheet(wb, \"Datenpruefung\", protect = TRUE)"
+  },
+  {
+    "objectID": "Excel.html#workbook-speichern",
+    "href": "Excel.html#workbook-speichern",
+    "title": "R & Excel",
+    "section": "Workbook speichern",
+    "text": "Workbook speichern\n\nNachdem alles definiert und formatiert wurde, kann das Workbook als Exceldatei abgespeichert werden.\n\n# Workbook speichern:\nsaveWorkbook(wb, \"Test_Daten.xlsx\", overwrite = T)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Code",
+    "section": "",
+    "text": "Über mich / Inhalt dieser Website\n\nAuf dieser Seite möchte ich R-Code zu verschiedenen Themen sammeln mit denen ich mich im Laufe der Zeit beschäftigt habe. In erster Linie habe ich diese Seite für mich als Themensammlung und Nachschlagewerk angelegt.\n\n\nEs macht mir Spaß, R-Kenntnisse weiterzugeben. Daher freue ich mich wenn die Seite als Anregung bzw. Vorlage genutzt wird und lade Euch daher herzlich zum Stöbern ein. Die Inhalte möchte ich regelmäßig aktualisieren und erweitern.\n\n\nLena Vogl"
+  },
+  {
+    "objectID": "Bertin.html#karte-mit-auswahlmöglichkeit",
+    "href": "Bertin.html#karte-mit-auswahlmöglichkeit",
+    "title": "Bertin",
+    "section": "Karte mit Auswahlmöglichkeit",
+    "text": "Karte mit Auswahlmöglichkeit\n\n\ndach_json = JSON.parse(dach_ojs)\nkoord_punkte_json = JSON.parse(koord_punkte)\ndata = FileAttachment(\"daten.csv\").csv({ typed: true })\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nviewof land = Inputs.select(\n  [\"Österreich\",\"Deutschland\",\"Schweiz\"], \n  { value: \"Deutschland\", \n    label: \"Land:\"\n  }\n)\n\nviewof typ = Inputs.checkbox(\n  [\"A\",\"B\",\"C\"], \n  { value: [\"A\",\"B\"], \n    label: \"Typ:\"\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nland_ausgewaehlt = ({\ntype: \"FeatureCollection\",\nfeatures: dach_json.features.filter((d) => d.properties.Land == land)\n})\n\nkoordinaten = ({\ntype: \"FeatureCollection\",\nfeatures: koord_punkte_json.features.filter((d) => typ.includes(d.properties.Typ) && d.properties.Land == land)\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbertin = import('https://cdn.skypack.dev/bertin@0.9.12')\nepsg3035 = \"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs\"\n\nbertin.draw({\n  params: {\n  extent: land_ausgewaehlt,\n  projection: epsg3035,\n  background: \"#eee6e7\",\n  margin: 80,\n  anchor: \"start\"\n},\n  layers: [\n  {\n  type: \"layer\",\n  geojson: koordinaten,\n  tooltip: {\n  fields: [\n  \"$Typ_Schrift\"\n  ],\n  fill: \"#d2bec6\",\n  fillOpacity: 0.7,\n  strokeOpacity: 1,\n  fontWeight: [\"bold\"],\n        fontSize: [20]},\n  fill: {\n        type: \"typo\",\n        values: \"Typ\",\n        colors: \"Pastel1\",\n        leg_x: 920,\n      leg_y: 20,\n      leg_w: 45,\n      leg_h: 30,\n      leg_fontSize: 10,\n      leg_fontSize2: 10\n      },\n  stroke: \"#63695f\",\n  strokeWidth: 1.8,\n  symbol: \"circle\",\n  fillOpacity: 0.8,\n  symbol_size: 400\n  },\n  { \n  type: \"layer\",\n  geojson: land_ausgewaehlt,\n  fill: \"#A67D8E\",\n  stroke: \"#666666\",\n  strokeWidth: 1\n  },\n  {type: \"shadow\", geojson: land_ausgewaehlt, dx: 5, dy: 5},\n  { type: \"scalebar\", units: \"kilometers\" }\n  ]\n})"
+  },
+  {
+    "objectID": "Bertin.html#balkendiagramm-mit-auswahlmöglichkeit",
+    "href": "Bertin.html#balkendiagramm-mit-auswahlmöglichkeit",
+    "title": "Bertin",
+    "section": "Balkendiagramm mit Auswahlmöglichkeit",
+    "text": "Balkendiagramm mit Auswahlmöglichkeit\n\n\nDas Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das oben ausgewählte Land angepasst.\n\n\n\n\n\n\n\n\n\n\nfiltered = data.filter(function(datensatz) {\n  return land == datensatz.Land;\n})\n\n\n\n\n\n\nÜberschrift Verteilung\n\nBeschreibung  = \"Häufigkeitsverteilung \" + land + \":\"\n\nheader = document.getElementById(\"Titel\");\nheader.innerHTML = Beschreibung;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nimport {BarChart} from \"@d3/bar-chart\"\n\n chart = BarChart(filtered, {\n  x: d => d.Typ,\n  y: d => d.Anz,\n   yLabel: \"\",\n  width,\n  height: 500,\n  color: \"#A67D8E\"\n  \n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(quarto)\n\nWarning: Paket 'quarto' wurde unter R Version 4.2.2 erstellt\n\nlibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──\n\n\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.7     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.1\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n\nlibrary(sf)\n\nLinking to GEOS 3.9.1, GDAL 3.3.2, PROJ 7.2.1; sf_use_s2() is TRUE\n\nlibrary(geojsonsf)\nlibrary(rnaturalearth)\n\ndach <- ne_countries(country = c(\"Austria\",\"Germany\",\"Switzerland\"), scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326) %>% \n  mutate(Land = ifelse(name == \"Switzerland\",\"Schweiz\",ifelse(name == \"Germany\",\"Deutschland\", \"Österreich\")))\n\ndeu = ne_countries(country = \"Germany\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\noe = ne_countries(country = \"Austria\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\nch = ne_countries(country = \"Switzerland\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\n\n\n#Koordinaten simulieren\nset.seed(1234)\ndeutschand_punkte = st_sample(deu, size = 150)\noesterreich_punkte = st_sample(oe, size = 50)\nschweiz_punkte = st_sample(ch, size = 50)\n\n# Zu einem Datensatz zusammenfassen\n#Deutschland\ndeutschand_punkte_df <- as.data.frame(st_coordinates(deutschand_punkte))\ndeutschand_punkte_df <- cbind(deutschand_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(deutschand_punkte_df), replace = T, prob = c(0.2, 0.3, 0.5))) %>%\n  mutate(Land = \"Deutschland\")\n\n# Österreich\noesterreich_punkte_df <- as.data.frame(st_coordinates(oesterreich_punkte))\noesterreich_punkte_df <- cbind(oesterreich_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(oesterreich_punkte_df), replace = T, prob = c(0.4, 0.1, 0.5))) %>%\n  mutate(Land = \"Österreich\")\n\n# Schweiz\nschweiz_punkte_df <- as.data.frame(st_coordinates(schweiz_punkte))\nschweiz_punkte_df <- cbind(schweiz_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(schweiz_punkte_df), replace = T, prob = c(0.6, 0.2, 0.2))) %>%\n  mutate(Land = \"Schweiz\")\n\ndach_df <- rbind(deutschand_punkte_df, oesterreich_punkte_df, schweiz_punkte_df) %>% \n  mutate(Typ_Schrift = paste(\"Typ:\",Typ))\n\nojs_define(dach_ojs = sf_geojson(dach)) \n\nKoordinaten_Punktlayer <- st_as_sf(x = dach_df, coords = c(\"X\",\"Y\"),\n    crs = \"+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0\")\nojs_define(koord_punkte = sf_geojson(Koordinaten_Punktlayer))\n\n\n\n# Daten aus Koordinaten aggregieren:\ndach_df_agg <- dach_df %>%\n  group_by(Typ,Typ_Schrift,Land) %>%\n  summarize(Anz = n_distinct(X)) %>%\n  ungroup()\n\n`summarise()` has grouped output by 'Typ', 'Typ_Schrift'. You can override\nusing the `.groups` argument.\n\nwrite.table(dach_df_agg,\"daten.csv\",row.names=F,sep=\";\",dec=\",\")"
+  },
+  {
+    "objectID": "Leaflet.html#einfache-karte",
+    "href": "Leaflet.html#einfache-karte",
+    "title": "R Leaflet",
+    "section": "Einfache Karte",
+    "text": "Einfache Karte\n\nUm eine einfache LeafletKarte zu erstellen, benötigen wir eine Hintergrundkarte und einen Kartenausschnitt, der dargestellt werden soll. Die Region kann entweder über eine Koordinate herangezoomt werden, oder durch hinzufügen eines Layers (z.B. aus einer Shape-Datei). Es gibt eine Vielzahl an möglichen Hintergrunddaten. Eine sehr umfangreiche Übersicht an Hintergrundkarten findet man z.B. hier: Kartenauswahl\n\nlibrary(leaflet)\nlibrary(tidyverse)\n\nleaflet() %>%\n  # Mitte auf München setzen\n  setView(lng = 11.572347, lat = 48.138345, zoom = 12) %>%\n  # Hintergrundkarte festlegen\n  addProviderTiles(providers$OpenStreetMap.DE, group = \"Open Street Map DE\") %>%\n  # Zusätzliche Hintergrundkarten als Alternative\n  addProviderTiles(providers$Esri.WorldImagery, group = \"ESRI World Imagery\") %>%\n  # Auswahlfeld für den Nutzer um sich für eine Hintergrundkarte zu entscheiden\n    addLayersControl(\n     baseGroups = c(\"Open Street Map DE\",\"ESRI World Imagery\")     )"
+  },
+  {
+    "objectID": "Leaflet.html#marker-einfügen",
+    "href": "Leaflet.html#marker-einfügen",
+    "title": "R Leaflet",
+    "section": "Marker einfügen",
+    "text": "Marker einfügen\n\nUm Marker einzeichnet zu können, simulieren wir für Deutschland, Österreich und die Schweiz Koordinaten. Diese werden drei Kategorien zugeordnet, nach denen sie später eingefärbt werden können. Im Package rnaturalearth sind die Geometrien der Länder verfügbar.\n\nlibrary(rnaturalearth)\nlibrary(sf)\n\ndeu = ne_countries(country = \"Germany\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\noe = ne_countries(country = \"Austria\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\nch = ne_countries(country = \"Switzerland\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\n\n\n#Koordinaten simulieren\nset.seed(1234)\ndeutschand_punkte = st_sample(deu, size = 150)\noesterreich_punkte = st_sample(oe, size = 50)\nschweiz_punkte = st_sample(ch, size = 50)\n\n# Zu einem Datensatz zusammenfassen\n#Deutschland\ndeutschand_punkte_df <- as.data.frame(st_coordinates(deutschand_punkte))\ndeutschand_punkte_df <- cbind(deutschand_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(deutschand_punkte_df), replace = T, prob = c(0.2, 0.3, 0.5))) %>%\n  mutate(Land = \"Deutschland\")\n\n# Österreich\noesterreich_punkte_df <- as.data.frame(st_coordinates(oesterreich_punkte))\noesterreich_punkte_df <- cbind(oesterreich_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(oesterreich_punkte_df), replace = T, prob = c(0.4, 0.1, 0.5))) %>%\n  mutate(Land = \"Österreich\")\n\n# Schweiz\nschweiz_punkte_df <- as.data.frame(st_coordinates(schweiz_punkte))\nschweiz_punkte_df <- cbind(schweiz_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(schweiz_punkte_df), replace = T, prob = c(0.6, 0.2, 0.2))) %>%\n  mutate(Land = \"Schweiz\")\n\ndach_df <- rbind(deutschand_punkte_df, oesterreich_punkte_df, schweiz_punkte_df)\n\nIm Dataframe dach_df sind nun für die Länder Deutschand, Österreich und Schweiz die Koordinaten vorhanden.\n\n leaflet(data = dach_df) %>%\n     addTiles() %>%  # Default ist hier OpenStreetMap\n     addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ))"
+  },
+  {
+    "objectID": "Leaflet.html#cluster",
+    "href": "Leaflet.html#cluster",
+    "title": "R Leaflet",
+    "section": "Cluster",
+    "text": "Cluster\n\nBesonders wenn es sich um viele Marker bei niedriger Zoomstufe handelt, ist die Darstellung der einzelnen Icons manchmal unübersichtlich. Teilweise gibt es auch Darstellungsprobleme wenn mehrere Marker mit der gleichen Koordinate hinterlegt sind. In solchen Fällen bietet sich eine Clusterdarstellung an.\n\nleaflet(data = dach_df) %>%\n     addTiles() %>%  \n     addMarkers(~X, ~Y, popup = ~as.character(Typ), label = ~as.character(Typ), clusterOptions = markerClusterOptions())"
+  },
+  {
+    "objectID": "Leaflet.html#individuelle-icons",
+    "href": "Leaflet.html#individuelle-icons",
+    "title": "R Leaflet",
+    "section": "Individuelle Icons",
+    "text": "Individuelle Icons\n\nSollen die drei verschiedenen Typen klarer voneinander unterscheidbar sein, so kann das über individuell gestaltete Icons erfolgen. Mit AwesomeIcons steht eine Vielzahl an Icons zur Verfügung. Eine Übersicht der Icons findet sich hier: fontawesome.\nWir nehmen an dass es sich bei den Typen A - C um verschiedenen Fahrzeugtypen handelt. Mögliche Icons könnten also so gestaltet werden:\n\n# Icons für die verschiedenen Typen definieren\nIconSet <- awesomeIconList(\n  \"A\"   = makeAwesomeIcon(icon= 'car', markerColor = 'blue', iconColor = 'black', library = \"fa\"),\n  \"B\" =makeAwesomeIcon(icon= 'truck', markerColor = 'orange', iconColor = 'black', library = \"fa\"),\n  \"C\" =makeAwesomeIcon(icon= 'motorcycle', markerColor = 'green', iconColor = 'black', library = \"fa\")\n)\n\n# Punktlayer erstellen\ndach_df_punktlayer <- sp::SpatialPointsDataFrame(as.matrix(dach_df[,c(\"X\",\"Y\")]), dach_df[,c(\"Typ\",\"Land\")])\n\n# Karte erstellen\nleaflet(data = dach_df_punktlayer) %>%\n     addTiles() %>%  \n     addAwesomeMarkers(icon = ~IconSet[Typ], label = ~paste(\"Fahrzeugtyp \",as.character(Typ)))"
+  },
+  {
+    "objectID": "Leaflet.html#minicharts",
+    "href": "Leaflet.html#minicharts",
+    "title": "R Leaflet",
+    "section": "Minicharts",
+    "text": "Minicharts\n\nmit dem Package leaflet.minicharts lassen sich Verteilungen auf die Landkarte plotten. Dazu benötigen wir geeignete Daten zu den Ländern. In diesem Fall wird die Anzahl der Typen A - C je Land gezäht.\n\n# Daten aus Koordinaten aggregieren:\ndach_df_agg <- dach_df %>%\n  group_by(Typ,Land) %>%\n  summarize(Anz = n_distinct(X)) %>%\n  pivot_wider(names_from = Typ,values_from = Anz) %>%\n  ungroup()\n\n`summarise()` has grouped output by 'Typ'. You can override using the `.groups`\nargument.\n\ndach_agg_ges = dach_df %>%\n  group_by(Land) %>%\n  summarize(X = mean(X), Y = mean(Y)) %>%\n  ungroup() %>%\n  left_join(dach_df_agg, by = \"Land\")\n\nDiese Daten lassen sich nun als Balkendiagramme auf die einzelnen Länder legen.\n\nlibrary(leaflet.minicharts)\n\n leaflet(data = dach_agg_ges) %>%\n     addProviderTiles(providers$Esri.WorldGrayCanvas) %>%  # Default ist hier OpenStreetMap\n     addMinicharts(lng = dach_agg_ges$X, lat = dach_agg_ges$Y, type = \"bar\", chartdata = dach_agg_ges[,4:6], width =80, height = 80)"
+  },
+  {
+    "objectID": "Bertin.html#karte",
+    "href": "Bertin.html#karte",
+    "title": "Bertin",
+    "section": "Karte",
+    "text": "Karte\n\n\ndach_json = JSON.parse(dach_ojs)\nkoord_punkte_json = JSON.parse(koord_punkte)\ndata = FileAttachment(\"daten.csv\").csv({ typed: true })\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nviewof land = Inputs.select(\n  [\"Österreich\",\"Deutschland\",\"Schweiz\"], \n  { value: \"Deutschland\", \n    label: \"Land:\"\n  }\n)\n\nviewof typ = Inputs.checkbox(\n  [\"A\",\"B\",\"C\"], \n  { value: [\"A\",\"B\"], \n    label: \"Typ:\"\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nland_ausgewaehlt = ({\ntype: \"FeatureCollection\",\nfeatures: dach_json.features.filter((d) => d.properties.Land == land)\n})\n\nkoordinaten = ({\ntype: \"FeatureCollection\",\nfeatures: koord_punkte_json.features.filter((d) => typ.includes(d.properties.Typ) && d.properties.Land == land)\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbertin = import('https://cdn.skypack.dev/bertin@0.9.12')\nepsg3035 = \"+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs\"\n\nbertin.draw({\n  params: {\n  extent: land_ausgewaehlt,\n  projection: epsg3035,\n  background: \"#eee6e7\",\n  margin: 80,\n  anchor: \"start\"\n},\n  layers: [\n  {\n  type: \"layer\",\n  geojson: koordinaten,\n  tooltip: {\n  fields: [\n  \"$Typ_Schrift\"\n  ],\n  fill: \"#d2bec6\",\n  fillOpacity: 0.7,\n  strokeOpacity: 1,\n  fontWeight: [\"bold\"],\n        fontSize: [20]},\n  fill: {\n        type: \"typo\",\n        values: \"Typ\",\n        colors: \"Pastel1\",\n        leg_x: 920,\n      leg_y: 20,\n      leg_w: 45,\n      leg_h: 30,\n      leg_fontSize: 10,\n      leg_fontSize2: 10\n      },\n  stroke: \"#63695f\",\n  strokeWidth: 1.8,\n  symbol: \"circle\",\n  fillOpacity: 0.8,\n  symbol_size: 400\n  },\n  { \n  type: \"layer\",\n  geojson: land_ausgewaehlt,\n  fill: \"#A67D8E\",\n  stroke: \"#666666\",\n  strokeWidth: 1\n  },\n  {type: \"shadow\", geojson: land_ausgewaehlt, dx: 5, dy: 5},\n  { type: \"scalebar\", units: \"kilometers\" }\n  ]\n})"
+  },
+  {
+    "objectID": "Bertin.html#balkendiagramm",
+    "href": "Bertin.html#balkendiagramm",
+    "title": "Bertin",
+    "section": "Balkendiagramm",
+    "text": "Balkendiagramm\n\n\nDas Balkendiagramm mit der Häufigkeitsverteilung der Typen wird immer auf das oben ausgewählte Land angepasst.\n\n\n\n\n\n\n\n\n\n\nfiltered = data.filter(function(datensatz) {\n  return land == datensatz.Land;\n})\n\n\n\n\n\n\nÜberschrift Verteilung\n\nBeschreibung  = \"Häufigkeitsverteilung \" + land + \":\"\n\nheader = document.getElementById(\"Titel\");\nheader.innerHTML = Beschreibung;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nimport {BarChart} from \"@d3/bar-chart\"\n\n chart = BarChart(filtered, {\n  x: d => d.Typ,\n  y: d => d.Anz,\n   yLabel: \"\",\n  width,\n  height: 500,\n  color: \"#A67D8E\"\n  \n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(quarto)\n\nWarning: Paket 'quarto' wurde unter R Version 4.2.2 erstellt\n\nlibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──\n\n\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.7     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.1\n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n\nlibrary(sf)\n\nLinking to GEOS 3.9.1, GDAL 3.3.2, PROJ 7.2.1; sf_use_s2() is TRUE\n\nlibrary(geojsonsf)\nlibrary(rnaturalearth)\n\ndach <- ne_countries(country = c(\"Austria\",\"Germany\",\"Switzerland\"), scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326) %>% \n  mutate(Land = ifelse(name == \"Switzerland\",\"Schweiz\",ifelse(name == \"Germany\",\"Deutschland\", \"Österreich\")))\n\ndeu = ne_countries(country = \"Germany\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\noe = ne_countries(country = \"Austria\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\nch = ne_countries(country = \"Switzerland\", scale = \"medium\", returnclass = \"sf\") %>%\n  # Transformation nach WGS84 (entspricht crs 4326)\n  st_transform(crs = 4326)\n\n\n#Koordinaten simulieren\nset.seed(1234)\ndeutschand_punkte = st_sample(deu, size = 150)\noesterreich_punkte = st_sample(oe, size = 50)\nschweiz_punkte = st_sample(ch, size = 50)\n\n# Zu einem Datensatz zusammenfassen\n#Deutschland\ndeutschand_punkte_df <- as.data.frame(st_coordinates(deutschand_punkte))\ndeutschand_punkte_df <- cbind(deutschand_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(deutschand_punkte_df), replace = T, prob = c(0.2, 0.3, 0.5))) %>%\n  mutate(Land = \"Deutschland\")\n\n# Österreich\noesterreich_punkte_df <- as.data.frame(st_coordinates(oesterreich_punkte))\noesterreich_punkte_df <- cbind(oesterreich_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(oesterreich_punkte_df), replace = T, prob = c(0.4, 0.1, 0.5))) %>%\n  mutate(Land = \"Österreich\")\n\n# Schweiz\nschweiz_punkte_df <- as.data.frame(st_coordinates(schweiz_punkte))\nschweiz_punkte_df <- cbind(schweiz_punkte_df, Typ = sample(c(\"A\", \"B\", \"C\"), size = nrow(schweiz_punkte_df), replace = T, prob = c(0.6, 0.2, 0.2))) %>%\n  mutate(Land = \"Schweiz\")\n\ndach_df <- rbind(deutschand_punkte_df, oesterreich_punkte_df, schweiz_punkte_df) %>% \n  mutate(Typ_Schrift = paste(\"Typ:\",Typ))\n\nojs_define(dach_ojs = sf_geojson(dach)) \n\nKoordinaten_Punktlayer <- st_as_sf(x = dach_df, coords = c(\"X\",\"Y\"),\n    crs = \"+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0\")\nojs_define(koord_punkte = sf_geojson(Koordinaten_Punktlayer))\n\n\n\n# Daten aus Koordinaten aggregieren:\ndach_df_agg <- dach_df %>%\n  group_by(Typ,Typ_Schrift,Land) %>%\n  summarize(Anz = n_distinct(X)) %>%\n  ungroup()\n\n`summarise()` has grouped output by 'Typ', 'Typ_Schrift'. You can override\nusing the `.groups` argument.\n\nwrite.table(dach_df_agg,\"daten.csv\",row.names=F,sep=\";\",dec=\",\")"
+  },
+  {
+    "objectID": "Impressum.html",
+    "href": "Impressum.html",
+    "title": "",
+    "section": "",
+    "text": "Impressum\n\n\nAngaben gemäß § 5 TMG\n\n\nLena Vogl Millöckerstrasse 40 81477 München\n\n\nKontakt Telefon: +4915771752121 E-Mail: LenaVogl21@gmail.com\n\n\nQuelle:  e-recht24.de\n\n\n\n\n\nSonstige Hinweise\n\n\nFür Inhalte auf verlinkten Seiten übernehme ich keine Haftung. Sollten Inhalte auf diesen Seiten oder auf meiner Seite wider Erwarten gegen geltendes Recht verstoßen, bitte ich Sie mich zu informieren."
+  }
+]

@@ -1,0 +1,33 @@
+project:
+  type: website
+
+website:
+  navbar:
+    background: "light"
+    title: "Lena Vogl"
+    search: true
+    right:
+      - text: "Home"
+        file: index.qmd
+      - text: "R & Excel"
+        file: Excel.qmd
+      - text: "Karten mit R leaflet"
+        file: Leaflet.qmd
+      - text: "Karten mit Bertin"
+        file: Bertin.qmd
+      - text: "Impressum"
+        file: Impressum.qmd
+      - icon: github
+        href: https://github.com/LenaVogl/
+   
+
+format:
+  html:
+    page-layout: full
+    theme: lux
+    css: style.css
+
+editor: visual
+
+output_dir: "docs"
+

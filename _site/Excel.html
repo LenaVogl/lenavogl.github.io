@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.80">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R &amp; Excel</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Lena Vogl</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Excel.html" aria-current="page">R &amp; Excel</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Leaflet.html">Karten mit R leaflet</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Bertin.html">Karten mit Bertin</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Impressum.html">Impressum</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/LenaVogl/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7">R &amp; Excel</h1></div></header>
+<p style="margin-top: 30px;">
+</p><p>Immer wieder kommt es vor, dass Daten in Excel exportiert werden müssen. Mit dem Package <code>openxlsx</code> lassen sich die Daten nicht nur abspeichern, sie können auch beliebig formatiert werden. Somit eignet sich das Package perfekt zur automatisierten Erstellung von Exceldateien. Wer viele Excelsheets generieren möchte, kann das z.B. mit Hilfe von Schleifen umsetzen.</p>
+<p></p>
+<p>Auch das Auslesen von Exceldateien ist mit <code>openxlsx</code> sehr komfortabel möglich. Hierbei können sowohl ganze Excelsheets als auch Teile daraus aufgerufen werden.</p>
+<p style="margin-top: 30px;">
+</p><section id="workbook-anlegen" class="level2">
+<h2 class="anchored" data-anchor-id="workbook-anlegen">Workbook anlegen</h2>
+<p></p>
+<p>Als erstes muss immer ein leeres Workbook angelegt werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-1_4d80fdc55cb48e13c4e2b238c73747f3">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Workbook erstellen</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wb <span class="ot">&lt;-</span> <span class="fu">createWorkbook</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="worksheet-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="worksheet-erstellen">Worksheet erstellen</h2>
+<p></p>
+<p>Für das neu angelegte Workbook wird nun mit <code>addWorksheet()</code> ein Sheet generiert:</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-2_3d26d1180d7357744ac0f90b6c3afe45">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Excelsheet anlegen und benennen</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addWorksheet</span>(wb, <span class="st">"Daten"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="worksheet-befüllen" class="level2">
+<h2 class="anchored" data-anchor-id="worksheet-befüllen">Worksheet befüllen</h2>
+<p></p>
+<p>Ein definiertes Sheet kann mit <code>writeData()</code> befüllt werden. Die Zelle an dem der Eintrag beginnt (linke obere Ecke) wird mit <code>startCol</code> und <code>startRow</code> definiert. Standardmäßig wird in Zelle A1 gestartet.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-3_4e2a8937451a812b4aea05a6e7312bf1">
+<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten in Sheet schreiben, hier der iris-Datensatz</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="at">sheet =</span> <span class="st">"Daten"</span>, <span class="at">x =</span> iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="formel-einfügen" class="level2">
+<h2 class="anchored" data-anchor-id="formel-einfügen">Formel einfügen</h2>
+<p></p>
+<p>Formeln können mit <code>writeFormula()</code> eingefügt werden. Das Argument <code>x</code> beschreibt die Excelfunktion. Das <code>=</code> in der Excelformel wird weggelassen.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-4_5220550a7f479f60193b065c9a4cc1b7">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeFormula</span>(wb,  <span class="at">sheet =</span> <span class="st">"Daten"</span>, <span class="at">x =</span> <span class="st">"A2 + B2"</span> , <span class="at">startCol =</span> <span class="dv">6</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="links-einfügen" class="level2">
+<h2 class="anchored" data-anchor-id="links-einfügen">Links einfügen</h2>
+<p></p>
+<p>Um Links zu erstellen, kann die Funktion <code>makeHyperlinkString()</code> verwendet werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-5_e2d6476c4f35b0d8132ba4e4a2b3c974">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Neues Sheet</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addWorksheet</span>(wb, <span class="st">"Test"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Beispiel: Link zu anderem Tabellenbatt:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">writeFormula</span>(wb, <span class="at">sheet =</span> <span class="st">"Test"</span>, <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">1</span>, <span class="at">x =</span> <span class="fu">makeHyperlinkString</span>(<span class="at">sheet =</span> <span class="st">"Daten"</span>, <span class="at">row =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">text =</span> <span class="st">"Link zu Iris-Datensatz"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="formatierung" class="level2">
+<h2 class="anchored" data-anchor-id="formatierung">Formatierung</h2>
+<p></p>
+<p>Die Formatierung kann mit dem Befehl <code>createStyle()</code> definiert und anschließend mit <code>addStyle()</code> angewendet werden. Hierbei lassen sich verschiedene Styles definieren und auf die gespeicherten Daten bzw. auch beliebige Zellen im Excelsheet anwenden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-6_399c1fd8d659106c5119f46428acfd0c">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Styles definieren</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>header_style <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(<span class="at">halign =</span> <span class="st">"center"</span>, <span class="at">textDecoration =</span> <span class="st">"bold"</span>, <span class="at">border =</span> <span class="st">"Bottom"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>style_grau <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(<span class="at">fgFill =</span> <span class="st">"#d6d6d6"</span>, <span class="at">fontColour =</span> <span class="st">"#313c48"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatierung bestimmter Zellen:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">addStyle</span>(wb, <span class="at">sheet =</span> <span class="st">"Daten"</span>, <span class="at">rows =</span> <span class="dv">2</span><span class="sc">:</span>(<span class="fu">nrow</span>(iris)<span class="sc">+</span><span class="dv">1</span>), <span class="at">cols =</span> <span class="dv">2</span>, <span class="at">style =</span> style_grau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="spaltenbreite" class="level2">
+<h2 class="anchored" data-anchor-id="spaltenbreite">Spaltenbreite</h2>
+<p></p>
+<p>Die Spaltenbreite kann automatisch angepasst oder anhand eines Vektors individuell festgelegt werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-7_883b82ced3cd4dc1b453180884824727">
+<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spaltenbreite automatisch anpassen</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setColWidths</span>(wb, <span class="at">sheet =</span> <span class="st">"Daten"</span>, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(iris), <span class="at">widths =</span> <span class="st">"auto"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Spaltenbreite individuel verändern</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setColWidths</span>(wb, <span class="at">sheet =</span> <span class="st">"Daten"</span>, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(iris),  <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">15</span>, <span class="dv">12</span>, <span class="dv">33</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Zeilenhöhe anpassen</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">setRowHeights</span>(wb, <span class="at">sheet =</span> <span class="st">"Daten"</span>, <span class="at">rows =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris),  <span class="at">heights =</span> <span class="fu">rep</span>(<span class="dv">30</span>, <span class="at">times =</span> <span class="fu">nrow</span>(iris)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="bedingte-formatierung" class="level2">
+<h2 class="anchored" data-anchor-id="bedingte-formatierung">Bedingte Formatierung</h2>
+<p></p>
+<p>Mit der Funktion <code>conditionalFormatting()</code> können Zellen mit bedingter Formatierung versehen werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-8_ec5d4cdfd7c5fb65faa30d47e61e1215">
+<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Daten mit Wert größer gleich 3 rot einfärben</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>style_rot <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(<span class="at">fontColour =</span> <span class="st">"#ff5232"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">conditionalFormatting</span>(wb, <span class="st">"Daten"</span>, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">rows =</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">nrow</span>(iris), <span class="at">rule =</span> <span class="st">"A2&gt;=3"</span>, <span class="at">style =</span> style_rot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="datenüberprüfung" class="level2">
+<h2 class="anchored" data-anchor-id="datenüberprüfung">Datenüberprüfung</h2>
+<p></p>
+<p>Wir können festlegen welche Werte in eine Spalte eingegeben werden dürfen. Dazu verwenden wir die Funktion <code>dataValidation()</code>. Entspricht die Eingabe nicht der Vorgabe, entsteht eine Fehlermeldung in Excel.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-9_fc642e14c139453dbf3bf8911ed16106">
+<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Neues Sheet</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addWorksheet</span>(wb, <span class="st">"Datenpruefung"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Überprüfung auf Wert</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="st">"Datenpruefung"</span>, <span class="at">x =</span> <span class="st">"Zahl zwischen 1 und 5 eingeben"</span>, <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">2</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dataValidation</span>(wb, <span class="st">"Datenpruefung"</span>, <span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">2</span>, <span class="at">type =</span> <span class="st">"whole"</span>, <span class="at">operator =</span> <span class="st">"between"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Überprüfung auf Datum</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="st">"Datenpruefung"</span>, <span class="at">x =</span> <span class="st">"Datum eingeben"</span>, <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">4</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dataValidation</span>(wb, <span class="st">"Datenpruefung"</span>, <span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">4</span>, <span class="at">type =</span> <span class="st">"date"</span>, <span class="at">operator =</span> <span class="st">"greaterThanOrEqual"</span>, <span class="at">value =</span> <span class="fu">as.Date</span>(<span class="st">"2022-01-01"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Um Auswahlfelder mit Dropdown zu generieren, kann ebenfalls die Funktion <code>dataValidation()</code> verwendet werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-10_619065ed28fece014c39ec1c1e31271f">
+<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Neues Datenblatt einfügen in dem die Auswahlmöglichkeiten definiert werden</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addWorksheet</span>(wb, <span class="st">"Dropdown"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="at">sheet =</span> <span class="st">"Dropdown"</span>, <span class="at">x =</span> <span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>), <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">1</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Text einfügen um den Nutzer aufzufordern (optional)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">writeData</span>(wb, <span class="at">sheet =</span> <span class="st">"Datenpruefung"</span>, <span class="at">x =</span> <span class="st">"Wert auswählen"</span>, <span class="at">startCol =</span> <span class="dv">1</span>, <span class="at">startRow =</span> <span class="dv">6</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Nur Werte aus Dropdown-Liste erlauben</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dataValidation</span>(wb, <span class="at">sheet =</span> <span class="st">"Datenpruefung"</span>, <span class="at">cols =</span> <span class="dv">2</span>, <span class="at">rows =</span> <span class="dv">6</span>, <span class="at">type =</span> <span class="st">"list"</span>, <span class="at">value =</span> <span class="st">"Dropdown!$A$1:$A$3"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Feld das überprüft wird grau hervorheben</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">addStyle</span>(wb, <span class="at">sheet =</span> <span class="st">"Datenpruefung"</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="at">rows =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>), <span class="at">style =</span> style_grau)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">setColWidths</span>(wb, <span class="at">sheet =</span> <span class="st">"Datenpruefung"</span>, <span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="zeilen-spalten-fixieren" class="level2">
+<h2 class="anchored" data-anchor-id="zeilen-spalten-fixieren">Zeilen / Spalten fixieren</h2>
+<p></p>
+<p>Sollen bestimmte Zeilen oder Spalten beim Scrollen eingefroren werden, kann das mit der Funktion <code>freezePane()</code> definiert werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-11_53f2477c60d53fcd0427483464c2dc78">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freezePane</span>(wb, <span class="st">"Daten"</span>, <span class="at">firstActiveRow =</span> <span class="dv">2</span>, <span class="at">firstActiveCol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="blattschutz" class="level2">
+<h2 class="anchored" data-anchor-id="blattschutz">Blattschutz</h2>
+<p></p>
+<p>Um Zellen vom Blattschutz auszunehmen, kann bei der Erstellung des Styles <code>locked = FALSE</code> gesetzt werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-12_965ba553da9fe3e2b61d4dfb642cb598">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Style definieren</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>style_grau_ungeschuetzt <span class="ot">&lt;-</span> <span class="fu">createStyle</span>(<span class="at">fgFill =</span> <span class="st">"#d6d6d6"</span>, <span class="at">fontColour =</span> <span class="st">"#313c48"</span>, <span class="at">locked =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Style auf veränderbare Zellen anwenden</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">addStyle</span>(wb, <span class="st">"Datenpruefung"</span>, <span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">rows =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span>), <span class="at">style =</span> style_grau_ungeschuetzt)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Blatt schützen</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">protectWorksheet</span>(wb, <span class="st">"Datenpruefung"</span>, <span class="at">protect =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p style="margin-top: 30px;">
+</p></section>
+<section id="workbook-speichern" class="level2">
+<h2 class="anchored" data-anchor-id="workbook-speichern">Workbook speichern</h2>
+<p></p>
+<p>Nachdem alles definiert und formatiert wurde, kann das Workbook als Exceldatei abgespeichert werden.</p>
+<div class="cell" data-hash="Excel_cache/html/unnamed-chunk-13_d9f59c7ba733617491b8a6a65fc123af">
+<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Workbook speichern:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveWorkbook</span>(wb, <span class="st">"Test_Daten.xlsx"</span>, <span class="at">overwrite =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+</body></html>

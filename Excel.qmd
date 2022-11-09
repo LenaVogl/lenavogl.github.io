@@ -1,0 +1,252 @@
+---
+title: "R & Excel"
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+<p style="margin-top: 30px;">
+
+Immer wieder kommt es vor, dass Daten in Excel exportiert werden müssen. Mit dem Package `openxlsx` lassen sich die Daten nicht nur abspeichern, sie können auch beliebig formatiert werden. Somit eignet sich das Package perfekt zur automatisierten Erstellung von Exceldateien. Wer viele Excelsheets generieren möchte, kann das z.B. mit Hilfe von Schleifen umsetzen.
+
+</p>
+
+Auch das Auslesen von Exceldateien ist mit `openxlsx` sehr komfortabel möglich. Hierbei können sowohl ganze Excelsheets als auch Teile daraus aufgerufen werden.
+
+<p style="margin-top: 30px;">
+
+## Workbook anlegen
+
+</p>
+
+Als erstes muss immer ein leeres Workbook angelegt werden.
+
+```{r}
+
+library(openxlsx)
+
+# Workbook erstellen
+wb <- createWorkbook()
+
+```
+
+<p style="margin-top: 30px;">
+
+## Worksheet erstellen
+
+</p>
+
+Für das neu angelegte Workbook wird nun mit `addWorksheet()` ein Sheet generiert:
+
+```{r}
+
+# Excelsheet anlegen und benennen
+addWorksheet(wb, "Daten")
+
+```
+
+<p style="margin-top: 30px;">
+
+## Worksheet befüllen
+
+</p>
+
+Ein definiertes Sheet kann mit `writeData()` befüllt werden. Die Zelle an dem der Eintrag beginnt (linke obere Ecke) wird mit `startCol` und `startRow` definiert. Standardmäßig wird in Zelle A1 gestartet.
+
+```{r}
+
+# Daten in Sheet schreiben, hier der iris-Datensatz
+writeData(wb, sheet = "Daten", x = iris)
+
+```
+
+<p style="margin-top: 30px;">
+
+## Formel einfügen
+
+</p>
+
+Formeln können mit `writeFormula()` eingefügt werden. Das Argument `x` beschreibt die Excelfunktion. Das `=` in der Excelformel wird weggelassen.
+
+```{r}
+
+writeFormula(wb,  sheet = "Daten", x = "A2 + B2" , startCol = 6, startRow = 2)
+
+```
+
+<p style="margin-top: 30px;">
+
+## Links einfügen
+
+</p>
+
+Um Links zu erstellen, kann die Funktion `makeHyperlinkString()` verwendet werden.
+
+```{r}
+
+# Neues Sheet
+addWorksheet(wb, "Test")
+
+# Beispiel: Link zu anderem Tabellenbatt:
+writeFormula(wb, sheet = "Test", startCol = 1, startRow = 1, x = makeHyperlinkString(sheet = "Daten", row = 1, col = 2, text = "Link zu Iris-Datensatz"))
+
+```
+
+<p style="margin-top: 30px;">
+
+## Formatierung
+
+</p>
+
+Die Formatierung kann mit dem Befehl `createStyle()` definiert und anschließend mit `addStyle()` angewendet werden. Hierbei lassen sich verschiedene Styles definieren und auf die gespeicherten Daten bzw. auch beliebige Zellen im Excelsheet anwenden.
+
+```{r}
+
+#Styles definieren
+header_style <- createStyle(halign = "center", textDecoration = "bold", border = "Bottom")
+
+style_grau <- createStyle(fgFill = "#d6d6d6", fontColour = "#313c48")
+
+# Formatierung bestimmter Zellen:
+addStyle(wb, sheet = "Daten", rows = 2:(nrow(iris)+1), cols = 2, style = style_grau)
+
+```
+
+<p style="margin-top: 30px;">
+
+## Spaltenbreite
+
+</p>
+
+Die Spaltenbreite kann automatisch angepasst oder anhand eines Vektors individuell festgelegt werden.
+
+```{r}
+
+# Spaltenbreite automatisch anpassen
+setColWidths(wb, sheet = "Daten", cols = 1:ncol(iris), widths = "auto")
+
+# Spaltenbreite individuel verändern
+setColWidths(wb, sheet = "Daten", cols = 1:ncol(iris),  widths = c(16, 15, 12, 33))
+
+# Zeilenhöhe anpassen
+setRowHeights(wb, sheet = "Daten", rows = 1:nrow(iris),  heights = rep(30, times = nrow(iris)))
+
+```
+
+<p style="margin-top: 30px;">
+
+## Bedingte Formatierung
+
+</p>
+
+Mit der Funktion `conditionalFormatting()` können Zellen mit bedingter Formatierung versehen werden.
+
+```{r}
+
+#Daten mit Wert größer gleich 3 rot einfärben
+style_rot <- createStyle(fontColour = "#ff5232")
+
+conditionalFormatting(wb, "Daten", cols = 1:3, rows = 2:nrow(iris), rule = "A2>=3", style = style_rot)
+
+```
+
+<p style="margin-top: 30px;">
+
+## Datenüberprüfung
+
+</p>
+
+Wir können festlegen welche Werte in eine Spalte eingegeben werden dürfen. Dazu verwenden wir die Funktion `dataValidation()`. Entspricht die Eingabe nicht der Vorgabe, entsteht eine Fehlermeldung in Excel.
+
+```{r}
+
+# Neues Sheet
+addWorksheet(wb, "Datenpruefung")
+
+# Überprüfung auf Wert
+writeData(wb, "Datenpruefung", x = "Zahl zwischen 1 und 5 eingeben", startCol = 1, startRow = 2)
+
+dataValidation(wb, "Datenpruefung", cols = 2, rows = 2, type = "whole", operator = "between", value = c(1, 5)
+) 
+# Überprüfung auf Datum
+writeData(wb, "Datenpruefung", x = "Datum eingeben", startCol = 1, startRow = 4)
+
+dataValidation(wb, "Datenpruefung", cols = 2, rows = 4, type = "date", operator = "greaterThanOrEqual", value = as.Date("2022-01-01")
+)  
+
+```
+
+Um Auswahlfelder mit Dropdown zu generieren, kann ebenfalls die Funktion `dataValidation()` verwendet werden.
+
+```{r}
+
+# Neues Datenblatt einfügen in dem die Auswahlmöglichkeiten definiert werden
+addWorksheet(wb, "Dropdown")
+
+writeData(wb, sheet = "Dropdown", x = c("A","B","C"), startCol = 1, startRow = 1)
+
+# Text einfügen um den Nutzer aufzufordern (optional)
+writeData(wb, sheet = "Datenpruefung", x = "Wert auswählen", startCol = 1, startRow = 6)
+
+# Nur Werte aus Dropdown-Liste erlauben
+dataValidation(wb, sheet = "Datenpruefung", cols = 2, rows = 6, type = "list", value = "Dropdown!$A$1:$A$3")
+
+# Feld das überprüft wird grau hervorheben
+addStyle(wb, sheet = "Datenpruefung", cols = c(2, 2, 2), rows = c(2, 4, 6), style = style_grau)
+
+setColWidths(wb, sheet = "Datenpruefung", cols = 1:2, widths = c(30, 12))
+
+```
+
+<p style="margin-top: 30px;">
+
+## Zeilen / Spalten fixieren
+
+</p>
+
+Sollen bestimmte Zeilen oder Spalten beim Scrollen eingefroren werden, kann das mit der Funktion `freezePane()` definiert werden.
+
+```{r}
+
+freezePane(wb, "Daten", firstActiveRow = 2, firstActiveCol = 1)
+
+```
+
+<p style="margin-top: 30px;">
+
+## Blattschutz
+
+</p>
+
+Um Zellen vom Blattschutz auszunehmen, kann bei der Erstellung des Styles `locked = FALSE` gesetzt werden.
+
+```{r}
+
+# Style definieren
+style_grau_ungeschuetzt <- createStyle(fgFill = "#d6d6d6", fontColour = "#313c48", locked = FALSE)
+
+# Style auf veränderbare Zellen anwenden
+addStyle(wb, "Datenpruefung", cols = c(2,2,2), rows = c(2,4,6), style = style_grau_ungeschuetzt)
+
+# Blatt schützen
+protectWorksheet(wb, "Datenpruefung", protect = TRUE)
+
+```
+
+<p style="margin-top: 30px;">
+
+## Workbook speichern
+
+</p>
+
+Nachdem alles definiert und formatiert wurde, kann das Workbook als Exceldatei abgespeichert werden.
+
+```{r}
+
+# Workbook speichern:
+saveWorkbook(wb, "Test_Daten.xlsx", overwrite = T)
+
+```
