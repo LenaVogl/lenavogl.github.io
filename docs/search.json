@@ -159,5 +159,12 @@
     "title": "",
     "section": "",
     "text": "Impressum\n\n\nAngaben gemäß § 5 TMG\n\n\nLena Vogl Millöckerstrasse 40 81477 München\n\n\nKontakt Telefon: +4915771752121 E-Mail: LenaVogl21@gmail.com\n\n\nQuelle:  e-recht24.de\n\n\n\n\n\nSonstige Hinweise\n\n\nFür Inhalte auf verlinkten Seiten übernehme ich keine Haftung. Sollten Inhalte auf diesen Seiten oder auf meiner Seite wider Erwarten gegen geltendes Recht verstoßen, bitte ich Sie mich zu informieren."
+  },
+  {
+    "objectID": "Leaflet.html#karte-mit-suchfunktion",
+    "href": "Leaflet.html#karte-mit-suchfunktion",
+    "title": "R Leaflet",
+    "section": "Karte mit Suchfunktion",
+    "text": "Karte mit Suchfunktion\n\nUm Adressen suchen zu können, lässt sich mit dem package leaflet.extras ein Suchfenster einbinden (addSearchOSM()). Mit addReverseSearchOSM() lassen sich per Mouseklick die Adresse und die Geokoordinaten der angeklickten Stelle anzeigen. Mit addResetMapButton() wird ein Button integriert, mit dem man wieder in den ursprünglichen Kartenausschnitt zurückspringen kann.\n\nlibrary(leaflet.extras)\n\nleaflet() %>%\n  # Mitte auf München setzen\n  setView(lng = 11.572347, lat = 48.138345, zoom = 12) %>%\n  # Hintergrundkarte festlegen\n  addProviderTiles(providers$OpenStreetMap.DE, group = \"Open Street Map DE\") %>%\n  addSearchOSM() %>% \n  addReverseSearchOSM(showBounds = T, showSearchLocation = F) %>% \n  addResetMapButton()"
   }
 ]
