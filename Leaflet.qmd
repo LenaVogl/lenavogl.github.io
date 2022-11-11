@@ -51,7 +51,7 @@ leaflet() %>%
 
 </p>
 
-Um Adressen suchen zu können, lässt sich mit dem package `leaflet.extras` ein Suchfenster einbinden (`addSearchOSM()`). Mit `addReverseSearchOSM()` lassen sich per Mouseklick die Adresse und die Geokoordinaten der angeklickten Stelle anzeigen. Mit `addResetMapButton()` wird ein Button integriert, mit dem man wieder in den ursprünglichen Kartenausschnitt zurückspringen kann.
+Um Adressen suchen zu können, lässt sich mit dem package `leaflet.extras` ein Suchfenster einbinden (`addSearchOSM()`). Mit `addReverseSearchOSM()` lässt sich per Mouseklick die Adresse der angeklickten Stelle anzeigen. Mit `addResetMapButton()` wird ein Button integriert, mit dem man wieder in den ursprünglichen Kartenausschnitt zurückspringen kann.
 
 ```{r}
 library(leaflet.extras)
