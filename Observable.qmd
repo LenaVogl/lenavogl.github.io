@@ -98,9 +98,7 @@ bertin.draw({
         leg_x: 920,
       leg_y: 20,
       leg_w: 45,
-      leg_h: 30,
-      leg_fontSize: 10,
-      leg_fontSize2: 10
+      leg_h: 30
       },
   stroke: "#63695f",
   strokeWidth: 1.8,
