@@ -14,8 +14,8 @@ website:
         file: Excel.qmd
       - text: "Karten mit R leaflet"
         file: Leaflet.qmd
-      - text: "Karten mit Bertin"
-        file: Bertin.qmd
+      - text: "Observable JS"
+        file: Observable.qmd
       - text: "Impressum"
         file: Impressum.qmd
       - icon: github

@@ -1,5 +1,5 @@
 ---
-title: "Bertin"
+title: "Observable JS"
 format:
   html:
     page-layout: full
@@ -14,9 +14,7 @@ format:
 ---
 
 <p style="margin-top: 30px;">
-
-Mit `bertin` lassen sich sehr ansprechende Karten generieren. [Hier](https://observablehq.com/@neocartocnrs/hello-bertin-js?collection=@neocartocnrs/bertin) finden sich viele verschiedene Beispiele zu `bertin`.
-
+Mit [Quarto](https://quarto.org) lässt sich neben `R` und `Python` auch `ojs`- Code (Observable Java Script) integrieren. Damit sind vielseitige interaktive Darstellungen möglich.
 </p>
 
 ::: grid
@@ -24,6 +22,8 @@ Mit `bertin` lassen sich sehr ansprechende Karten generieren. [Hier](https://obs
 <p style="margin-top: 30px;">
 
 ## Karte
+
+Diese Karte wurde mit `bertin` erstellt. [Hier](https://observablehq.com/@neocartocnrs/hello-bertin-js?collection=@neocartocnrs/bertin) finden sich viele verschiedene Beispiele zu `bertin`.
 
 </p>
 
