@@ -16,7 +16,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 <p style="margin-top: 30px;">
 
-Leaflet ist eine Open Source Bibliothek mit der interaktive Karten erstellt werden können. Über das R-Package `leaflet` lassen sich verschiedene GIS-Daten (z.B. Koordinaten, Layer) in interaktiven Karten darstellen. Im fogenden möchte ich einige nützliche Funktionalitäten darstellen.
+Leaflet ist eine Open Source Bibliothek mit der interaktive Karten erstellt werden können. Über das R-Package `leaflet` lassen sich verschiedene GIS-Daten (z.B. Koordinaten, Layer) in interaktiven Karten darstellen. 
 
 </p>
 

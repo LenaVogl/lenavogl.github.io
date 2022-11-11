@@ -10,7 +10,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 
 <p style="margin-top: 30px;">
 
-Immer wieder kommt es vor, dass Daten in Excel exportiert werden müssen. Mit dem Package `openxlsx` lassen sich die Daten nicht nur abspeichern, sie können auch beliebig formatiert werden. Somit eignet sich das Package perfekt zur automatisierten Erstellung von Exceldateien. Wer viele Excelsheets generieren möchte, kann das z.B. mit Hilfe von Schleifen umsetzen.
+Immer wieder kommt es vor, dass Daten in Excel exportiert werden müssen. Mit dem Package `openxlsx` lassen sich die Daten nicht nur abspeichern, sie können auch beliebig formatiert werden. Dabei sind fast alle Funktionalitäten von Excel über R einstellbar (z.B. Formeln, bedingte Formatierung, Blattschutz, etc.). Somit eignet sich das Package perfekt zur automatisierten Erstellung von Exceldateien. Wer mehrere Excelsheets auf einmal generieren möchte, kann das z.B. mit Hilfe von Schleifen umsetzen. 
 
 </p>
 
