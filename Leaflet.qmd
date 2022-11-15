@@ -26,7 +26,7 @@ Leaflet ist eine Open Source Bibliothek mit der interaktive Karten erstellt werd
 
 </p>
 
-Um eine einfache LeafletKarte zu erstellen, benötigen wir eine Hintergrundkarte und einen Kartenausschnitt, der dargestellt werden soll. Die Region kann entweder über eine Koordinate herangezoomt werden, oder durch hinzufügen eines Layers (z.B. aus einer Shape-Datei). Es gibt eine Vielzahl an möglichen Hintergrundkarten, die in `providers` enthalten sind. Auf dieser Seite werden die verschiedenen Hintergrundkarten sehr übersichtlich dargestellt: [Kartenauswahl](http://leaflet-extras.github.io/leaflet-providers/preview/)
+Um eine einfache LeafletKarte zu erstellen, benötigen wir eine Hintergrundkarte und einen Kartenausschnitt, der dargestellt werden soll. Die Region kann entweder über eine Koordinate herangezoomt werden, oder durch hinzufügen eines Layers (z.B. aus einer Shape-Datei). Es gibt eine Vielzahl an möglichen Hintergrundkarten, die in `providers` enthalten sind. Auf [dieser Seite](http://leaflet-extras.github.io/leaflet-providers/preview/) werden die verschiedenen Hintergrundkarten sehr übersichtlich dargestellt: 
 
 ```{r}
 library(leaflet)
