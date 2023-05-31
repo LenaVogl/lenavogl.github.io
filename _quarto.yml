@@ -21,9 +21,9 @@ website:
       - icon: github
         href: https://github.com/LenaVogl/
    
-   comments:
-     giscus:
-       repo: LenaVogl/lenavogl.github.io
+comments:
+  giscus:
+    repo: LenaVogl/lenavogl.github.io
 
 
 
