@@ -30,6 +30,8 @@ title: "Lena Vogl"
         async>
 </script>
 ```
+
+
 ::: grid
 ::: {.g-col-12 .g-col-md-6}
 # **Über mich / Inhalt dieser Website**
@@ -58,3 +60,4 @@ Lena Vogl
 :::
 :::
 
+<giscus>
