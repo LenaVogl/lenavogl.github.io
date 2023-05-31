@@ -251,7 +251,7 @@ write.table(dach_df_agg,"daten.csv",row.names=F,sep=";",dec=",")
 :::
 :::
 
-## 
+ 
 
 <script src="https://giscus.app/client.js"
         data-repo="LenaVogl/lenavogl.github.io"
