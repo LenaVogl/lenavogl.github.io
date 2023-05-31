@@ -22,8 +22,8 @@ website:
         href: https://github.com/LenaVogl/
    
    comments:
-   hypothesis:
-     theme: clean
+   utterances:
+     repo: koordinaten
 
 
 
