@@ -2,22 +2,9 @@
 title: "Lena Vogl"
 ---
 
-```{=html}
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-
 <script src="https://giscus.app/client.js"
         data-repo="LenaVogl/lenavogl.github.io"
         data-repo-id="R_kgDOHkzRlA"
-        data-category="Announcements"
         data-category-id="DIC_kwDOHkzRlM4CW3ed"
         data-mapping="pathname"
         data-strict="0"
@@ -29,6 +16,24 @@ title: "Lena Vogl"
         crossorigin="anonymous"
         async>
 </script>
+
+
+```{=html}
+        
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+
+
+
 ```
 
 
@@ -60,4 +65,4 @@ Lena Vogl
 :::
 :::
 
-<giscus>
+
