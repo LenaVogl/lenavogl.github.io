@@ -203,3 +203,4 @@ library(leaflet.minicharts)
      addProviderTiles(providers$Esri.WorldGrayCanvas) %>%  # Default ist hier OpenStreetMap
      addMinicharts(lng = dach_agg_ges$X, lat = dach_agg_ges$Y, type = "bar", chartdata = dach_agg_ges[,4:6], width =80, height = 80)
 ```
+

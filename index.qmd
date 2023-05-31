@@ -50,5 +50,3 @@ Lena Vogl
 <a href = "https://crumplab.github.io"> ![](images/Foto_Lena_Vogl.jpg) </a>
 :::
 :::
-
-<giscus></giscus>
