@@ -208,5 +208,12 @@
     "title": "Observable JS",
     "section": "",
     "text": "Mit Quarto lässt sich neben R und Python auch ojs- Code (Observable Java Script) integrieren. Damit sind vielseitige interaktive Darstellungen möglich."
+  },
+  {
+    "objectID": "Observable.html#kommentare",
+    "href": "Observable.html#kommentare",
+    "title": "Observable JS",
+    "section": "Kommentare:",
+    "text": "Kommentare:"
   }
 ]
