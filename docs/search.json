@@ -194,5 +194,12 @@
     "title": "R & Excel",
     "section": "",
     "text": "Immer wieder kommt es vor, dass Daten in Excel exportiert werden müssen. Mit dem Package openxlsx lassen sich die Daten nicht nur abspeichern, sie können auch beliebig formatiert werden. Dabei sind fast alle Funktionalitäten von Excel über R einstellbar (z.B. Formeln, bedingte Formatierung, Blattschutz, etc.). Somit eignet sich das Package perfekt zur automatisierten Erstellung von Exceldateien. Wer mehrere Excelsheets auf einmal generieren möchte, kann das z.B. mit Hilfe von Schleifen umsetzen.\nAuch das Auslesen von Exceldateien ist mit openxlsx sehr komfortabel möglich. Hierbei können sowohl ganze Excelsheets als auch Teile daraus aufgerufen werden."
+  },
+  {
+    "objectID": "Excel.html#kommentare",
+    "href": "Excel.html#kommentare",
+    "title": "R & Excel",
+    "section": "Kommentare",
+    "text": "Kommentare"
   }
 ]
