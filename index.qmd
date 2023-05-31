@@ -1,5 +1,6 @@
 ---
 title: "Lena Vogl"
+
 ---
 
 
@@ -48,6 +49,5 @@ Lena Vogl
 ::: {.g-col-12 .g-col-md-6}
 <a href = "https://crumplab.github.io"> ![](images/Foto_Lena_Vogl.jpg) </a>
 :::
-
 :::
 
