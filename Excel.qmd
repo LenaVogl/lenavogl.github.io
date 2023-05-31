@@ -258,19 +258,4 @@ saveWorkbook(wb, "Test_Daten.xlsx", overwrite = T)
 </p>
 
 
-<script src="https://giscus.app/client.js"
-        data-repo="LenaVogl/lenavogl.github.io"
-        data-repo-id="R_kgDOHkzRlA"
-        data-category-id="DIC_kwDOHkzRlM4CW3ee"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="de"
-        crossorigin="anonymous"
-        async>
-</script>
-
 <giscus></giscus>
