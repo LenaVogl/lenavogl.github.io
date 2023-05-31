@@ -253,7 +253,7 @@ saveWorkbook(wb, "Test_Daten.xlsx", overwrite = T)
 
 <p style="margin-top: 30px;">
 
-## Kommentare
+##
 
 </p>
 
