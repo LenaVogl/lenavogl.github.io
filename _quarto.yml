@@ -22,8 +22,8 @@ website:
         href: https://github.com/LenaVogl/
    
    comments:
-     utterances:
-       repo: lenavogl.github.io
+     giscus:
+       repo: LenaVogl/lenavogl.github.io
 
 
 
@@ -32,5 +32,4 @@ format:
     page-layout: full
     theme: lux
     css: style.css
-
 
